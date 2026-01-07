@@ -1,7 +1,7 @@
 --- 
-title: "STAT 799 - Topics in Statistics - Applied linear mixed models in agriculture and life sciences"
+title: "STAT 799 - Topics in Statistics: Applied linear mixed models in agriculture and life sciences"
 author: "Josefina Lacasa"
-date: Semester Year #"`r Sys.Date()`"
+date: Spring 2026 #"`r Sys.Date()`"
 site: bookdown::bookdown_site
 ---
 
@@ -56,6 +56,3 @@ By the end of this course, you should be able to:
 - probability distribution: $y \sim N(0, \sigma^2)$, $\mathbf{y} \sim N(\boldsymbol{0}, \sigma^2\mathbf{I})$.     
 
 
-## For tomorrow    
-
-- Install R and RStudio. 

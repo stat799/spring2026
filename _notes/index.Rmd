@@ -1,12 +1,12 @@
 --- 
-title: "STAT NNN - Design of Experiments"
+title: "STAT 799 - Topics in Statistics - Applied linear mixed models in agriculture and life sciences"
 author: "Josefina Lacasa"
 date: Semester Year #"`r Sys.Date()`"
 site: bookdown::bookdown_site
 ---
 
-# Welcome to STAT 720!  
-June 9th, 2025  
+# Welcome to STAT 799!  
+January 26th, 2026  
 
 ## About this course:  
 
@@ -15,21 +15,22 @@ June 9th, 2025
 
 ```{r message=F, warning=FALSE}
 library(tidyverse)
-# read.csv("../../students_STAT_720_C.csv") %>% 
-#   ggplot(aes(x = degreeProgram))+
-#   geom_bar(fill = "#B388EB")+
-#   theme_bw()+
-#   theme(panel.grid.minor = element_blank(),
-#         panel.border = element_blank(),
-#         axis.title.x = element_blank(), 
-#         axis.text.x = element_text(angle = 50, vjust = 1, hjust=1))
+read.csv("../../../students_STAT_799_C.csv") |> 
+  filter(degreeProgram != "") %>% 
+  ggplot(aes(x = degreeProgram))+
+  geom_bar(fill = "#B388EB")+
+  theme_bw()+
+  scale_y_continuous(breaks = 1:9)+
+  theme(panel.grid.minor = element_blank(),
+        panel.border = element_blank(),
+        axis.title.x = element_blank())
 ```
 
 - In rounds: What's your major, what do you expect to learn?  
 
 ### Logistics  
 
-- [Website](#)
+- [Website](https://stat799.github.io/spring2026/)
 - Syllabus
 - Statistical programming requirements  
 - Rough mindmap of the course (on whiteboard)  

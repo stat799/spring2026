@@ -13,12 +13,12 @@
 # you will see them accessed via {{ site.title }}, {{ site.github_repo }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Course Title # change
-tagline: STAT NNN # change
-description: Design of Experiments
+title: Topics in Statistics - Applied linear mixed models in agriculture and life sciences # change
+tagline: STAT 799 # change
+description: Applied Mixed Models Ag
 author: Josefina Lacasa
-baseurl: '/course_template' # the subpath of your site, e.g. /blog change
-url: 'https://jlacasa.github.io' # the base hostname & protocol for your site, e.g. http://example.com change
+baseurl: '/spring2026' # the subpath of your site, e.g. /blog change
+url: 'https://stat799.github.io' # the base hostname & protocol for your site, e.g. http://example.com change
 exclude: ["Gemfile", "Gemfile.lock", "LICENSE"]
 
 # Theme settings

@@ -8,7 +8,8 @@ seo:
   name: STAT 799
 ---
 
-STAT 799 - Topics in Statistics - Applied linear mixed models in agriculture and life sciences   
+**STAT 799 - Topics in Statistics - Applied linear mixed models in agriculture and life sciences**   
+
 Spring 2026   
 Kansas State University
 

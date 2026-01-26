@@ -9,8 +9,8 @@ Broadly, projects are expected to **identify a research problem** and **develop 
 
 ## Partial deadlines
 
-### Project proposal - Due Friday January 30 at 4pm CT
-Write a page-long project proposal that states your research problem and the objective of your project. 
+### Project proposal - Due Friday February 1st at noon CT
+Write a 1 or 2 page-long project proposal that (a) includes the background of your problem (i.e., why is this important?) and (b) states your research objective. 
 
 ### Written report - Due Wednesday April 20 at 2pm CT for peer review 
 Submit a manuscript to one of your classmates. 
@@ -31,8 +31,7 @@ Presentations should include at least:
   - Must include Abstract (250w), Introduction (~500w), M&M (~300-500w), Results (~400w), Discussion (~400w), Conclusions (~100w). 
   - Last paragraph in the Introduction should clearly state the research gap and the research objectives.  
 - Publication-ready tutorial/R documentation  
-  - [[example 1]()] | [[example 2]()] 
-
+- See evaluation rubric on Canvas. 
 
 
 

@@ -1,0 +1,197 @@
+# Mixed models I     
+
+*January 27th, 2026*
+
+## Recall the most common statistical model 
+
+$$\mathbf{y} \sim N(\boldsymbol\mu, \boldsymbol\Sigma),$$
+
+where:
+
+- $\mathbf{y} \equiv [y_1, y_2, \dots, y_n]'$ contains the response data, 
+- $\boldsymbol{\mu} \equiv [\mu_1, \mu_2, \dots, \mu_n]'$ contains the expected values of said data, 
+- $\boldsymbol\Sigma$ is the variance-covariance matrix. 
+
+The most typical model typically has:
+
+- $\boldsymbol\mu = \mathbf{X}\boldsymbol{\beta}$ and 
+- $\boldsymbol\Sigma = \sigma^2\mathbf{I}$. 
+
+In summary, the assumptions are: 
+
+- Normality 
+- Independence 
+- Constant variance 
+
+## Variations to that very common statistical model 
+
+We can adapt the assumptions one by one:
+
+- **Normality** -- assume a different distribution 
+- **Independence** -- implement a hierarchical/multi-level/mixed model that models the data that were generated together. 
+- **Constant variance** -- model the variance/assume a different distribution where the mean and the variance are not independent. 
+
+
+## Relaxing the assumption of independence 
+
+- What if we can model the variance-covariance matrix with something else that's not $\sigma^2 \mathbf{I}$? 
+
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+my_theme <-
+  theme_minimal()+
+  theme(aspect.ratio = 1, 
+        axis.text = element_blank(), 
+        legend.position = "bottom",
+        panel.grid = element_blank(), 
+        axis.title = element_blank(), 
+        axis.ticks = element_blank())
+
+theme_set(my_theme)
+```
+
+```{r}
+sigma <- 2
+
+diag(sigma^2, nrow = 18) |>  
+  as.data.frame() |>  
+  rownames_to_column("x") |>  
+  pivot_longer(cols = -c(x), names_to = "y") |> 
+  mutate(y = str_replace(y, "V", "") |>  as.numeric(),
+         x = as.numeric(x)) |>  
+  ggplot(aes(x,-y))+
+  geom_tile(aes(fill = value))+
+  scale_fill_viridis_c()+
+  labs(fill = "variance/covariance")
+```
+
+```{r}
+m_cs <- lmer(diameter ~ time + (1|appleid), 
+             data = agridat::byers.apple |> filter(appleid %in% c(1,4,32)))
+Z <-  getME(m_cs, "Z") 
+sigma2_s <- .8
+G <- diag(c(rep(sigma2_s, 3)))
+
+Z %*% G %*% t(Z) %>%
+  as.matrix() %>% 
+  as.data.frame() %>% 
+  rownames_to_column("x") %>% 
+  pivot_longer(cols = -c(x), names_to = "y") %>%
+  mutate(x = as.numeric(x), y= as.numeric(y)) %>% 
+  
+  left_join(
+  diag(sigma^2, nrow = 18) %>% 
+  as.data.frame() %>% 
+  rownames_to_column("x") %>% 
+  pivot_longer(cols = -c(x), names_to = "y") %>%
+  mutate(y = str_replace(y, "V", "") %>% as.numeric(),
+         x = as.numeric(x)) %>% 
+  rename(s2 = value)) %>% 
+
+  ggplot(aes(-x,y))+
+  geom_tile(aes(fill = value+s2))+
+  theme_minimal()+
+  scale_fill_viridis_c()+
+  labs(fill = "variance/covariance")+
+  theme(aspect.ratio = 1, 
+        axis.text = element_blank(), 
+        legend.position = "bottom",
+        panel.grid = element_blank(), 
+        axis.title = element_blank(), 
+        axis.ticks = element_blank())
+```
+
+```{r}
+m_cs <- lmer(diameter ~ time + (1|tree/appleid), 
+             data = agridat::byers.apple |> filter(appleid %in% c(1,4,32)))
+Z <-  getME(m_cs, "Z") 
+sigma2_s <- .8
+sigma2_t <- 1.2
+sigma <- 1.5
+G <- diag(c(rep(sigma2_s, 3), rep(sigma2_t, 2)))
+
+Z %*% G %*% t(Z) %>%
+  as.matrix() %>% 
+  as.data.frame() %>% 
+  rownames_to_column("x") %>% 
+  pivot_longer(cols = -c(x), names_to = "y") %>%
+  mutate(x = as.numeric(x), y= as.numeric(y)) %>% 
+  
+  left_join(
+  diag(sigma^2, nrow = 18) %>% 
+  as.data.frame() %>% 
+  rownames_to_column("x") %>% 
+  pivot_longer(cols = -c(x), names_to = "y") %>%
+  mutate(y = str_replace(y, "V", "") %>% as.numeric(),
+         x = as.numeric(x)) %>% 
+  rename(s2 = value)) %>% 
+
+  ggplot(aes(-x,y))+
+  geom_tile(aes(fill = value+s2))+
+  theme_minimal()+
+  scale_fill_viridis_c()+
+  labs(fill = "variance/covariance")+
+  theme(aspect.ratio = 1, 
+        axis.text = element_blank(), 
+        legend.position = "bottom",
+        panel.grid = element_blank(), 
+        axis.title = element_blank(), 
+        axis.ticks = element_blank())
+```
+
+
+
+## Applied examples 
+
+Three sets of data describe the relationship between treatment and crop yield. However, the structures in the data (i.e., data architecture) are different. 
+
+### Example A -- independence holds 
+
+```{r}
+dat_independent <- read.csv("../data/cochrancox_kfert.csv")
+
+m_independent <- lm(yield ~ factor(K2O_lbac), data = dat_independent)
+DHARMa::simulateResiduals(m_independent, plot=T)
+```
+
+
+### Example B -- simple groups of similar observations  
+
+```{r message=FALSE, warning=FALSE}
+library(lme4)
+dat_blocked <- agridat::cochran.factorial
+
+m_blocked <- lmer(yield ~ trt + (1|block), data = dat_blocked)
+DHARMa::simulateResiduals(m_blocked, plot=T)
+```
+
+
+### Example C -- different groups of similar observations  
+
+```{r}
+dat_multilevel <- agridat::durban.splitplot
+
+m_multilevel <- lmer(yield ~ gen*fung + (1|block/fung), data = dat_multilevel)
+```
+
+
+## Model selection 
+
+Important things to keep in mind: 
+
+- Main objective of the model 
+- Best-case scenario 
+- Worst-case scenario 
+
+### Some useful metrics to compare models 
+
+Information criteria 
+
+- Root mean squared error 
+- R^2^ 
+  - Why is R^2^ a suboptimal metric?  
+- Akaike information criterion (AIC) 
+- Bayesian information criterion (BIC) 
+
+
+

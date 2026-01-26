@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Day 3 Mixed models II | STAT 799 - Topics in Statistics: Applied linear mixed models in agriculture and life sciences</title>
+  <meta name="description" content="Day 3 Mixed models II | STAT 799 - Topics in Statistics: Applied linear mixed models in agriculture and life sciences" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Day 3 Mixed models II | STAT 799 - Topics in Statistics: Applied linear mixed models in agriculture and life sciences" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Day 3 Mixed models II | STAT 799 - Topics in Statistics: Applied linear mixed models in agriculture and life sciences" />
+  
+  
+  
+
+<meta name="author" content="Josefina Lacasa" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="mixed-models-i.html"/>
+<link rel="next" href="analysis-of-variance.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">STAT 799</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome to STAT 799!</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#about-this-course"><i class="fa fa-check"></i><b>1.1</b> About this course:</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#logistics"><i class="fa fa-check"></i><b>1.1.1</b> Logistics</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#learning-goals"><i class="fa fa-check"></i><b>1.2</b> Learning goals</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#on-notation"><i class="fa fa-check"></i><b>1.3</b> On notation</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#semester-project"><i class="fa fa-check"></i><b>1.4</b> Semester project</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#roadmap-of-this-course"><i class="fa fa-check"></i><b>1.5</b> Roadmap of this course</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#getting-started-with-statistical-modeling"><i class="fa fa-check"></i><b>1.6</b> Getting started with statistical modeling</a>
+<ul>
+<li class="chapter" data-level="1.6.1" data-path="index.html"><a href="index.html#writing-a-statistical-model"><i class="fa fa-check"></i><b>1.6.1</b> Writing a statistical model</a></li>
+<li class="chapter" data-level="1.6.2" data-path="index.html"><a href="index.html#what-are-linear-models"><i class="fa fa-check"></i><b>1.6.2</b> What are linear models?</a></li>
+<li class="chapter" data-level="1.6.3" data-path="index.html"><a href="index.html#vectorized-notation"><i class="fa fa-check"></i><b>1.6.3</b> Vectorized notation</a></li>
+<li class="chapter" data-level="1.6.4" data-path="index.html"><a href="index.html#vectorized-notation---cont."><i class="fa fa-check"></i><b>1.6.4</b> Vectorized notation - cont.</a></li>
+<li class="chapter" data-level="1.6.5" data-path="index.html"><a href="index.html#continuous-and-categorical-predictors"><i class="fa fa-check"></i><b>1.6.5</b> Continuous and categorical predictors</a></li>
+<li class="chapter" data-level="1.6.6" data-path="index.html"><a href="index.html#three-step-approach-to-writing-a-statistical-model"><i class="fa fa-check"></i><b>1.6.6</b> Three-step approach to writing a statistical model</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#review"><i class="fa fa-check"></i><b>1.7</b> Review</a>
+<ul>
+<li class="chapter" data-level="1.7.1" data-path="index.html"><a href="index.html#probability-distributions"><i class="fa fa-check"></i><b>1.7.1</b> Probability distributions</a></li>
+<li class="chapter" data-level="1.7.2" data-path="index.html"><a href="index.html#mean-variance"><i class="fa fa-check"></i><b>1.7.2</b> Mean, Variance</a></li>
+<li class="chapter" data-level="1.7.3" data-path="index.html"><a href="index.html#covariance"><i class="fa fa-check"></i><b>1.7.3</b> Covariance</a></li>
+</ul></li>
+<li class="chapter" data-level="1.8" data-path="index.html"><a href="index.html#the-most-common-statistical-model"><i class="fa fa-check"></i><b>1.8</b> The most common statistical model</a>
+<ul>
+<li class="chapter" data-level="1.8.1" data-path="index.html"><a href="index.html#properties-of-the-general-linear-model"><i class="fa fa-check"></i><b>1.8.1</b> Properties of the general linear model</a></li>
+</ul></li>
+<li class="chapter" data-level="1.9" data-path="index.html"><a href="index.html#uncertainty"><i class="fa fa-check"></i><b>1.9</b> Uncertainty</a>
+<ul>
+<li class="chapter" data-level="1.9.1" data-path="index.html"><a href="index.html#types-of-uncertainty"><i class="fa fa-check"></i><b>1.9.1</b> Types of uncertainty</a></li>
+<li class="chapter" data-level="1.9.2" data-path="index.html"><a href="index.html#uncertainty---applied-example"><i class="fa fa-check"></i><b>1.9.2</b> Uncertainty - applied example</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="mixed-models-i.html"><a href="mixed-models-i.html"><i class="fa fa-check"></i><b>2</b> Mixed models I</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="mixed-models-i.html"><a href="mixed-models-i.html#recall-the-most-common-statistical-model"><i class="fa fa-check"></i><b>2.1</b> Recall the most common statistical model</a></li>
+<li class="chapter" data-level="2.2" data-path="mixed-models-i.html"><a href="mixed-models-i.html#variations-to-that-very-common-statistical-model"><i class="fa fa-check"></i><b>2.2</b> Variations to that very common statistical model</a></li>
+<li class="chapter" data-level="2.3" data-path="mixed-models-i.html"><a href="mixed-models-i.html#relaxing-the-assumption-of-independence"><i class="fa fa-check"></i><b>2.3</b> Relaxing the assumption of independence</a></li>
+<li class="chapter" data-level="2.4" data-path="mixed-models-i.html"><a href="mixed-models-i.html#applied-examples"><i class="fa fa-check"></i><b>2.4</b> Applied examples</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="mixed-models-i.html"><a href="mixed-models-i.html#example-a-independence-holds"><i class="fa fa-check"></i><b>2.4.1</b> Example A – independence holds</a></li>
+<li class="chapter" data-level="2.4.2" data-path="mixed-models-i.html"><a href="mixed-models-i.html#example-b-simple-groups-of-similar-observations"><i class="fa fa-check"></i><b>2.4.2</b> Example B – simple groups of similar observations</a></li>
+<li class="chapter" data-level="2.4.3" data-path="mixed-models-i.html"><a href="mixed-models-i.html#example-c-different-groups-of-similar-observations"><i class="fa fa-check"></i><b>2.4.3</b> Example C – different groups of similar observations</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="mixed-models-i.html"><a href="mixed-models-i.html#model-selection"><i class="fa fa-check"></i><b>2.5</b> Model selection</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="mixed-models-i.html"><a href="mixed-models-i.html#some-useful-metrics-to-compare-models"><i class="fa fa-check"></i><b>2.5.1</b> Some useful metrics to compare models</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="mixed-models-ii.html"><a href="mixed-models-ii.html"><i class="fa fa-check"></i><b>3</b> Mixed models II</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="mixed-models-ii.html"><a href="mixed-models-ii.html#generalities-of-linear-mixed-models"><i class="fa fa-check"></i><b>3.1</b> Generalities of linear mixed models</a></li>
+<li class="chapter" data-level="3.2" data-path="mixed-models-ii.html"><a href="mixed-models-ii.html#inference-from-linear-mixed-models"><i class="fa fa-check"></i><b>3.2</b> Inference from linear mixed models</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="mixed-models-ii.html"><a href="mixed-models-ii.html#balanced-designs-blocks-as-fixed-or-as-random"><i class="fa fa-check"></i><b>3.2.1</b> Balanced designs – blocks as fixed or as random?</a></li>
+<li class="chapter" data-level="3.2.2" data-path="mixed-models-ii.html"><a href="mixed-models-ii.html#unbalanced-designs"><i class="fa fa-check"></i><b>3.2.2</b> Unbalanced designs</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html"><i class="fa fa-check"></i><b>4</b> Analysis of variance</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#review-1"><i class="fa fa-check"></i><b>4.1</b> Review</a></li>
+<li class="chapter" data-level="4.2" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#analysis-of-variance-1"><i class="fa fa-check"></i><b>4.2</b> Analysis of variance</a></li>
+<li class="chapter" data-level="4.3" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-different-take-to-the-analysis-of-variance"><i class="fa fa-check"></i><b>4.3</b> A different take to the analysis of variance</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="non-linear-mixed-models.html"><a href="non-linear-mixed-models.html"><i class="fa fa-check"></i><b>5</b> Non-linear mixed models</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="non-linear-mixed-models.html"><a href="non-linear-mixed-models.html#review-2"><i class="fa fa-check"></i><b>5.1</b> Review</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="semester-project-1.html"><a href="semester-project-1.html"><i class="fa fa-check"></i><b>6</b> Semester Project</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="semester-project-1.html"><a href="semester-project-1.html#learning-objectives"><i class="fa fa-check"></i><b>6.1</b> Learning objectives</a></li>
+<li class="chapter" data-level="6.2" data-path="semester-project-1.html"><a href="semester-project-1.html#partial-deadlines"><i class="fa fa-check"></i><b>6.2</b> Partial deadlines</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="semester-project-1.html"><a href="semester-project-1.html#project-proposal---due-friday-february-1st-at-noon-ct"><i class="fa fa-check"></i><b>6.2.1</b> Project proposal - Due Friday February 1st at noon CT</a></li>
+<li class="chapter" data-level="6.2.2" data-path="semester-project-1.html"><a href="semester-project-1.html#written-report---due-wednesday-april-20-at-2pm-ct-for-peer-review"><i class="fa fa-check"></i><b>6.2.2</b> Written report - Due Wednesday April 20 at 2pm CT for peer review</a></li>
+<li class="chapter" data-level="6.2.3" data-path="semester-project-1.html"><a href="semester-project-1.html#oral-presentation---somewhere-between-may-1---may-9"><i class="fa fa-check"></i><b>6.2.3</b> Oral presentation - Somewhere between May 1 - May 9</a></li>
+<li class="chapter" data-level="6.2.4" data-path="semester-project-1.html"><a href="semester-project-1.html#written-report-and-reproducible-tutorial---due-may-15"><i class="fa fa-check"></i><b>6.2.4</b> Written report and reproducible tutorial - Due May 15</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">STAT 799 - Topics in Statistics: Applied linear mixed models in agriculture and life sciences</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="mixed-models-ii" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Day 3</span> Mixed models II<a href="mixed-models-ii.html#mixed-models-ii" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><em>January 28th, 2026</em></p>
+<div id="generalities-of-linear-mixed-models" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Generalities of linear mixed models<a href="mixed-models-ii.html#generalities-of-linear-mixed-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Mixed-effects models combine fixed effects and random effects.
+Typically, we can define a Gaussian mixed-effects model as</p>
+<p><span class="math display">\[\mathbf{y} = \mathbf{X} \boldsymbol{\beta} + \mathbf{Z}\mathbf{u} + \boldsymbol{\varepsilon}, \\
+\begin{bmatrix}\mathbf{u} \\ \boldsymbol{\varepsilon} \end{bmatrix} \sim \left(
+\begin{bmatrix}\boldsymbol{0} \\ \boldsymbol{0} \end{bmatrix},
+\begin{bmatrix}\mathbf{G} &amp; \boldsymbol{0} \\
+\boldsymbol{0} &amp; \mathbf{R} \end{bmatrix}
+\right),\]</span></p>
+<p>where <span class="math display">\[\mathbf{y}\]</span> is the observed response,
+<span class="math display">\[\mathbf{X}\]</span> is the matrix with the explanatory variables,
+<span class="math display">\[\mathbf{Z}\]</span> is the design matrix,
+<span class="math display">\[\boldsymbol{\beta}\]</span> is the vector containing the fixed-effects parameters,
+<span class="math display">\[\mathbf{u}\]</span> is the vector containing the random effects parameters,
+<span class="math display">\[\boldsymbol{\varepsilon}\]</span> is the vector containing the residuals,
+<span class="math display">\[\mathbf{G}\]</span> is the variance-covariance matrix of the random effects,
+and <span class="math display">\[\mathbf{R}\]</span> is the variance-covariance matrix of the residuals.
+Typically, <span class="math display">\[\mathbf{G} = \sigma^2_u \mathbf{I}\]</span> and <span class="math display">\[\mathbf{R} = \sigma^2 \mathbf{I}\]</span>.<br />
+If we do the math, we get that</p>
+<p><span class="math display">\[E(\mathbf{y}) = \mathbf{X}\boldsymbol{\beta},\]</span></p>
+<p><span class="math display">\[Var(\mathbf{y}) = \mathbf{Z}\mathbf{G}\mathbf{Z}&#39; + \mathbf{R}\]</span></p>
+<p><strong>Fixed effects versus random effects</strong></p>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+Fixed vs Random Effects Table
+</title>
+<style>
+        table.unique-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table.unique-table th, table.unique-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        table.unique-table th {
+            background-color: #f4f4f4;
+            font-weight: bold;
+        }
+        table.unique-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+<table class="unique-table">
+<tr>
+<th>
+</th>
+<th>
+Fixed effects
+</th>
+<th>
+Random effects
+</th>
+</tr>
+<tr>
+<th>
+Where
+</th>
+<td>
+Expected value
+</td>
+<td>
+Variance-covariance matrix
+</td>
+</tr>
+<tr>
+<th>
+Inference
+</th>
+<td>
+Constant for all groups in the population of study
+</td>
+<td>
+Differ from group to group
+</td>
+</tr>
+<tr>
+<th>
+Usually used to model
+</th>
+<td>
+Carefully selected treatments or genotypes
+</td>
+<td>
+The study design (aka structure in the data, or what is similar to what)
+</td>
+</tr>
+<tr>
+<th>
+Assumptions
+</th>
+<td>
+<span class="math display">\[\hat{\boldsymbol{\beta}} \sim N \left( \boldsymbol{\beta}, (\mathbf{X}^T \mathbf{V}^{-1} \mathbf{X})^{-1} \right) \]</span>
+</td>
+<td>
+<span class="math display">\[u_j \sim N(0, \sigma^2_u)\]</span>
+</td>
+</tr>
+<tr>
+<th>
+Method of estimation
+</th>
+<td>
+Maximum likelihood, least squares
+</td>
+<td>
+Restricted maximum likelihood (shrinkage)
+</td>
+</tr>
+</table>
+</body>
+<p>{% endcapture %}
+{% include card.html text=text header= “Review” color=“#a9d9a9” %}</p>
+</div>
+<div id="inference-from-linear-mixed-models" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Inference from linear mixed models<a href="mixed-models-ii.html#inference-from-linear-mixed-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="balanced-designs-blocks-as-fixed-or-as-random" class="section level3 hasAnchor" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Balanced designs – blocks as fixed or as random?<a href="mixed-models-ii.html#balanced-designs-blocks-as-fixed-or-as-random" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="mixed-models-ii.html#cb25-1" tabindex="-1"></a><span class="fu">library</span>(lme4)</span>
+<span id="cb25-2"><a href="mixed-models-ii.html#cb25-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb25-3"><a href="mixed-models-ii.html#cb25-3" tabindex="-1"></a><span class="fu">library</span>(emmeans)</span></code></pre></div>
+<pre><code>## Welcome to emmeans.
+## Caution: You lose important information if you filter this package&#39;s results.
+## See &#39;? untidy&#39;</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="mixed-models-ii.html#cb27-1" tabindex="-1"></a><span class="fu">library</span>(latex2exp)</span>
+<span id="cb27-2"><a href="mixed-models-ii.html#cb27-2" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="mixed-models-ii.html#cb27-3" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;../data/cochrancox_kfert.csv&quot;</span>)</span>
+<span id="cb27-4"><a href="mixed-models-ii.html#cb27-4" tabindex="-1"></a>df<span class="sc">$</span>rep <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(df<span class="sc">$</span>rep)</span>
+<span id="cb27-5"><a href="mixed-models-ii.html#cb27-5" tabindex="-1"></a>df<span class="sc">$</span>K2O_lbac <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(df<span class="sc">$</span>K2O_lbac)</span>
+<span id="cb27-6"><a href="mixed-models-ii.html#cb27-6" tabindex="-1"></a>m_fixed <span class="ot">&lt;-</span> <span class="fu">lm</span>(yield <span class="sc">~</span> K2O_lbac <span class="sc">+</span> rep, <span class="at">data =</span> df)</span>
+<span id="cb27-7"><a href="mixed-models-ii.html#cb27-7" tabindex="-1"></a>m_random <span class="ot">&lt;-</span> <span class="fu">lmer</span>(yield <span class="sc">~</span> K2O_lbac <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>rep), <span class="at">data =</span> df)</span>
+<span id="cb27-8"><a href="mixed-models-ii.html#cb27-8" tabindex="-1"></a></span>
+<span id="cb27-9"><a href="mixed-models-ii.html#cb27-9" tabindex="-1"></a>(mg_means_fixed <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(m_fixed, <span class="sc">~</span>K2O_lbac, <span class="at">contr =</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="sc">-</span><span class="dv">1</span>))))</span></code></pre></div>
+<pre><code>## $emmeans
+##  K2O_lbac emmean    SE df lower.CL upper.CL
+##  36         7.92 0.121  8     7.64     8.19
+##  54         8.12 0.121  8     7.84     8.40
+##  72         7.81 0.121  8     7.53     8.09
+##  108        7.58 0.121  8     7.30     7.86
+##  144        7.52 0.121  8     7.24     7.79
+## 
+## Results are averaged over the levels of: rep 
+## Confidence level used: 0.95 
+## 
+## $contrasts
+##  contrast          estimate    SE df t.ratio p.value
+##  c(1, 0, 0, 0, -1)      0.4 0.171  8   2.344  0.0471
+## 
+## Results are averaged over the levels of: rep</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="mixed-models-ii.html#cb29-1" tabindex="-1"></a>(mg_means_random <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(m_random, <span class="sc">~</span>K2O_lbac, <span class="at">contr =</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="sc">-</span><span class="dv">1</span>))))</span></code></pre></div>
+<pre><code>## $emmeans
+##  K2O_lbac emmean    SE   df lower.CL upper.CL
+##  36         7.92 0.162 5.57     7.51     8.32
+##  54         8.12 0.162 5.57     7.72     8.52
+##  72         7.81 0.162 5.57     7.41     8.21
+##  108        7.58 0.162 5.57     7.18     7.98
+##  144        7.52 0.162 5.57     7.11     7.92
+## 
+## Degrees-of-freedom method: kenward-roger 
+## Confidence level used: 0.95 
+## 
+## $contrasts
+##  contrast          estimate    SE df t.ratio p.value
+##  c(1, 0, 0, 0, -1)      0.4 0.171  8   2.344  0.0471
+## 
+## Degrees-of-freedom method: kenward-roger</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="mixed-models-ii.html#cb31-1" tabindex="-1"></a><span class="fu">as.data.frame</span>(mg_means_fixed<span class="sc">$</span>emmeans) <span class="sc">%&gt;%</span></span>
+<span id="cb31-2"><a href="mixed-models-ii.html#cb31-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">blocks =</span> <span class="st">&quot;fixed&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb31-3"><a href="mixed-models-ii.html#cb31-3" tabindex="-1"></a>  <span class="fu">bind_rows</span>(<span class="fu">as.data.frame</span>(mg_means_random<span class="sc">$</span>emmeans) <span class="sc">%&gt;%</span></span>
+<span id="cb31-4"><a href="mixed-models-ii.html#cb31-4" tabindex="-1"></a>              <span class="fu">mutate</span>(<span class="at">blocks =</span> <span class="st">&quot;random&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb31-5"><a href="mixed-models-ii.html#cb31-5" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(K2O_lbac, emmean))<span class="sc">+</span></span>
+<span id="cb31-6"><a href="mixed-models-ii.html#cb31-6" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> emmean<span class="sc">-</span>SE, <span class="at">ymax =</span> emmean<span class="sc">+</span>SE, </span>
+<span id="cb31-7"><a href="mixed-models-ii.html#cb31-7" tabindex="-1"></a>                    <span class="at">color =</span> blocks), </span>
+<span id="cb31-8"><a href="mixed-models-ii.html#cb31-8" tabindex="-1"></a>                <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> .<span class="dv">2</span>),</span>
+<span id="cb31-9"><a href="mixed-models-ii.html#cb31-9" tabindex="-1"></a>                <span class="at">width =</span> <span class="dv">0</span>)<span class="sc">+</span></span>
+<span id="cb31-10"><a href="mixed-models-ii.html#cb31-10" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fl">4.6</span>, <span class="at">y =</span> <span class="dv">8</span>), <span class="at">label =</span> <span class="st">&quot;s.e.(difference</span><span class="sc">\n</span><span class="st">between means)&quot;</span>,</span>
+<span id="cb31-11"><a href="mixed-models-ii.html#cb31-11" tabindex="-1"></a>            <span class="at">color =</span> <span class="st">&quot;grey30&quot;</span>, <span class="at">size =</span> <span class="fl">3.5</span>)<span class="sc">+</span> </span>
+<span id="cb31-12"><a href="mixed-models-ii.html#cb31-12" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fl">5.2</span>, <span class="at">y =</span> <span class="dv">8</span>), <span class="at">color =</span> <span class="st">&quot;grey50&quot;</span>)<span class="sc">+</span> </span>
+<span id="cb31-13"><a href="mixed-models-ii.html#cb31-13" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fl">5.4</span>, <span class="at">y =</span> <span class="dv">8</span>), <span class="at">color =</span> <span class="st">&quot;grey50&quot;</span>)<span class="sc">+</span> </span>
+<span id="cb31-14"><a href="mixed-models-ii.html#cb31-14" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fl">5.4</span>, <span class="at">y =</span> <span class="dv">8</span>, <span class="at">ymin =</span> <span class="dv">8</span> <span class="sc">-</span> SE, <span class="at">ymax =</span> <span class="dv">8</span> <span class="sc">+</span> SE), </span>
+<span id="cb31-15"><a href="mixed-models-ii.html#cb31-15" tabindex="-1"></a>                <span class="at">width =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">&quot;grey50&quot;</span>,</span>
+<span id="cb31-16"><a href="mixed-models-ii.html#cb31-16" tabindex="-1"></a>                <span class="at">data =</span> <span class="fu">as.data.frame</span>(mg_means_random<span class="sc">$</span>contrasts))<span class="sc">+</span></span>
+<span id="cb31-17"><a href="mixed-models-ii.html#cb31-17" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fl">5.2</span>, <span class="at">y =</span> <span class="dv">8</span>, <span class="at">ymin =</span> <span class="dv">8</span> <span class="sc">-</span> SE, <span class="at">ymax =</span> <span class="dv">8</span> <span class="sc">+</span> SE), </span>
+<span id="cb31-18"><a href="mixed-models-ii.html#cb31-18" tabindex="-1"></a>                <span class="at">width =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">&quot;grey50&quot;</span>, </span>
+<span id="cb31-19"><a href="mixed-models-ii.html#cb31-19" tabindex="-1"></a>                <span class="at">data =</span> <span class="fu">as.data.frame</span>(mg_means_fixed<span class="sc">$</span>contrasts))<span class="sc">+</span></span>
+<span id="cb31-20"><a href="mixed-models-ii.html#cb31-20" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;grey30&quot;</span>, <span class="st">&quot;tomato&quot;</span>))<span class="sc">+</span></span>
+<span id="cb31-21"><a href="mixed-models-ii.html#cb31-21" tabindex="-1"></a>  </span>
+<span id="cb31-22"><a href="mixed-models-ii.html#cb31-22" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> blocks), <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> .<span class="dv">2</span>))<span class="sc">+</span></span>
+<span id="cb31-23"><a href="mixed-models-ii.html#cb31-23" tabindex="-1"></a>  <span class="fu">theme_classic</span>()<span class="sc">+</span></span>
+<span id="cb31-24"><a href="mixed-models-ii.html#cb31-24" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Spoiler: difference in results for RCBD data</span><span class="sc">\n</span><span class="st">modeled with fixed vs. random blocks&quot;</span>, </span>
+<span id="cb31-25"><a href="mixed-models-ii.html#cb31-25" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">&quot;Blocks modeled as&quot;</span>,</span>
+<span id="cb31-26"><a href="mixed-models-ii.html#cb31-26" tabindex="-1"></a>       <span class="at">y =</span> <span class="fu">expression</span>(Yield<span class="sc">~</span>(tn<span class="sc">~</span>ac<span class="sc">^</span>{<span class="sc">-</span><span class="dv">1</span>})),</span>
+<span id="cb31-27"><a href="mixed-models-ii.html#cb31-27" tabindex="-1"></a>       <span class="at">x =</span> <span class="fu">expression</span>(K[<span class="dv">2</span>]<span class="sc">~</span>O<span class="sc">~</span>(lb<span class="sc">~</span>ac<span class="sc">^</span>{<span class="sc">-</span><span class="dv">1</span>})))<span class="sc">+</span></span>
+<span id="cb31-28"><a href="mixed-models-ii.html#cb31-28" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>, </span>
+<span id="cb31-29"><a href="mixed-models-ii.html#cb31-29" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> .<span class="dv">5</span>))</span></code></pre></div>
+<pre><code>## Warning in geom_text(aes(x = 4.6, y = 8), label = &quot;s.e.(difference\nbetween means)&quot;, : All aesthetics have length 1, but the data has 10 rows.
+## ℹ Please consider using `annotate()` or provide this layer with data containing
+##   a single row.</code></pre>
+<pre><code>## Warning in geom_point(aes(x = 5.2, y = 8), color = &quot;grey50&quot;): All aesthetics have length 1, but the data has 10 rows.
+## ℹ Please consider using `annotate()` or provide this layer with data containing
+##   a single row.</code></pre>
+<pre><code>## Warning in geom_point(aes(x = 5.4, y = 8), color = &quot;grey50&quot;): All aesthetics have length 1, but the data has 10 rows.
+## ℹ Please consider using `annotate()` or provide this layer with data containing
+##   a single row.</code></pre>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-94-1.png" width="672" /></p>
+</div>
+<div id="unbalanced-designs" class="section level3 hasAnchor" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> Unbalanced designs<a href="mixed-models-ii.html#unbalanced-designs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Unbalanced designs sometimes occur due to logistical (practical) convenience.</li>
+<li>In unbalanced designs, the simple comparison of group averages, <span class="math inline">\(\bar{y}_1 - \bar{y}_0\)</span>, is not, in general, a good estimate of the average treatment effect.</li>
+<li>See Chapter 10 in Gelman and Hill.</li>
+</ul>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="mixed-models-i.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="analysis-of-variance.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/stat720/book2025/edit/main/03-mixed-models-II.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": "https://github.com/stat720/book2025/blob/main/03-mixed-models-II.Rmd",
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

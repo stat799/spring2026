@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Day 2 Getting started | STAT 799 - Topics in Statistics: Applied linear mixed models in agriculture and life sciences</title>
+  <meta name="description" content="Day 2 Getting started | STAT 799 - Topics in Statistics: Applied linear mixed models in agriculture and life sciences" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Day 2 Getting started | STAT 799 - Topics in Statistics: Applied linear mixed models in agriculture and life sciences" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Day 2 Getting started | STAT 799 - Topics in Statistics: Applied linear mixed models in agriculture and life sciences" />
+  
+  
+  
+
+<meta name="author" content="Josefina Lacasa" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="mixed-models-i.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">STAT 799</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome to STAT 799!</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#about-this-course"><i class="fa fa-check"></i><b>1.1</b> About this course:</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#logistics"><i class="fa fa-check"></i><b>1.1.1</b> Logistics</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#learning-goals"><i class="fa fa-check"></i><b>1.2</b> Learning goals</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#on-notation"><i class="fa fa-check"></i><b>1.3</b> On notation</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#semester-project"><i class="fa fa-check"></i><b>1.4</b> Semester project</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#roadmap-of-this-course"><i class="fa fa-check"></i><b>1.5</b> Roadmap of this course</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>2</b> Getting started</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="getting-started.html"><a href="getting-started.html#statistical-modeling"><i class="fa fa-check"></i><b>2.1</b> Statistical modeling</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="getting-started.html"><a href="getting-started.html#writing-a-statistical-model"><i class="fa fa-check"></i><b>2.1.1</b> Writing a statistical model</a></li>
+<li class="chapter" data-level="2.1.2" data-path="getting-started.html"><a href="getting-started.html#what-are-linear-models"><i class="fa fa-check"></i><b>2.1.2</b> What are linear models?</a></li>
+<li class="chapter" data-level="2.1.3" data-path="getting-started.html"><a href="getting-started.html#vectorized-notation"><i class="fa fa-check"></i><b>2.1.3</b> Vectorized notation</a></li>
+<li class="chapter" data-level="2.1.4" data-path="getting-started.html"><a href="getting-started.html#vectorized-notation---cont."><i class="fa fa-check"></i><b>2.1.4</b> Vectorized notation - cont.</a></li>
+<li class="chapter" data-level="2.1.5" data-path="getting-started.html"><a href="getting-started.html#continuous-and-categorical-predictors"><i class="fa fa-check"></i><b>2.1.5</b> Continuous and categorical predictors</a></li>
+<li class="chapter" data-level="2.1.6" data-path="getting-started.html"><a href="getting-started.html#three-step-approach-to-writing-a-statistical-model"><i class="fa fa-check"></i><b>2.1.6</b> Three-step approach to writing a statistical model</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="getting-started.html"><a href="getting-started.html#review"><i class="fa fa-check"></i><b>2.2</b> Review</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="getting-started.html"><a href="getting-started.html#probability-distributions"><i class="fa fa-check"></i><b>2.2.1</b> Probability distributions</a></li>
+<li class="chapter" data-level="2.2.2" data-path="getting-started.html"><a href="getting-started.html#mean-variance"><i class="fa fa-check"></i><b>2.2.2</b> Mean, Variance</a></li>
+<li class="chapter" data-level="2.2.3" data-path="getting-started.html"><a href="getting-started.html#covariance"><i class="fa fa-check"></i><b>2.2.3</b> Covariance</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="getting-started.html"><a href="getting-started.html#the-most-common-statistical-model"><i class="fa fa-check"></i><b>2.3</b> The most common statistical model</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="getting-started.html"><a href="getting-started.html#properties-of-the-general-linear-model"><i class="fa fa-check"></i><b>2.3.1</b> Properties of the general linear model</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="getting-started.html"><a href="getting-started.html#uncertainty"><i class="fa fa-check"></i><b>2.4</b> Uncertainty</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="getting-started.html"><a href="getting-started.html#types-of-uncertainty"><i class="fa fa-check"></i><b>2.4.1</b> Types of uncertainty</a></li>
+<li class="chapter" data-level="2.4.2" data-path="getting-started.html"><a href="getting-started.html#uncertainty---applied-example"><i class="fa fa-check"></i><b>2.4.2</b> Uncertainty - applied example</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="mixed-models-i.html"><a href="mixed-models-i.html"><i class="fa fa-check"></i><b>3</b> Mixed models I</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="mixed-models-i.html"><a href="mixed-models-i.html#recall-the-most-common-statistical-model"><i class="fa fa-check"></i><b>3.1</b> Recall the most common statistical model</a></li>
+<li class="chapter" data-level="3.2" data-path="mixed-models-i.html"><a href="mixed-models-i.html#variations-to-that-very-common-statistical-model"><i class="fa fa-check"></i><b>3.2</b> Variations to that very common statistical model</a></li>
+<li class="chapter" data-level="3.3" data-path="mixed-models-i.html"><a href="mixed-models-i.html#relaxing-the-assumption-of-independence"><i class="fa fa-check"></i><b>3.3</b> Relaxing the assumption of independence</a></li>
+<li class="chapter" data-level="3.4" data-path="mixed-models-i.html"><a href="mixed-models-i.html#applied-example"><i class="fa fa-check"></i><b>3.4</b> Applied example</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="mixed-models-i.html"><a href="mixed-models-i.html#example-a-independence-holds"><i class="fa fa-check"></i><b>3.4.1</b> Example A – independence holds</a></li>
+<li class="chapter" data-level="3.4.2" data-path="mixed-models-i.html"><a href="mixed-models-i.html#example-b-simple-groups-of-similar-observations"><i class="fa fa-check"></i><b>3.4.2</b> Example B – simple groups of similar observations</a></li>
+<li class="chapter" data-level="3.4.3" data-path="mixed-models-i.html"><a href="mixed-models-i.html#example-c-different-groups-of-similar-observations"><i class="fa fa-check"></i><b>3.4.3</b> Example C – different groups of similar observations</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html"><i class="fa fa-check"></i><b>4</b> Analysis of variance</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#review-1"><i class="fa fa-check"></i><b>4.1</b> Review</a></li>
+<li class="chapter" data-level="4.2" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#analysis-of-variance-1"><i class="fa fa-check"></i><b>4.2</b> Analysis of variance</a></li>
+<li class="chapter" data-level="4.3" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-different-take-to-the-analysis-of-variance"><i class="fa fa-check"></i><b>4.3</b> A different take to the analysis of variance</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="non-linear-mixed-models.html"><a href="non-linear-mixed-models.html"><i class="fa fa-check"></i><b>5</b> Non-linear mixed models</a></li>
+<li class="chapter" data-level="6" data-path="semester-project-1.html"><a href="semester-project-1.html"><i class="fa fa-check"></i><b>6</b> Semester Project</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="semester-project-1.html"><a href="semester-project-1.html#learning-objectives"><i class="fa fa-check"></i><b>6.1</b> Learning objectives</a></li>
+<li class="chapter" data-level="6.2" data-path="semester-project-1.html"><a href="semester-project-1.html#partial-deadlines"><i class="fa fa-check"></i><b>6.2</b> Partial deadlines</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="semester-project-1.html"><a href="semester-project-1.html#project-proposal---due-friday-january-30-at-4pm-ct"><i class="fa fa-check"></i><b>6.2.1</b> Project proposal - Due Friday January 30 at 4pm CT</a></li>
+<li class="chapter" data-level="6.2.2" data-path="semester-project-1.html"><a href="semester-project-1.html#written-report---due-wednesday-april-20-at-2pm-ct-for-peer-review"><i class="fa fa-check"></i><b>6.2.2</b> Written report - Due Wednesday April 20 at 2pm CT for peer review</a></li>
+<li class="chapter" data-level="6.2.3" data-path="semester-project-1.html"><a href="semester-project-1.html#oral-presentation---somewhere-between-may-1---may-9"><i class="fa fa-check"></i><b>6.2.3</b> Oral presentation - Somewhere between May 1 - May 9</a></li>
+<li class="chapter" data-level="6.2.4" data-path="semester-project-1.html"><a href="semester-project-1.html#written-report-and-reproducible-tutorial---due-may-15"><i class="fa fa-check"></i><b>6.2.4</b> Written report and reproducible tutorial - Due May 15</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">STAT 799 - Topics in Statistics: Applied linear mixed models in agriculture and life sciences</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="getting-started" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Day 2</span> Getting started<a href="getting-started.html#getting-started" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="statistical-modeling" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Statistical modeling<a href="getting-started.html#statistical-modeling" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><p>Why do we need statistical models?</p></li>
+<li><p>Statistics as a summary of the data</p></li>
+<li><p>Excerpt from the short story <a href="https://web.english.upenn.edu/~cavitch/pdf-library/Borges_FunesTheMemorious.pdf">“Funes the memorious” (J.L. Borges)</a>: <em>I suspect, however, that he was not very capable of thought. To think is to forget differences, generalize, make abstractions. In the teeming world of Funes, there were only details, almost immediate in their presence.</em></p></li>
+<li><p>What is a statistical model?</p></li>
+<li><p>Deterministic component + Stochastic component</p></li>
+</ul>
+<div id="writing-a-statistical-model" class="section level3 hasAnchor" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> Writing a statistical model<a href="getting-started.html#writing-a-statistical-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Deterministic component + Stochastic component</p>
+<p>Example:</p>
+<p><span class="math inline">\(y_i \sim N(\mu_i, \sigma^2), \\ \mu_i = \beta_0 + \beta_1 x_i\)</span></p>
+</div>
+<div id="what-are-linear-models" class="section level3 hasAnchor" number="2.1.2">
+<h3><span class="header-section-number">2.1.2</span> What are linear models?<a href="getting-started.html#what-are-linear-models" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Assume that <span class="math inline">\(y_i \sim N(\mu_i, \sigma^2)\)</span>.</li>
+</ul>
+<p>…and there are 4 possible descriptions of the mean:</p>
+<ul>
+<li><span class="math inline">\(\mu_i = \beta_0 + \beta_1 x_{1i} + \beta_2 x_{2i}\)</span></li>
+<li><span class="math inline">\(\mu_i = \beta_0 + \beta_1 x_i + \beta_2 x_i^2\)</span></li>
+<li><span class="math inline">\(\mu_i = \beta_0 \cdot \exp(x_i \cdot \beta_1)\)</span></li>
+<li><span class="math inline">\(\mu_i = \beta_0 + x_i^{\beta_1}\)</span></li>
+</ul>
+<p>What is a linear model and what is not?</p>
+</div>
+<div id="vectorized-notation" class="section level3 hasAnchor" number="2.1.3">
+<h3><span class="header-section-number">2.1.3</span> Vectorized notation<a href="getting-started.html#vectorized-notation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Model equation form:</strong></p>
+<ul>
+<li><span class="math inline">\(y_i = \beta_0 + \beta_1 x_i + \varepsilon_i\)</span></li>
+<li><span class="math inline">\(\varepsilon_i \sim N(0, \sigma^2),\)</span></li>
+</ul>
+<p><strong>Probability distribution form:</strong></p>
+<p>Scalar</p>
+<ul>
+<li><span class="math inline">\(y_i \sim N(\mu_i, \sigma^2),\)</span></li>
+<li><span class="math inline">\(\mu_i = \beta_0 + \beta_1 x_i\)</span></li>
+</ul>
+<p>Vector</p>
+<ul>
+<li><span class="math inline">\(\mathbf{y} \sim N(\boldsymbol{\mu}, \Sigma),\)</span></li>
+<li><span class="math inline">\(\boldsymbol{\mu} = \boldsymbol{1} \beta_0 + \mathbf{x} \beta_1 = \mathbf{X}\boldsymbol{\beta}\)</span></li>
+</ul>
+</div>
+<div id="vectorized-notation---cont." class="section level3 hasAnchor" number="2.1.4">
+<h3><span class="header-section-number">2.1.4</span> Vectorized notation - cont.<a href="getting-started.html#vectorized-notation---cont." class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><span class="math display">\[\begin{bmatrix}y_1 \\ y_2 \\ \vdots \\ y_n \end{bmatrix} \sim  N \left( \begin{bmatrix}\mu_1 \\ \mu_2 \\ \vdots \\ \mu_n \end{bmatrix}, \begin{bmatrix} Cov(y_1, y_1) &amp; Cov(y_1, y_2) &amp; \dots &amp; Cov(y_1, y_n) \\ Cov(y_2, y_1) &amp; Cov(y_2, y_2) &amp; \dots &amp; Cov(y_2, y_n)\\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ Cov(y_n, y_1) &amp; Cov(y_n, y_2) &amp; \dots &amp; Cov(y_n, y_n) \end{bmatrix} \right)\]</span></p>
+</div>
+<div id="continuous-and-categorical-predictors" class="section level3 hasAnchor" number="2.1.5">
+<h3><span class="header-section-number">2.1.5</span> Continuous and categorical predictors<a href="getting-started.html#continuous-and-categorical-predictors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><span class="math display">\[\mu_i = \beta_0 + x_{1i} \beta_1 + x_{2i} \beta_2+ ... + x_{ji} \beta_j\]</span></p>
+<p>Discuss the following type of data:</p>
+<ul>
+<li>biomass</li>
+<li>cultivar</li>
+<li>county</li>
+<li>year</li>
+</ul>
+</div>
+<div id="three-step-approach-to-writing-a-statistical-model" class="section level3 hasAnchor" number="2.1.6">
+<h3><span class="header-section-number">2.1.6</span> Three-step approach to writing a statistical model<a href="getting-started.html#three-step-approach-to-writing-a-statistical-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p><strong>1.</strong> What probability distribution function describes the data?</p>
+<ul>
+<li>Think about: type of data, support of the data.</li>
+</ul></li>
+<li><p><strong>2.</strong> Define a link function for the linear predictor.</p></li>
+<li><p><strong>3.</strong> Define the linear predictor.</p>
+<ul>
+<li>Treatments</li>
+<li>Design</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="review" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Review<a href="getting-started.html#review" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="probability-distributions" class="section level3 hasAnchor" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> Probability distributions<a href="getting-started.html#probability-distributions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="getting-started.html#cb2-1" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">&quot;figures/distributions.png&quot;</span>)</span></code></pre></div>
+<p><img src="figures/distributions.png" width="340" style="display: block; margin: auto;" /></p>
+</div>
+<div id="mean-variance" class="section level3 hasAnchor" number="2.2.2">
+<h3><span class="header-section-number">2.2.2</span> Mean, Variance<a href="getting-started.html#mean-variance" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><strong>Mean</strong>: the balancing point of a probability distribution<br />
+</li>
+<li><strong>Variance</strong>: dispersion of <span class="math inline">\(y\)</span></li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="getting-started.html#cb3-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb3-2"><a href="getting-started.html#cb3-2" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="getting-started.html#cb3-3" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">6</span>, <span class="dv">6</span>, <span class="at">length=</span><span class="dv">100</span>)</span>
+<span id="cb3-4"><a href="getting-started.html#cb3-4" tabindex="-1"></a>hx <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(x)</span>
+<span id="cb3-5"><a href="getting-started.html#cb3-5" tabindex="-1"></a>labels <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;x ~ Normal(0, 1)&quot;</span>, </span>
+<span id="cb3-6"><a href="getting-started.html#cb3-6" tabindex="-1"></a>            <span class="st">&quot;x ~ Normal(0, 16)&quot;</span>, <span class="st">&quot;x ~ Normal(2, 1)&quot;</span>)</span>
+<span id="cb3-7"><a href="getting-started.html#cb3-7" tabindex="-1"></a>colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;darkgreen&quot;</span>, <span class="st">&quot;tomato&quot;</span>, <span class="st">&quot;purple&quot;</span>)</span>
+<span id="cb3-8"><a href="getting-started.html#cb3-8" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="getting-started.html#cb3-9" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="getting-started.html#cb3-10" tabindex="-1"></a><span class="fu">plot</span>(x, <span class="fu">dnorm</span>(x, <span class="dv">0</span>, <span class="dv">1</span>), <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">col=</span> <span class="st">&quot;darkgreen&quot;</span>, <span class="at">type=</span><span class="st">&quot;l&quot;</span>, <span class="at">lty=</span> <span class="dv">1</span>, <span class="at">xlab=</span><span class="st">&quot;x&quot;</span>, <span class="at">ylab=</span><span class="st">&quot;[x]&quot;</span>)</span>
+<span id="cb3-11"><a href="getting-started.html#cb3-11" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="getting-started.html#cb3-12" tabindex="-1"></a><span class="co"># lines(x, dnorm(x, 0, 1), lwd=2, col= &quot;darkgreen&quot;)</span></span>
+<span id="cb3-13"><a href="getting-started.html#cb3-13" tabindex="-1"></a><span class="fu">lines</span>(x, <span class="fu">dnorm</span>(x, <span class="dv">0</span>, <span class="dv">4</span>), <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">col=</span> <span class="st">&quot;tomato&quot;</span>)</span>
+<span id="cb3-14"><a href="getting-started.html#cb3-14" tabindex="-1"></a><span class="fu">lines</span>(x, <span class="fu">dnorm</span>(x, <span class="dv">2</span>, <span class="dv">1</span>), <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">col=</span> <span class="st">&quot;purple&quot;</span>)</span>
+<span id="cb3-15"><a href="getting-started.html#cb3-15" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="getting-started.html#cb3-16" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topleft&quot;</span>, <span class="at">inset=</span>.<span class="dv">05</span>, <span class="at">title=</span><span class="st">&quot;Distributions&quot;</span>,</span>
+<span id="cb3-17"><a href="getting-started.html#cb3-17" tabindex="-1"></a>  labels, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">lty=</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>), <span class="at">col=</span>colors)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-3-1.png" width="480" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="getting-started.html#cb4-1" tabindex="-1"></a><span class="fu">options</span>(<span class="at">bitmapType =</span> <span class="st">&#39;cairo&#39;</span>)</span>
+<span id="cb4-2"><a href="getting-started.html#cb4-2" tabindex="-1"></a><span class="fu">library</span>(gganimate)</span>
+<span id="cb4-3"><a href="getting-started.html#cb4-3" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="getting-started.html#cb4-4" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb4-5"><a href="getting-started.html#cb4-5" tabindex="-1"></a>n_total <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb4-6"><a href="getting-started.html#cb4-6" tabindex="-1"></a>steps <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">20</span>, n_total, <span class="at">by =</span> <span class="dv">20</span>) <span class="co"># add 20 points per frame</span></span>
+<span id="cb4-7"><a href="getting-started.html#cb4-7" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="getting-started.html#cb4-8" tabindex="-1"></a>full_data <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n_total, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb4-9"><a href="getting-started.html#cb4-9" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="getting-started.html#cb4-10" tabindex="-1"></a><span class="co"># create a long dataframe where each &#39;frame&#39; contains all points up to that index</span></span>
+<span id="cb4-11"><a href="getting-started.html#cb4-11" tabindex="-1"></a>df_animated <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(<span class="fu">lapply</span>(steps, <span class="cf">function</span>(s) {</span>
+<span id="cb4-12"><a href="getting-started.html#cb4-12" tabindex="-1"></a>  <span class="fu">data.frame</span>(</span>
+<span id="cb4-13"><a href="getting-started.html#cb4-13" tabindex="-1"></a>    <span class="at">val =</span> full_data[<span class="dv">1</span><span class="sc">:</span>s],</span>
+<span id="cb4-14"><a href="getting-started.html#cb4-14" tabindex="-1"></a>    <span class="at">frame =</span> s</span>
+<span id="cb4-15"><a href="getting-started.html#cb4-15" tabindex="-1"></a>  )</span>
+<span id="cb4-16"><a href="getting-started.html#cb4-16" tabindex="-1"></a>}))</span>
+<span id="cb4-17"><a href="getting-started.html#cb4-17" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="getting-started.html#cb4-18" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df_animated, <span class="fu">aes</span>(<span class="at">x =</span> val)) <span class="sc">+</span></span>
+<span id="cb4-19"><a href="getting-started.html#cb4-19" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(</span>
+<span id="cb4-20"><a href="getting-started.html#cb4-20" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">after_stat</span>(count)), </span>
+<span id="cb4-21"><a href="getting-started.html#cb4-21" tabindex="-1"></a>    <span class="at">bins =</span> <span class="dv">30</span>, </span>
+<span id="cb4-22"><a href="getting-started.html#cb4-22" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">&quot;#B388EB&quot;</span>, </span>
+<span id="cb4-23"><a href="getting-started.html#cb4-23" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;white&quot;</span></span>
+<span id="cb4-24"><a href="getting-started.html#cb4-24" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb4-25"><a href="getting-started.html#cb4-25" tabindex="-1"></a>  <span class="fu">stat_function</span>(</span>
+<span id="cb4-26"><a href="getting-started.html#cb4-26" tabindex="-1"></a>    <span class="at">fun =</span> <span class="cf">function</span>(x) <span class="fu">dnorm</span>(x) <span class="sc">*</span> (<span class="fu">max</span>(steps)<span class="sc">/</span><span class="dv">30</span>) <span class="sc">*</span> <span class="dv">4</span>,</span>
+<span id="cb4-27"><a href="getting-started.html#cb4-27" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, </span>
+<span id="cb4-28"><a href="getting-started.html#cb4-28" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">1</span>,</span>
+<span id="cb4-29"><a href="getting-started.html#cb4-29" tabindex="-1"></a>    <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span></span>
+<span id="cb4-30"><a href="getting-started.html#cb4-30" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb4-31"><a href="getting-started.html#cb4-31" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb4-32"><a href="getting-started.html#cb4-32" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Building a Normal Distribution&quot;</span>,</span>
+<span id="cb4-33"><a href="getting-started.html#cb4-33" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;Sample size (n): {closest_state}&quot;</span>,</span>
+<span id="cb4-34"><a href="getting-started.html#cb4-34" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;x&quot;</span>,</span>
+<span id="cb4-35"><a href="getting-started.html#cb4-35" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;[x]&quot;</span></span>
+<span id="cb4-36"><a href="getting-started.html#cb4-36" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb4-37"><a href="getting-started.html#cb4-37" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb4-38"><a href="getting-started.html#cb4-38" tabindex="-1"></a>  <span class="fu">transition_states</span>(frame, <span class="at">transition_length =</span> <span class="dv">2</span>, </span>
+<span id="cb4-39"><a href="getting-started.html#cb4-39" tabindex="-1"></a>                    <span class="at">state_length =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb4-40"><a href="getting-started.html#cb4-40" tabindex="-1"></a>  <span class="fu">ease_aes</span>(<span class="st">&#39;sine-in-out&#39;</span>)</span>
+<span id="cb4-41"><a href="getting-started.html#cb4-41" tabindex="-1"></a></span>
+<span id="cb4-42"><a href="getting-started.html#cb4-42" tabindex="-1"></a><span class="fu">animate</span>(p, </span>
+<span id="cb4-43"><a href="getting-started.html#cb4-43" tabindex="-1"></a>        <span class="at">nframes =</span> <span class="fu">length</span>(steps), </span>
+<span id="cb4-44"><a href="getting-started.html#cb4-44" tabindex="-1"></a>        <span class="at">fps =</span> <span class="dv">10</span>, </span>
+<span id="cb4-45"><a href="getting-started.html#cb4-45" tabindex="-1"></a>        <span class="at">width =</span> <span class="dv">6</span>, <span class="at">height =</span> <span class="dv">4</span>, <span class="at">units =</span> <span class="st">&quot;in&quot;</span>,</span>
+<span id="cb4-46"><a href="getting-started.html#cb4-46" tabindex="-1"></a>        <span class="at">res =</span><span class="dv">150</span>,</span>
+<span id="cb4-47"><a href="getting-started.html#cb4-47" tabindex="-1"></a>        <span class="at">duration =</span> <span class="dv">45</span>,</span>
+<span id="cb4-48"><a href="getting-started.html#cb4-48" tabindex="-1"></a>        <span class="at">renderer =</span> <span class="fu">gifski_renderer</span>())</span></code></pre></div>
+<pre><code>## Rendering [------------------------------------------] at 18 fps ~ eta:
+## 24sRendering [------------------------------------------] at 17 fps ~ eta:
+## 26sRendering [&gt;-----------------------------------------] at 17 fps ~ eta:
+## 26sRendering [&gt;-----------------------------------------] at 15 fps ~ eta:
+## 29sRendering [&gt;-----------------------------------------] at 16 fps ~ eta:
+## 28sRendering [&gt;-----------------------------------------] at 16 fps ~ eta:
+## 27sRendering [=&gt;----------------------------------------] at 16 fps ~ eta:
+## 27sRendering [=&gt;----------------------------------------] at 16 fps ~ eta:
+## 26sRendering [=&gt;----------------------------------------] at 16 fps ~ eta:
+## 27sRendering [=&gt;----------------------------------------] at 16 fps ~ eta:
+## 26sRendering [=&gt;----------------------------------------] at 16 fps ~ eta:
+## 27sRendering [=&gt;----------------------------------------] at 16 fps ~ eta:
+## 26sRendering [==&gt;---------------------------------------] at 16 fps ~ eta:
+## 26sRendering [==&gt;---------------------------------------] at 16 fps ~ eta:
+## 25sRendering [===&gt;--------------------------------------] at 16 fps ~ eta:
+## 25sRendering [====&gt;-------------------------------------] at 16 fps ~ eta:
+## 25sRendering [====&gt;-------------------------------------] at 16 fps ~ eta:
+## 24sRendering [=====&gt;------------------------------------] at 16 fps ~ eta:
+## 24sRendering [=====&gt;------------------------------------] at 16 fps ~ eta:
+## 23sRendering [======&gt;-----------------------------------] at 16 fps ~ eta:
+## 23sRendering [=======&gt;----------------------------------] at 16 fps ~ eta:
+## 23sRendering [=======&gt;----------------------------------] at 16 fps ~ eta:
+## 22sRendering [========&gt;---------------------------------] at 16 fps ~ eta:
+## 22sRendering [========&gt;---------------------------------] at 16 fps ~ eta:
+## 21sRendering [=========&gt;--------------------------------] at 16 fps ~ eta:
+## 21sRendering [==========&gt;-------------------------------] at 16 fps ~ eta:
+## 21sRendering [==========&gt;-------------------------------] at 16 fps ~ eta:
+## 20sRendering [===========&gt;------------------------------] at 16 fps ~ eta:
+## 20sRendering [===========&gt;------------------------------] at 16 fps ~ eta:
+## 19sRendering [============&gt;-----------------------------] at 16 fps ~ eta:
+## 19sRendering [=============&gt;----------------------------] at 16 fps ~ eta:
+## 19sRendering [=============&gt;----------------------------] at 16 fps ~ eta:
+## 18sRendering [==============&gt;---------------------------] at 16 fps ~ eta:
+## 18sRendering [==============&gt;---------------------------] at 16 fps ~ eta:
+## 17sRendering [===============&gt;--------------------------] at 16 fps ~ eta:
+## 17sRendering [================&gt;-------------------------] at 16 fps ~ eta:
+## 17sRendering [================&gt;-------------------------] at 16 fps ~ eta:
+## 16sRendering [=================&gt;------------------------] at 16 fps ~ eta:
+## 16sRendering [=================&gt;------------------------] at 16 fps ~ eta:
+## 15sRendering [==================&gt;-----------------------] at 16 fps ~ eta:
+## 15sRendering [===================&gt;----------------------] at 16 fps ~ eta:
+## 15sRendering [===================&gt;----------------------] at 16 fps ~ eta:
+## 14sRendering [====================&gt;---------------------] at 16 fps ~ eta:
+## 14sRendering [====================&gt;---------------------] at 16 fps ~ eta:
+## 13sRendering [=====================&gt;--------------------] at 16 fps ~ eta:
+## 13sRendering [======================&gt;-------------------] at 16 fps ~ eta:
+## 13sRendering [======================&gt;-------------------] at 16 fps ~ eta:
+## 12sRendering [=======================&gt;------------------] at 16 fps ~ eta:
+## 12sRendering [========================&gt;-----------------] at 16 fps ~ eta:
+## 12sRendering [========================&gt;-----------------] at 16 fps ~ eta:
+## 11sRendering [=========================&gt;----------------] at 16 fps ~ eta:
+## 11sRendering [=========================&gt;----------------] at 16 fps ~ eta:
+## 10sRendering [==========================&gt;---------------] at 16 fps ~ eta:
+## 10sRendering [===========================&gt;--------------] at 16 fps ~ eta:
+## 10sRendering [===========================&gt;--------------] at 16 fps ~ eta:
+## 9sRendering [============================&gt;-------------] at 16 fps ~ eta:
+## 9sRendering [============================&gt;-------------] at 16 fps ~ eta:
+## 8sRendering [=============================&gt;------------] at 16 fps ~ eta:
+## 8sRendering [==============================&gt;-----------] at 16 fps ~ eta:
+## 8sRendering [==============================&gt;-----------] at 16 fps ~ eta:
+## 7sRendering [===============================&gt;----------] at 16 fps ~ eta:
+## 7sRendering [===============================&gt;----------] at 16 fps ~ eta:
+## 6sRendering [================================&gt;---------] at 16 fps ~ eta:
+## 6sRendering [=================================&gt;--------] at 16 fps ~ eta:
+## 6sRendering [=================================&gt;--------] at 16 fps ~ eta:
+## 5sRendering [==================================&gt;-------] at 16 fps ~ eta:
+## 5sRendering [==================================&gt;-------] at 16 fps ~ eta:
+## 4sRendering [===================================&gt;------] at 16 fps ~ eta:
+## 4sRendering [====================================&gt;-----] at 16 fps ~ eta:
+## 4sRendering [====================================&gt;-----] at 16 fps ~ eta:
+## 3sRendering [=====================================&gt;----] at 16 fps ~ eta:
+## 3sRendering [=====================================&gt;----] at 16 fps ~ eta:
+## 2sRendering [======================================&gt;---] at 16 fps ~ eta:
+## 2sRendering [======================================&gt;---] at 15 fps ~ eta:
+## 2sRendering [=======================================&gt;--] at 15 fps ~ eta:
+## 2sRendering [=======================================&gt;--] at 15 fps ~ eta:
+## 1sRendering [========================================&gt;-] at 15 fps ~ eta:
+## 1sRendering [========================================&gt;-] at 15 fps ~ eta:
+## 0sRendering [=========================================&gt;] at 15 fps ~ eta:
+## 0sRendering [==========================================] at 15 fps ~ eta: 0s</code></pre>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-4-1.gif" /><!-- --></p>
+</div>
+<div id="covariance" class="section level3 hasAnchor" number="2.2.3">
+<h3><span class="header-section-number">2.2.3</span> Covariance<a href="getting-started.html#covariance" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Covariance between two random variables means how the two random variables behave relative to each other. Essentially, it quantifies the relationship between their joint variability. The variance of a random variable is the covariance of a random variable with itself. Consider two variables <span class="math inline">\(y1\)</span> and <span class="math inline">\(y2\)</span> each with a variance of 1 and a covariance of 0.6.</p>
+<p><span class="math display">\[\begin{bmatrix}y_1 \\ y_2 \end{bmatrix} \sim MVN \left( \begin{bmatrix} 10 \\ 8 \end{bmatrix} , \begin{bmatrix}1 &amp; 0.6 \\ 0.6 &amp; 1 \end{bmatrix} \right),\]</span></p>
+<p>where the means of <span class="math inline">\(y_1\)</span> and <span class="math inline">\(y_2\)</span> are 10 and 8, respectively, and their covariance structure is represented in the variance-covariance matrix. Remember:</p>
+<p><span class="math display">\[\begin{bmatrix}y_1 \\ y_2 \end{bmatrix} \sim MVN \left( \begin{bmatrix} E(y_1) \\ E(y_2) \end{bmatrix} , \begin{bmatrix} Var(y_1) &amp; Cov(y_1, y_2) \\ Cov(y_2,y_2) &amp; Var(y_2) \end{bmatrix} \right).\]</span></p>
+</div>
+</div>
+<div id="the-most-common-statistical-model" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> The most common statistical model<a href="getting-started.html#the-most-common-statistical-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><span class="math display">\[\mathbf{y} \sim N(\boldsymbol\mu, \boldsymbol\Sigma),\]</span></p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(\mathbf{y} \equiv [y_1, y_2, \dots, y_n]&#39;\)</span> contains the response data,</li>
+<li><span class="math inline">\(\boldsymbol{\mu} \equiv [\mu_1, \mu_2, \dots, \mu_n]&#39;\)</span> contains the expected values of said data,</li>
+<li><span class="math inline">\(\boldsymbol\Sigma\)</span> is the variance-covariance matrix.</li>
+</ul>
+<p>The most typical model typically has:</p>
+<ul>
+<li><span class="math inline">\(\boldsymbol\mu = \mathbf{X}\boldsymbol{\beta}\)</span> and</li>
+<li><span class="math inline">\(\boldsymbol\Sigma = \sigma^2\mathbf{I}\)</span>.</li>
+</ul>
+<p>In summary, the assumptions are:</p>
+<ul>
+<li>Normality</li>
+<li>Independence</li>
+<li>Constant variance</li>
+</ul>
+<div id="properties-of-the-general-linear-model" class="section level3 hasAnchor" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> Properties of the general linear model<a href="getting-started.html#properties-of-the-general-linear-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p><span class="math inline">\(E(\hat{\boldsymbol{\beta}}) = \boldsymbol{\beta}\)</span></p></li>
+<li><p><span class="math inline">\(\text{Var}(\hat{\boldsymbol{\beta}}) = \frac{\sigma^2}{\mathbf{X}^T\mathbf{X}} = \sigma^2 (\mathbf{X}^T\mathbf{X})^{-1}\)</span></p></li>
+<li><p>What if the observations weren’t independent?</p></li>
+<li><p>What if the variance wasn’t constant?</p></li>
+</ul>
+</div>
+</div>
+<div id="uncertainty" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Uncertainty<a href="getting-started.html#uncertainty" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Uncertainty will be one of the central topics in this course.</p>
+<div id="types-of-uncertainty" class="section level3 hasAnchor" number="2.4.1">
+<h3><span class="header-section-number">2.4.1</span> Types of uncertainty<a href="getting-started.html#types-of-uncertainty" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>Epistemological uncertainty</p></li>
+<li><p>Intrinsic uncertainty</p></li>
+</ul>
+</div>
+<div id="uncertainty---applied-example" class="section level3 hasAnchor" number="2.4.2">
+<h3><span class="header-section-number">2.4.2</span> Uncertainty - applied example<a href="getting-started.html#uncertainty---applied-example" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Assume that the model <span class="math inline">\(y_i \sim N(\mu_i, \sigma^2), \mu_i = \beta_0 + \beta_1 x_i+ \beta_2 x_i^2\)</span> describes the data generating process.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="getting-started.html#cb6-1" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;https://raw.githubusercontent.com/k-state-id3a/mixed-models-fall25/refs/heads/newpart3/data/nitrogen_yield.csv&quot;</span></span>
+<span id="cb6-2"><a href="getting-started.html#cb6-2" tabindex="-1"></a>df_n_ss  <span class="ot">&lt;-</span>  <span class="fu">read.csv</span>(url)</span>
+<span id="cb6-3"><a href="getting-started.html#cb6-3" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="getting-started.html#cb6-4" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Yield_SY <span class="sc">~</span> Total_N <span class="sc">+</span> <span class="fu">I</span>(Total_N<span class="sc">^</span><span class="dv">2</span>), <span class="at">data =</span> df_n_ss)</span>
+<span id="cb6-5"><a href="getting-started.html#cb6-5" tabindex="-1"></a>DHARMa<span class="sc">::</span><span class="fu">simulateResiduals</span>(m1, <span class="at">plot =</span> T)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<pre><code>## Object of Class DHARMa with simulated residuals based on 250 simulations with refit = FALSE . See ?DHARMa::simulateResiduals for help. 
+##  
+## Scaled residual values: 0.1 0.3 0.004 0.588 0.792 0.556 0.168 0.344 0.256 0.452 0.388 0.388 0.832 0.94 0.692 0.936 0.132 0.312 0.424 0.664 ...</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="getting-started.html#cb8-1" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Yield_SY <span class="sc">~</span> Total_N <span class="sc">+</span> <span class="fu">I</span>(Total_N<span class="sc">^</span><span class="dv">2</span>), <span class="at">data =</span> df_n_ss)</span>
+<span id="cb8-2"><a href="getting-started.html#cb8-2" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="getting-started.html#cb8-3" tabindex="-1"></a>df_plot <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Total_N =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">280</span>)</span>
+<span id="cb8-4"><a href="getting-started.html#cb8-4" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="getting-started.html#cb8-5" tabindex="-1"></a>df_plot<span class="sc">$</span>yhat <span class="ot">&lt;-</span> <span class="fu">predict</span>(m1, <span class="at">newdata =</span> df_plot)</span>
+<span id="cb8-6"><a href="getting-started.html#cb8-6" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="getting-started.html#cb8-7" tabindex="-1"></a><span class="co"># estimation uncertainty</span></span>
+<span id="cb8-8"><a href="getting-started.html#cb8-8" tabindex="-1"></a>confid_est <span class="ot">&lt;-</span> <span class="fu">predict</span>(m1, <span class="at">newdata =</span> df_plot, <span class="at">se.fit =</span> <span class="cn">TRUE</span>, <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>)</span>
+<span id="cb8-9"><a href="getting-started.html#cb8-9" tabindex="-1"></a>df_plot<span class="sc">$</span>est_low <span class="ot">&lt;-</span> (confid_est<span class="sc">$</span>fit)[,<span class="dv">2</span>]</span>
+<span id="cb8-10"><a href="getting-started.html#cb8-10" tabindex="-1"></a>df_plot<span class="sc">$</span>est_up <span class="ot">&lt;-</span> (confid_est<span class="sc">$</span>fit)[,<span class="dv">3</span>]</span>
+<span id="cb8-11"><a href="getting-started.html#cb8-11" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="getting-started.html#cb8-12" tabindex="-1"></a><span class="co"># estimation uncertainty</span></span>
+<span id="cb8-13"><a href="getting-started.html#cb8-13" tabindex="-1"></a>confid_pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(m1, <span class="at">newdata =</span> df_plot, <span class="at">se.fit =</span> <span class="cn">TRUE</span>, <span class="at">interval =</span> <span class="st">&quot;predict&quot;</span>)</span>
+<span id="cb8-14"><a href="getting-started.html#cb8-14" tabindex="-1"></a>df_plot<span class="sc">$</span>pred_low <span class="ot">&lt;-</span> (confid_pred<span class="sc">$</span>fit)[,<span class="dv">2</span>]</span>
+<span id="cb8-15"><a href="getting-started.html#cb8-15" tabindex="-1"></a>df_plot<span class="sc">$</span>pred_up <span class="ot">&lt;-</span> (confid_pred<span class="sc">$</span>fit)[,<span class="dv">3</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="getting-started.html#cb9-1" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
+<span id="cb9-2"><a href="getting-started.html#cb9-2" tabindex="-1"></a>df_plot <span class="sc">|&gt;</span> </span>
+<span id="cb9-3"><a href="getting-started.html#cb9-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(Total_N, yhat))<span class="sc">+</span></span>
+<span id="cb9-4"><a href="getting-started.html#cb9-4" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> pred_low, <span class="at">ymax =</span> pred_up), </span>
+<span id="cb9-5"><a href="getting-started.html#cb9-5" tabindex="-1"></a>              <span class="at">alpha =</span> .<span class="dv">3</span>, <span class="at">fill =</span> <span class="st">&quot;#B388EB&quot;</span>)<span class="sc">+</span></span>
+<span id="cb9-6"><a href="getting-started.html#cb9-6" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> est_low, <span class="at">ymax =</span> est_up), </span>
+<span id="cb9-7"><a href="getting-started.html#cb9-7" tabindex="-1"></a>              <span class="at">alpha =</span> .<span class="dv">6</span>, <span class="at">fill =</span> <span class="st">&quot;#B200EB&quot;</span>)<span class="sc">+</span></span>
+<span id="cb9-8"><a href="getting-started.html#cb9-8" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb9-9"><a href="getting-started.html#cb9-9" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> latex2exp<span class="sc">::</span><span class="fu">TeX</span>(<span class="st">&quot;$</span><span class="sc">\\</span><span class="st">hat{y}$&quot;</span>), </span>
+<span id="cb9-10"><a href="getting-started.html#cb9-10" tabindex="-1"></a>       <span class="at">x =</span> <span class="fu">expression</span>(Total<span class="sc">~</span>N<span class="sc">~</span>(lb<span class="sc">~</span>ac<span class="sc">^</span>{<span class="sc">-</span><span class="dv">1</span>})))<span class="sc">+</span></span>
+<span id="cb9-11"><a href="getting-started.html#cb9-11" tabindex="-1"></a>  <span class="fu">theme_pubclean</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-7-1.png" width="576" style="display: block; margin: auto;" /></p>
+
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="mixed-models-i.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/stat720/book2025/edit/main/index.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": "https://github.com/stat720/book2025/blob/main/index.Rmd",
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

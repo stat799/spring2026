@@ -15,6 +15,7 @@ January 26th, 2026
 
 ```{r message=F, warning=FALSE}
 library(tidyverse)
+library(latex2exp)
 read.csv("../../../students_STAT_799_C.csv") |> 
   filter(degreeProgram != "") %>% 
   ggplot(aes(x = degreeProgram))+
@@ -34,18 +35,18 @@ read.csv("../../../students_STAT_799_C.csv") |>
 - Syllabus
 - Statistical programming requirements  
 - Rough mindmap of the course (on whiteboard)  
-- [Semester project - design your own experiment.](https://stat720.github.io/2025summer/summer2025/notes/semester-project.html)   
-- Grades: A (100-89.999999999(!!!)), B (89.99-79.99), C (79.99-69.99), D (69.99-59.99), F (<59.99).
+- [Semester project](https://stat799.github.io/spring2026/notes/semester-project.html)   
+- Grades: A (100-89.999999999(!!!)), B (89.99-79.99), C (79.99-69.99), D (69.99-59.99), F (<59.99). 
 - Attendance policies  
 - Semester projects
 
 ## Learning goals   
 
 By the end of this course, you should be able to:  
-- Be able to identify the treatment design, experiment design, experimental unit and observational unit.  
-- Be able to write the statistical model that corresponds to (simple) designed experiments.  
-- Be able to write the Materials and Methods section in a paper (or thesis) that describes the designed experiment.  
-- Distinguish the benefits/disadvantages of different experiment designs.  
+-	Identify the data structure for a given dataset and write the statistical model that corresponds to said data structure using statistical notation. 
+-	Distinguish the benefits and disadvantages of different modeling approaches. 
+-	Write the Materials and Methods section in a paper (or graduate thesis) that describes the data generating process and the statistical model. 
+ 
 
 
 ## On notation  
@@ -55,4 +56,462 @@ By the end of this course, you should be able to:
 - matrices: $\mathbf{X}$, $\Sigma$  
 - probability distribution: $y \sim N(0, \sigma^2)$, $\mathbf{y} \sim N(\boldsymbol{0}, \sigma^2\mathbf{I})$.     
 
+## Semester project
+
+- Manuscript 
+  - See rubric on CANVAS. 
+  - Publication-ready M&M and results. 
+  - Must include Abstract (250w), Introduction (~400-600w), M&M (~300-700w), Results (~400w), Discussion (~300-500w), Conclusions (~100w). 
+  - Last paragraph in the Introduction should clearly state the research gap and the research objectives.  
+- Reproducible Tutorial 
+  - Publication-ready tutorial/R documentation.  
+
+- If you are not sure about your research question yet, talk to me after class **today**. 
+
+## Roadmap of this course 
+
+<style>
+  .syllabus-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: sans-serif;
+    margin: 25px 0;
+    font-size: 0.9em;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  }
+  .syllabus-table thead tr {
+    background-color: #2c3e50;
+    color: #ffffff;
+    text-align: left;
+    font-weight: bold;
+  }
+  .syllabus-table th, .syllabus-table td {
+    padding: 12px 15px;
+    border: 1px solid #dddddd;
+  }
+  .syllabus-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+  }
+  .weekend-row {
+    background-color: #e9ecef !important;
+    text-align: center;
+    font-style: italic;
+    font-weight: bold;
+    color: #6c757d;
+  }
+  .kahoot-yes {
+    color: #46178f;
+    font-weight: bold;
+  }
+</style>
+
+<table class="syllabus-table">
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Topic</th>
+      <th>Kahoot</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>01/26</td>
+      <td>Statistical modeling. Continuous and categorical predictors. Review of mean, variance, and covariance. Types of uncertainty and sources of uncertainty.</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>01/27</td>
+      <td>Linear mixed models I. Model diagnostics and model selection.</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>01/28</td>
+      <td>Linear mixed models II. Model diagnostics and model selection.</td>
+      <td class="kahoot-yes">Yes</td>
+    </tr>
+    <tr>
+      <td>01/29</td>
+      <td>Analysis of variance.</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>01/30</td>
+      <td>Non-linear mixed models I.</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr class="weekend-row">
+      <td colspan="3">Weekend</td>
+    </tr>
+    <tr>
+      <td>02/02</td>
+      <td>Troubleshooting in mixed models fitting using R software. Computational and analytical solutions.</td>
+      <td class="kahoot-yes">Yes</td>
+    </tr>
+    <tr>
+      <td>02/03</td>
+      <td>Generalized linear mixed models I. Beta, Binomial.</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>02/04</td>
+      <td>Statistical power in designed experiments</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>02/05</td>
+      <td>Statistical inference. Scientific writing. Dos & don’ts.</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>02/06</td>
+      <td>Wrap-up</td>
+      <td class="kahoot-yes">Yes</td>
+    </tr>
+    <tr class="weekend-row">
+      <td colspan="3">Weekend</td>
+    </tr>
+    <tr>
+      <td>02/09</td>
+      <td>Optional: Bayesian modeling & inference</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>02/10</td>
+      <td>Optional: Bayesian modeling & inference II</td>
+      <td>&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+
+## Getting started with statistical modeling
+
+- Why do we need statistical models? 
+- Statistics as a summary of the data 
+- Excerpt from the short story ["Funes the memorious" (J.L. Borges)](https://web.english.upenn.edu/~cavitch/pdf-library/Borges_FunesTheMemorious.pdf): *I suspect, however, that he was not very capable of thought. To think is to forget differences, generalize, make abstractions. In the teeming world of Funes, there were only details, almost immediate in their presence.* 
+
+- What is a statistical model? 
+- Deterministic component + Stochastic component 
+
+### Writing a statistical model 
+
+Deterministic component + Stochastic component 
+
+Example:
+
+$y_i \sim N(\mu_i, \sigma^2), \\ \mu_i = \beta_0 + \beta_1 x_i$
+
+
+### What are linear models? 
+
+- Assume that $y_i \sim N(\mu_i, \sigma^2)$.
+
+...and there are 4 possible descriptions of the mean: 
+
+- $\mu_i = \beta_0 + \beta_1 x_{1i} + \beta_2 x_{2i}$ 
+- $\mu_i = \beta_0 + \beta_1 x_i + \beta_2 x_i^2$
+- $\mu_i = \beta_0 \cdot \exp(x_i \cdot \beta_1)$
+- $\mu_i = \beta_0 + x_i^{\beta_1}$
+
+What is a linear model and what is not? 
+
+### Vectorized notation 
+
+**Model equation form:**
+
+- $y_i = \beta_0 + \beta_1 x_i + \varepsilon_i$ 
+- $\varepsilon_i \sim N(0, \sigma^2),$ 
+
+**Probability distribution form:** 
+
+Scalar
+
+- $y_i \sim N(\mu_i, \sigma^2),$ 
+- $\mu_i = \beta_0 + \beta_1 x_i$ 
+
+Vector
+
+- $\mathbf{y} \sim N(\boldsymbol{\mu}, \Sigma),$ 
+- $\boldsymbol{\mu} = \boldsymbol{1} \beta_0 + \mathbf{x} \beta_1 = \mathbf{X}\boldsymbol{\beta}$ 
+
+### Vectorized notation - cont. 
+
+$$\begin{bmatrix}y_1 \\ y_2 \\ \vdots \\ y_n \end{bmatrix} \sim  N \left( \begin{bmatrix}\mu_1 \\ \mu_2 \\ \vdots \\ \mu_n \end{bmatrix}, \begin{bmatrix} Cov(y_1, y_1) & Cov(y_1, y_2) & \dots & Cov(y_1, y_n) \\ Cov(y_2, y_1) & Cov(y_2, y_2) & \dots & Cov(y_2, y_n)\\ \vdots & \vdots & \ddots & \vdots \\ Cov(y_n, y_1) & Cov(y_n, y_2) & \dots & Cov(y_n, y_n) \end{bmatrix} \right)$$
+
+### Continuous and categorical predictors
+
+$$\mu_i = \beta_0 + x_{1i} \beta_1 + x_{2i} \beta_2+ ... + x_{ji} \beta_j$$
+
+Discuss the following type of data:
+
+-   biomass 
+-   cultivar 
+-   county 
+-   year 
+
+### Three-step approach to writing a statistical model 
+
+- **1.** What probability distribution function describes the data? 
+  - Think about: type of data, support of the data. 
+
+- **2.** Define a link function for the linear predictor. 
+
+- **3.** Define the linear predictor. 
+  - Treatments 
+  - Design 
+
+
+## Review
+
+### Probability distributions 
+
+```{r fig.height=10, fig.align='center'}
+knitr::include_graphics("figures/distributions.png")
+```
+
+
+### Mean, Variance 
+
+- **Mean**: the balancing point of a probability distribution  
+- **Variance**: dispersion of $y$  
+
+```{r fig.height=4, fig.width=5, fig.align='center'}
+set.seed(42)
+
+x <- seq(-6, 6, length=100)
+hx <- dnorm(x)
+labels <- c("x ~ Normal(0, 1)", 
+            "x ~ Normal(0, 16)", "x ~ Normal(2, 1)")
+colors <- c("darkgreen", "tomato", "purple")
+
+
+plot(x, dnorm(x, 0, 1), lwd=2, col= "darkgreen", type="l", lty= 1, xlab="x", ylab="[x]")
+
+# lines(x, dnorm(x, 0, 1), lwd=2, col= "darkgreen")
+lines(x, dnorm(x, 0, 4), lty = 2, lwd=2, col= "tomato")
+lines(x, dnorm(x, 2, 1), lty = 3, lwd=2, col= "purple")
+
+legend("topleft", inset=.05, title="Distributions",
+  labels, lwd=2, lty=c(1, 2, 3), col=colors)
+```
+
+What do these distributions mean in practice?  
+
+```{r message=FALSE, warning=FALSE}
+options(bitmapType = 'cairo')
+library(gganimate)
+
+set.seed(123)
+n_total <- 1000
+steps <- seq(20, n_total, by = 20) # add 20 points per frame
+
+full_data <- rnorm(n_total, 0, 1)
+
+# create a long dataframe where each 'frame' contains all points up to that index
+df_animated <- bind_rows(lapply(steps, function(s) {
+  data.frame(
+    val = full_data[1:s],
+    frame = s
+  )
+}))
+
+p <- ggplot(df_animated, aes(x = val)) +
+  geom_histogram(
+    aes(y = after_stat(count)), 
+    bins = 30, 
+    fill = "#B388EB", 
+    color = "white"
+  ) +
+  geom_point(
+    aes(x = val, y = 0), 
+    alpha=.1, size = 2
+  )+
+  stat_function(
+    fun = function(x) dnorm(x) * (max(steps)/30) * 4,
+    color = "black", 
+    size = 1,
+    linetype = "dashed"
+  ) +
+  labs(
+    title = "Building a Normal Distribution",
+    subtitle = "Sample size (n): {closest_state}",
+    x = "x",
+    y = "[x]"
+  ) +
+  theme_minimal() +
+  transition_states(frame, transition_length = 2, 
+                    state_length = 1) +
+  ease_aes('sine-in-out')
+
+animate(p, 
+        nframes = length(steps), 
+        fps = 10, 
+        width = 6, height = 4, units = "in",
+        res =150,
+        duration = 45,
+        renderer = gifski_renderer())
+```
+
+
+### Covariance 
+
+Covariance between two random variables means how the two random variables behave relative to each other. Essentially, it quantifies the relationship between their joint variability. The variance of a random variable is the covariance of a random variable with itself. Consider two variables $y1$ and $y2$ each with a variance of 1 and a covariance of 0.6.
+
+$$\begin{bmatrix}y_1 \\ y_2 \end{bmatrix} \sim MVN \left( \begin{bmatrix} 10 \\ 8 \end{bmatrix} , \begin{bmatrix}1 & 0.6 \\ 0.6 & 1 \end{bmatrix} \right),$$
+
+where the means of $y_1$ and $y_2$ are 10 and 8, respectively, and their covariance structure is represented in the variance-covariance matrix. Remember: 
+
+$$\begin{bmatrix}y_1 \\ y_2 \end{bmatrix} \sim MVN \left( \begin{bmatrix} E(y_1) \\ E(y_2) \end{bmatrix} , \begin{bmatrix} Var(y_1) & Cov(y_1, y_2) \\ Cov(y_2,y_2) & Var(y_2) \end{bmatrix} \right).$$
+
+
+
+```{r message=FALSE, warning=FALSE}
+library(MASS)
+library(purrr)
+
+# 1. Setup Parameters
+set.seed(42)
+n_points <- 1000 # Total points to plot
+steps <- seq(1, n_points, by = 5) # Adding 5 points per frame for speed
+mu <- c(10, 8)
+sigma <- matrix(c(1, 0.6, 0.6, 1), 2)
+
+# 2. Generate the base data
+base_data <- mvrnorm(n_points, mu = mu, Sigma = sigma) %>%
+  as.data.frame() %>%
+  rename(y1 = V1, y2 = V2)
+
+# 3. Create the cumulative dataset
+# Each 'frame' will contain all points up to that index
+cum_data <- map_df(steps, ~ {
+  base_data[1:.x, ] %>% mutate(frame = .x)
+})
+
+# 4. Pre-calculate static marginal densities (same as before)
+x_seq <- seq(7, 13.5, length.out = 100)
+df_x_dens <- data.frame(x = x_seq, y = dnorm(x_seq, 10, 1) * 2 + 5)
+
+y_seq <- seq(5, 11, length.out = 100)
+df_y_dens <- data.frame(y = y_seq, x = dnorm(y_seq, 8, 1) * -2 + 7.8)
+
+# 5. Build the Plot
+p <- ggplot(cum_data, aes(x = y1, y = y2)) +
+  # Static layers: Red and Green indicators
+  geom_segment(aes(x = 10, y = 5, xend = 10, yend = 8), color = "tomato", linewidth = 1) +
+  geom_segment(aes(x = 7, y = 8, xend = 10, yend = 8), color = "darkgreen", linewidth = 1) +
+  geom_path(data = df_x_dens, aes(x = x, y = y), color = "tomato", linetype = "dashed") +
+  geom_path(data = df_y_dens, aes(x = x, y = y), color = "darkgreen", linetype = "dotted") +
+  # Animated layer: Points stay because they exist in every subsequent frame
+  geom_point(shape = 1, alpha = 0.6) +
+  labs(
+    title = "Generatig Random Samples from a Bivariate Normal Distribution",
+    subtitle = "Sample Size: {closest_state}",
+    x = TeX("$y_1$"), 
+    y = TeX("$y_2$")
+  ) +
+  theme_minimal() +
+  coord_cartesian(xlim = c(7, 13.5), ylim = c(5, 11)) +
+  # transition_states tells R to switch between the 'frame' groups
+  transition_states(frame, transition_length = 0.5, state_length = 0.1)
+
+# 6. Render with fixed units to avoid the png() error
+options(bitmapType = 'cairo')
+animate(
+  p, 
+  nframes = length(steps), 
+  fps = 12, 
+  width = 6, 
+  height = 4, 
+  units = "in", 
+  res = 150, 
+  duration = 40,
+  renderer = gifski_renderer()
+)
+```
+
+
+## The most common statistical model 
+
+$$\mathbf{y} \sim N(\boldsymbol\mu, \boldsymbol\Sigma),$$
+
+where:
+
+- $\mathbf{y} \equiv [y_1, y_2, \dots, y_n]'$ contains the response data, 
+- $\boldsymbol{\mu} \equiv [\mu_1, \mu_2, \dots, \mu_n]'$ contains the expected values of said data, 
+- $\boldsymbol\Sigma$ is the variance-covariance matrix. 
+
+The most typical model typically has:
+
+- $\boldsymbol\mu = \mathbf{X}\boldsymbol{\beta}$ and 
+- $\boldsymbol\Sigma = \sigma^2\mathbf{I}$. 
+
+In summary, the assumptions are: 
+
+- Normality 
+- Independence 
+- Constant variance 
+
+### Properties of the general linear model 
+
+- $E(\hat{\boldsymbol{\beta}}) = \boldsymbol{\beta}$ 
+- $\text{Var}(\hat{\boldsymbol{\beta}}) = \frac{\sigma^2}{\mathbf{X}^T\mathbf{X}} = \sigma^2 (\mathbf{X}^T\mathbf{X})^{-1}$ 
+
+**Class discussion**: 
+
+
+- What if the observations weren't independent? 
+- What if the variance wasn't constant? 
+
+## Uncertainty
+
+Uncertainty will be one of the central topics in this course. Uncertainty is important because, as we summarize the information (e.g., to aviod Funes' useless excess of information), we can better describe all the information with a combination of the mean and the variance. 
+
+### Types of uncertainty 
+
+-   Epistemological uncertainty
+
+-   Intrinsic uncertainty
+
+### Uncertainty - applied example 
+
+Assume that the model $y_i \sim N(\mu_i, \sigma^2), \mu_i = \beta_0 + \beta_1 x_i+ \beta_2 x_i^2$ describes the data generating process. 
+
+```{r include=TRUE, eval=TRUE, echo=TRUE}
+url <- "https://raw.githubusercontent.com/k-state-id3a/mixed-models-fall25/refs/heads/newpart3/data/nitrogen_yield.csv"
+df_n_ss  <-  read.csv(url)
+
+m1 <- lm(Yield_SY ~ Total_N + I(Total_N^2), data = df_n_ss)
+DHARMa::simulateResiduals(m1, plot = T)
+```
+
+```{r include=TRUE, eval=TRUE, echo=TRUE}
+m1 <- lm(Yield_SY ~ Total_N + I(Total_N^2), data = df_n_ss)
+
+df_plot <- data.frame(Total_N = 0:280)
+
+df_plot$yhat <- predict(m1, newdata = df_plot)
+
+# estimation uncertainty
+confid_est <- predict(m1, newdata = df_plot, se.fit = TRUE, interval = "confidence")
+df_plot$est_low <- (confid_est$fit)[,2]
+df_plot$est_up <- (confid_est$fit)[,3]
+
+# estimation uncertainty
+confid_pred <- predict(m1, newdata = df_plot, se.fit = TRUE, interval = "predict")
+df_plot$pred_low <- (confid_pred$fit)[,2]
+df_plot$pred_up <- (confid_pred$fit)[,3]
+```
+
+```{r fig.height=4, fig.width=6, fig.align='center'}
+library(ggpubr)
+df_plot |> 
+  ggplot(aes(Total_N, yhat))+
+  geom_ribbon(aes(ymin = pred_low, ymax = pred_up), 
+              alpha = .3, fill = "#B388EB")+
+  geom_ribbon(aes(ymin = est_low, ymax = est_up), 
+              alpha = .6, fill = "#B200EB")+
+  geom_line()+
+  labs(y = latex2exp::TeX("$\\hat{y}$"), 
+       x = expression(Total~N~(lb~ac^{-1})))+
+  theme_pubclean()
+```
 

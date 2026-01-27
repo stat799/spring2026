@@ -6,10 +6,14 @@ Broadly, projects are expected to **identify a research problem** and **develop 
 
 ## Learning objectives   
 
+- Apply content learned in class in a real-life problem, connected to the student's research program, including: 
+  - Writing the materials and methods section of a paper using statistical notation. 
+  - Writing detailed supporting material that clearly connects R code with statistical models. 
+  - Interpret the results from the statistical model and connect them to the real-life problem. 
 
 ## Partial deadlines
 
-### Project proposal - Due Friday February 1st at noon CT
+### Project proposal - Due Sunday February 1st at noon CT
 Write a 1 or 2 page-long project proposal that (a) includes the background of your problem (i.e., why is this important?) and (b) states your research objective. 
 
 ### Written report - Due Wednesday April 20 at 2pm CT for peer review 

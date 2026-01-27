@@ -34,7 +34,7 @@ some-useful-metrics-to-compare-models
 semester-project-1
 learning-objectives
 partial-deadlines
-project-proposal---due-friday-february-1st-at-noon-ct
+project-proposal---due-sunday-february-1st-at-noon-ct
 written-report---due-wednesday-april-20-at-2pm-ct-for-peer-review
 oral-presentation---somewhere-between-may-1---may-9
 written-report-and-reproducible-tutorial---due-may-15

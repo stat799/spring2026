@@ -172,7 +172,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.9" data-path="index.html"><a href="index.html#uncertainty"><i class="fa fa-check"></i><b>1.9</b> Uncertainty</a>
 <ul>
 <li class="chapter" data-level="1.9.1" data-path="index.html"><a href="index.html#types-of-uncertainty"><i class="fa fa-check"></i><b>1.9.1</b> Types of uncertainty</a></li>
-<li class="chapter" data-level="1.9.2" data-path="index.html"><a href="index.html#uncertainty---applied-example"><i class="fa fa-check"></i><b>1.9.2</b> Uncertainty - applied example</a></li>
+<li class="chapter" data-level="1.9.2" data-path="index.html"><a href="index.html#types-of-uncertainty-in-the-general-linear-model"><i class="fa fa-check"></i><b>1.9.2</b> Types of uncertainty in the general linear model</a></li>
+<li class="chapter" data-level="1.9.3" data-path="index.html"><a href="index.html#uncertainty---applied-example"><i class="fa fa-check"></i><b>1.9.3</b> Uncertainty - applied example</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="mixed-models-i.html"><a href="mixed-models-i.html"><i class="fa fa-check"></i><b>2</b> Mixed models I</a>
@@ -186,9 +187,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.4.2" data-path="mixed-models-i.html"><a href="mixed-models-i.html#example-b-simple-groups-of-similar-observations"><i class="fa fa-check"></i><b>2.4.2</b> Example B – simple groups of similar observations</a></li>
 <li class="chapter" data-level="2.4.3" data-path="mixed-models-i.html"><a href="mixed-models-i.html#example-c-different-groups-of-similar-observations"><i class="fa fa-check"></i><b>2.4.3</b> Example C – different groups of similar observations</a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="mixed-models-i.html"><a href="mixed-models-i.html#model-selection"><i class="fa fa-check"></i><b>2.5</b> Model selection</a>
+<li class="chapter" data-level="2.5" data-path="mixed-models-i.html"><a href="mixed-models-i.html#model-checking-and-comparison"><i class="fa fa-check"></i><b>2.5</b> Model checking and comparison</a>
 <ul>
-<li class="chapter" data-level="2.5.1" data-path="mixed-models-i.html"><a href="mixed-models-i.html#some-useful-metrics-to-compare-models"><i class="fa fa-check"></i><b>2.5.1</b> Some useful metrics to compare models</a></li>
+<li class="chapter" data-level="2.5.1" data-path="mixed-models-i.html"><a href="mixed-models-i.html#model-checking"><i class="fa fa-check"></i><b>2.5.1</b> Model checking</a></li>
+<li class="chapter" data-level="2.5.2" data-path="mixed-models-i.html"><a href="mixed-models-i.html#some-useful-metrics-to-compare-models"><i class="fa fa-check"></i><b>2.5.2</b> Some useful metrics to compare models</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="semester-project-1.html"><a href="semester-project-1.html"><i class="fa fa-check"></i><b>3</b> Semester Project</a>
@@ -246,7 +248,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-9"><a href="index.html#cb1-9" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
 <span id="cb1-10"><a href="index.html#cb1-10" tabindex="-1"></a>        <span class="at">panel.border =</span> <span class="fu">element_blank</span>(),</span>
 <span id="cb1-11"><a href="index.html#cb1-11" tabindex="-1"></a>        <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>())</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
 <ul>
 <li>In rounds: What’s your major, what do you expect to learn?</li>
 </ul>
@@ -261,7 +263,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
 <li><a href="https://stat799.github.io/spring2026/notes/semester-project.html">Semester project</a><br />
 </li>
-<li>Grades: A (100-89.999999999(!!!)), B (89.99-79.99), C (79.99-69.99), D (69.99-59.99), F (&lt;59.99).</li>
+<li>Grades: Pass (100-69.99), Fail (&lt;69.99).</li>
 <li>Attendance policies<br />
 </li>
 <li>Semester projects</li>
@@ -270,10 +272,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="learning-goals" class="section level2 hasAnchor" number="1.2">
 <h2><span class="header-section-number">1.2</span> Learning goals<a href="index.html#learning-goals" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>By the end of this course, you should be able to:<br />
-- Identify the data structure for a given dataset and write the statistical model that corresponds to said data structure using statistical notation.
-- Distinguish the benefits and disadvantages of different modeling approaches.
-- Write the Materials and Methods section in a paper (or graduate thesis) that describes the data generating process and the statistical model.</p>
+<p>By the end of this course, you should be able to:</p>
+<ul>
+<li>Identify the data structure for a given dataset and write the statistical model that corresponds to said data structure using statistical notation.</li>
+<li>Distinguish the benefits and disadvantages of different modeling approaches.</li>
+<li>Write the Materials and Methods section in a paper (or graduate thesis) that describes the data generating process and the statistical model.</li>
+</ul>
 </div>
 <div id="on-notation" class="section level2 hasAnchor" number="1.3">
 <h2><span class="header-section-number">1.3</span> On notation<a href="index.html#on-notation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -307,196 +311,95 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="roadmap-of-this-course" class="section level2 hasAnchor" number="1.5">
 <h2><span class="header-section-number">1.5</span> Roadmap of this course<a href="index.html#roadmap-of-this-course" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<style>
-  .syllabus-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-family: sans-serif;
-    margin: 25px 0;
-    font-size: 0.9em;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  }
-  .syllabus-table thead tr {
-    background-color: #2c3e50;
-    color: #ffffff;
-    text-align: left;
-    font-weight: bold;
-  }
-  .syllabus-table th, .syllabus-table td {
-    padding: 12px 15px;
-    border: 1px solid #dddddd;
-  }
-  .syllabus-table tbody tr:nth-of-type(even) {
-    background-color: #f3f3f3;
-  }
-  .weekend-row {
-    background-color: #e9ecef !important;
-    text-align: center;
-    font-style: italic;
-    font-weight: bold;
-    color: #6c757d;
-  }
-  .kahoot-yes {
-    color: #46178f;
-    font-weight: bold;
-  }
-</style>
-<table class="syllabus-table">
+<table>
+<caption><span id="tab:unnamed-chunk-25">Table 1.1: </span>Course Schedule: Statistical Modeling &amp; Mixed Models</caption>
+<colgroup>
+<col width="4%" />
+<col width="90%" />
+<col width="4%" />
+</colgroup>
 <thead>
-<tr>
-<th>
-Date
-</th>
-<th>
-Topic
-</th>
-<th>
-Kahoot
-</th>
+<tr class="header">
+<th align="left">Date</th>
+<th align="left">Topic</th>
+<th align="left">Kahoot?</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>
-01/26
-</td>
-<td>
-Statistical modeling. Continuous and categorical predictors. Review of mean, variance, and covariance. Types of uncertainty and sources of uncertainty.
-</td>
-<td>
- 
-</td>
+<tr class="odd">
+<td align="left">01/28</td>
+<td align="left">Statistical modeling. Continuous and categorical predictors. Review of mean, variance, and covariance. Types of uncertainty and sources of uncertainty.</td>
+<td align="left"></td>
 </tr>
-<tr>
-<td>
-01/27
-</td>
-<td>
-Linear mixed models I. Model diagnostics and model selection.
-</td>
-<td>
- 
-</td>
+<tr class="even">
+<td align="left">01/29</td>
+<td align="left">Linear mixed models I. Model diagnostics and model selection.</td>
+<td align="left"></td>
 </tr>
-<tr>
-<td>
-01/28
-</td>
-<td>
-Linear mixed models II. Model diagnostics and model selection.
-</td>
-<td class="kahoot-yes">
-Yes
-</td>
+<tr class="odd">
+<td align="left">01/30</td>
+<td align="left">Linear mixed models II. Model diagnostics and model selection.</td>
+<td align="left">Yes</td>
 </tr>
-<tr>
-<td>
-01/29
-</td>
-<td>
-Analysis of variance.
-</td>
-<td>
- 
-</td>
+<tr class="even">
+<td align="left">Weekend</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
 </tr>
-<tr>
-<td>
-01/30
-</td>
-<td>
-Non-linear mixed models I.
-</td>
-<td>
- 
-</td>
+<tr class="odd">
+<td align="left">02/02</td>
+<td align="left">Analysis of variance.</td>
+<td align="left"></td>
 </tr>
-<tr class="weekend-row">
-<td colspan="3">
-Weekend
-</td>
+<tr class="even">
+<td align="left">02/03</td>
+<td align="left">Non-linear mixed models.</td>
+<td align="left"></td>
 </tr>
-<tr>
-<td>
-02/02
-</td>
-<td>
-Troubleshooting in mixed models fitting using R software. Computational and analytical solutions.
-</td>
-<td class="kahoot-yes">
-Yes
-</td>
+<tr class="odd">
+<td align="left">02/04</td>
+<td align="left">Troubleshooting in mixed models fitting using R software. Computational and analytical solutions.</td>
+<td align="left">Yes</td>
 </tr>
-<tr>
-<td>
-02/03
-</td>
-<td>
-Generalized linear mixed models I. Beta, Binomial.
-</td>
-<td>
- 
-</td>
+<tr class="even">
+<td align="left">02/05</td>
+<td align="left">Generalized linear mixed models I. Beta, Binomial.</td>
+<td align="left"></td>
 </tr>
-<tr>
-<td>
-02/04
-</td>
-<td>
-Statistical power in designed experiments
-</td>
-<td>
- 
-</td>
+<tr class="odd">
+<td align="left">02/06</td>
+<td align="left">Statistical inference. Statistical power in designed experiments</td>
+<td align="left"></td>
 </tr>
-<tr>
-<td>
-02/05
-</td>
-<td>
-Statistical inference. Scientific writing. Dos &amp; don’ts.
-</td>
-<td>
- 
-</td>
+<tr class="even">
+<td align="left">Weekend</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
 </tr>
-<tr>
-<td>
-02/06
-</td>
-<td>
-Wrap-up
-</td>
-<td class="kahoot-yes">
-Yes
-</td>
+<tr class="odd">
+<td align="left">02/09</td>
+<td align="left">Students are encouraged to attend</td>
+<td align="left"></td>
 </tr>
-<tr class="weekend-row">
-<td colspan="3">
-Weekend
-</td>
+<tr class="even">
+<td align="left">02/10</td>
+<td align="left"></td>
+<td align="left"></td>
 </tr>
-<tr>
-<td>
-02/09
-</td>
-<td>
-Optional: Bayesian modeling &amp; inference
-</td>
-<td>
- 
-</td>
+<tr class="odd">
+<td align="left">02/11</td>
+<td align="left"></td>
+<td align="left"></td>
 </tr>
-<tr>
-<td>
-02/10
-</td>
-<td>
-Optional: Bayesian modeling &amp; inference II
-</td>
-<td>
- 
-</td>
+<tr class="even">
+<td align="left">02/12</td>
+<td align="left">Scientific writing. Dos &amp; don’ts.</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">02/13</td>
+<td align="left">Wrap-up</td>
+<td align="left">Yes</td>
 </tr>
 </tbody>
 </table>
@@ -594,78 +497,9 @@ Optional: Bayesian modeling &amp; inference II
 </li>
 <li><strong>Variance</strong>: dispersion of <span class="math inline">\(y\)</span></li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="index.html#cb3-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
-<span id="cb3-2"><a href="index.html#cb3-2" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="index.html#cb3-3" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">6</span>, <span class="dv">6</span>, <span class="at">length=</span><span class="dv">100</span>)</span>
-<span id="cb3-4"><a href="index.html#cb3-4" tabindex="-1"></a>hx <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(x)</span>
-<span id="cb3-5"><a href="index.html#cb3-5" tabindex="-1"></a>labels <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;x ~ Normal(0, 1)&quot;</span>, </span>
-<span id="cb3-6"><a href="index.html#cb3-6" tabindex="-1"></a>            <span class="st">&quot;x ~ Normal(0, 16)&quot;</span>, <span class="st">&quot;x ~ Normal(2, 1)&quot;</span>)</span>
-<span id="cb3-7"><a href="index.html#cb3-7" tabindex="-1"></a>colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;darkgreen&quot;</span>, <span class="st">&quot;tomato&quot;</span>, <span class="st">&quot;purple&quot;</span>)</span>
-<span id="cb3-8"><a href="index.html#cb3-8" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="index.html#cb3-9" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="index.html#cb3-10" tabindex="-1"></a><span class="fu">plot</span>(x, <span class="fu">dnorm</span>(x, <span class="dv">0</span>, <span class="dv">1</span>), <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">col=</span> <span class="st">&quot;darkgreen&quot;</span>, <span class="at">type=</span><span class="st">&quot;l&quot;</span>, <span class="at">lty=</span> <span class="dv">1</span>, <span class="at">xlab=</span><span class="st">&quot;x&quot;</span>, <span class="at">ylab=</span><span class="st">&quot;[x]&quot;</span>)</span>
-<span id="cb3-11"><a href="index.html#cb3-11" tabindex="-1"></a></span>
-<span id="cb3-12"><a href="index.html#cb3-12" tabindex="-1"></a><span class="co"># lines(x, dnorm(x, 0, 1), lwd=2, col= &quot;darkgreen&quot;)</span></span>
-<span id="cb3-13"><a href="index.html#cb3-13" tabindex="-1"></a><span class="fu">lines</span>(x, <span class="fu">dnorm</span>(x, <span class="dv">0</span>, <span class="dv">4</span>), <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">col=</span> <span class="st">&quot;tomato&quot;</span>)</span>
-<span id="cb3-14"><a href="index.html#cb3-14" tabindex="-1"></a><span class="fu">lines</span>(x, <span class="fu">dnorm</span>(x, <span class="dv">2</span>, <span class="dv">1</span>), <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">col=</span> <span class="st">&quot;purple&quot;</span>)</span>
-<span id="cb3-15"><a href="index.html#cb3-15" tabindex="-1"></a></span>
-<span id="cb3-16"><a href="index.html#cb3-16" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topleft&quot;</span>, <span class="at">inset=</span>.<span class="dv">05</span>, <span class="at">title=</span><span class="st">&quot;Distributions&quot;</span>,</span>
-<span id="cb3-17"><a href="index.html#cb3-17" tabindex="-1"></a>  labels, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">lty=</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>), <span class="at">col=</span>colors)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-3-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-27-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>What do these distributions mean in practice?</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="index.html#cb4-1" tabindex="-1"></a><span class="fu">options</span>(<span class="at">bitmapType =</span> <span class="st">&#39;cairo&#39;</span>)</span>
-<span id="cb4-2"><a href="index.html#cb4-2" tabindex="-1"></a><span class="fu">library</span>(gganimate)</span>
-<span id="cb4-3"><a href="index.html#cb4-3" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="index.html#cb4-4" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb4-5"><a href="index.html#cb4-5" tabindex="-1"></a>n_total <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
-<span id="cb4-6"><a href="index.html#cb4-6" tabindex="-1"></a>steps <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">20</span>, n_total, <span class="at">by =</span> <span class="dv">20</span>) <span class="co"># add 20 points per frame</span></span>
-<span id="cb4-7"><a href="index.html#cb4-7" tabindex="-1"></a></span>
-<span id="cb4-8"><a href="index.html#cb4-8" tabindex="-1"></a>full_data <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n_total, <span class="dv">0</span>, <span class="dv">1</span>)</span>
-<span id="cb4-9"><a href="index.html#cb4-9" tabindex="-1"></a></span>
-<span id="cb4-10"><a href="index.html#cb4-10" tabindex="-1"></a><span class="co"># create a long dataframe where each &#39;frame&#39; contains all points up to that index</span></span>
-<span id="cb4-11"><a href="index.html#cb4-11" tabindex="-1"></a>df_animated <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(<span class="fu">lapply</span>(steps, <span class="cf">function</span>(s) {</span>
-<span id="cb4-12"><a href="index.html#cb4-12" tabindex="-1"></a>  <span class="fu">data.frame</span>(</span>
-<span id="cb4-13"><a href="index.html#cb4-13" tabindex="-1"></a>    <span class="at">val =</span> full_data[<span class="dv">1</span><span class="sc">:</span>s],</span>
-<span id="cb4-14"><a href="index.html#cb4-14" tabindex="-1"></a>    <span class="at">frame =</span> s</span>
-<span id="cb4-15"><a href="index.html#cb4-15" tabindex="-1"></a>  )</span>
-<span id="cb4-16"><a href="index.html#cb4-16" tabindex="-1"></a>}))</span>
-<span id="cb4-17"><a href="index.html#cb4-17" tabindex="-1"></a></span>
-<span id="cb4-18"><a href="index.html#cb4-18" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df_animated, <span class="fu">aes</span>(<span class="at">x =</span> val)) <span class="sc">+</span></span>
-<span id="cb4-19"><a href="index.html#cb4-19" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(</span>
-<span id="cb4-20"><a href="index.html#cb4-20" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">after_stat</span>(count)), </span>
-<span id="cb4-21"><a href="index.html#cb4-21" tabindex="-1"></a>    <span class="at">bins =</span> <span class="dv">30</span>, </span>
-<span id="cb4-22"><a href="index.html#cb4-22" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">&quot;#B388EB&quot;</span>, </span>
-<span id="cb4-23"><a href="index.html#cb4-23" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;white&quot;</span></span>
-<span id="cb4-24"><a href="index.html#cb4-24" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb4-25"><a href="index.html#cb4-25" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
-<span id="cb4-26"><a href="index.html#cb4-26" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> val, <span class="at">y =</span> <span class="dv">0</span>), </span>
-<span id="cb4-27"><a href="index.html#cb4-27" tabindex="-1"></a>    <span class="at">alpha=</span>.<span class="dv">1</span>, <span class="at">size =</span> <span class="dv">2</span></span>
-<span id="cb4-28"><a href="index.html#cb4-28" tabindex="-1"></a>  )<span class="sc">+</span></span>
-<span id="cb4-29"><a href="index.html#cb4-29" tabindex="-1"></a>  <span class="fu">stat_function</span>(</span>
-<span id="cb4-30"><a href="index.html#cb4-30" tabindex="-1"></a>    <span class="at">fun =</span> <span class="cf">function</span>(x) <span class="fu">dnorm</span>(x) <span class="sc">*</span> (<span class="fu">max</span>(steps)<span class="sc">/</span><span class="dv">30</span>) <span class="sc">*</span> <span class="dv">4</span>,</span>
-<span id="cb4-31"><a href="index.html#cb4-31" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, </span>
-<span id="cb4-32"><a href="index.html#cb4-32" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">1</span>,</span>
-<span id="cb4-33"><a href="index.html#cb4-33" tabindex="-1"></a>    <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span></span>
-<span id="cb4-34"><a href="index.html#cb4-34" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb4-35"><a href="index.html#cb4-35" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb4-36"><a href="index.html#cb4-36" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Building a Normal Distribution&quot;</span>,</span>
-<span id="cb4-37"><a href="index.html#cb4-37" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;Sample size (n): {closest_state}&quot;</span>,</span>
-<span id="cb4-38"><a href="index.html#cb4-38" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;x&quot;</span>,</span>
-<span id="cb4-39"><a href="index.html#cb4-39" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;[x]&quot;</span></span>
-<span id="cb4-40"><a href="index.html#cb4-40" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb4-41"><a href="index.html#cb4-41" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb4-42"><a href="index.html#cb4-42" tabindex="-1"></a>  <span class="fu">transition_states</span>(frame, <span class="at">transition_length =</span> <span class="dv">2</span>, </span>
-<span id="cb4-43"><a href="index.html#cb4-43" tabindex="-1"></a>                    <span class="at">state_length =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb4-44"><a href="index.html#cb4-44" tabindex="-1"></a>  <span class="fu">ease_aes</span>(<span class="st">&#39;sine-in-out&#39;</span>)</span>
-<span id="cb4-45"><a href="index.html#cb4-45" tabindex="-1"></a></span>
-<span id="cb4-46"><a href="index.html#cb4-46" tabindex="-1"></a><span class="fu">animate</span>(p, </span>
-<span id="cb4-47"><a href="index.html#cb4-47" tabindex="-1"></a>        <span class="at">nframes =</span> <span class="fu">length</span>(steps), </span>
-<span id="cb4-48"><a href="index.html#cb4-48" tabindex="-1"></a>        <span class="at">fps =</span> <span class="dv">10</span>, </span>
-<span id="cb4-49"><a href="index.html#cb4-49" tabindex="-1"></a>        <span class="at">width =</span> <span class="dv">6</span>, <span class="at">height =</span> <span class="dv">4</span>, <span class="at">units =</span> <span class="st">&quot;in&quot;</span>,</span>
-<span id="cb4-50"><a href="index.html#cb4-50" tabindex="-1"></a>        <span class="at">res =</span><span class="dv">150</span>,</span>
-<span id="cb4-51"><a href="index.html#cb4-51" tabindex="-1"></a>        <span class="at">duration =</span> <span class="dv">45</span>,</span>
-<span id="cb4-52"><a href="index.html#cb4-52" tabindex="-1"></a>        <span class="at">renderer =</span> <span class="fu">gifski_renderer</span>())</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-4-1.gif" /><!-- --></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-28-1.gif" /><!-- --></p>
 </div>
 <div id="covariance" class="section level3 hasAnchor" number="1.7.3">
 <h3><span class="header-section-number">1.7.3</span> Covariance<a href="index.html#covariance" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -673,68 +507,7 @@ Optional: Bayesian modeling &amp; inference II
 <p><span class="math display">\[\begin{bmatrix}y_1 \\ y_2 \end{bmatrix} \sim MVN \left( \begin{bmatrix} 10 \\ 8 \end{bmatrix} , \begin{bmatrix}1 &amp; 0.6 \\ 0.6 &amp; 1 \end{bmatrix} \right),\]</span></p>
 <p>where the means of <span class="math inline">\(y_1\)</span> and <span class="math inline">\(y_2\)</span> are 10 and 8, respectively, and their covariance structure is represented in the variance-covariance matrix. Remember:</p>
 <p><span class="math display">\[\begin{bmatrix}y_1 \\ y_2 \end{bmatrix} \sim MVN \left( \begin{bmatrix} E(y_1) \\ E(y_2) \end{bmatrix} , \begin{bmatrix} Var(y_1) &amp; Cov(y_1, y_2) \\ Cov(y_2,y_2) &amp; Var(y_2) \end{bmatrix} \right).\]</span></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="index.html#cb5-1" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
-<span id="cb5-2"><a href="index.html#cb5-2" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
-<span id="cb5-3"><a href="index.html#cb5-3" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="index.html#cb5-4" tabindex="-1"></a><span class="co"># 1. Setup Parameters</span></span>
-<span id="cb5-5"><a href="index.html#cb5-5" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
-<span id="cb5-6"><a href="index.html#cb5-6" tabindex="-1"></a>n_points <span class="ot">&lt;-</span> <span class="dv">1000</span> <span class="co"># Total points to plot</span></span>
-<span id="cb5-7"><a href="index.html#cb5-7" tabindex="-1"></a>steps <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>, n_points, <span class="at">by =</span> <span class="dv">5</span>) <span class="co"># Adding 5 points per frame for speed</span></span>
-<span id="cb5-8"><a href="index.html#cb5-8" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">8</span>)</span>
-<span id="cb5-9"><a href="index.html#cb5-9" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="fl">0.6</span>, <span class="fl">0.6</span>, <span class="dv">1</span>), <span class="dv">2</span>)</span>
-<span id="cb5-10"><a href="index.html#cb5-10" tabindex="-1"></a></span>
-<span id="cb5-11"><a href="index.html#cb5-11" tabindex="-1"></a><span class="co"># 2. Generate the base data</span></span>
-<span id="cb5-12"><a href="index.html#cb5-12" tabindex="-1"></a>base_data <span class="ot">&lt;-</span> <span class="fu">mvrnorm</span>(n_points, <span class="at">mu =</span> mu, <span class="at">Sigma =</span> sigma) <span class="sc">%&gt;%</span></span>
-<span id="cb5-13"><a href="index.html#cb5-13" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb5-14"><a href="index.html#cb5-14" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">y1 =</span> V1, <span class="at">y2 =</span> V2)</span>
-<span id="cb5-15"><a href="index.html#cb5-15" tabindex="-1"></a></span>
-<span id="cb5-16"><a href="index.html#cb5-16" tabindex="-1"></a><span class="co"># 3. Create the cumulative dataset</span></span>
-<span id="cb5-17"><a href="index.html#cb5-17" tabindex="-1"></a><span class="co"># Each &#39;frame&#39; will contain all points up to that index</span></span>
-<span id="cb5-18"><a href="index.html#cb5-18" tabindex="-1"></a>cum_data <span class="ot">&lt;-</span> <span class="fu">map_df</span>(steps, <span class="sc">~</span> {</span>
-<span id="cb5-19"><a href="index.html#cb5-19" tabindex="-1"></a>  base_data[<span class="dv">1</span><span class="sc">:</span>.x, ] <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">frame =</span> .x)</span>
-<span id="cb5-20"><a href="index.html#cb5-20" tabindex="-1"></a>})</span>
-<span id="cb5-21"><a href="index.html#cb5-21" tabindex="-1"></a></span>
-<span id="cb5-22"><a href="index.html#cb5-22" tabindex="-1"></a><span class="co"># 4. Pre-calculate static marginal densities (same as before)</span></span>
-<span id="cb5-23"><a href="index.html#cb5-23" tabindex="-1"></a>x_seq <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">7</span>, <span class="fl">13.5</span>, <span class="at">length.out =</span> <span class="dv">100</span>)</span>
-<span id="cb5-24"><a href="index.html#cb5-24" tabindex="-1"></a>df_x_dens <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x_seq, <span class="at">y =</span> <span class="fu">dnorm</span>(x_seq, <span class="dv">10</span>, <span class="dv">1</span>) <span class="sc">*</span> <span class="dv">2</span> <span class="sc">+</span> <span class="dv">5</span>)</span>
-<span id="cb5-25"><a href="index.html#cb5-25" tabindex="-1"></a></span>
-<span id="cb5-26"><a href="index.html#cb5-26" tabindex="-1"></a>y_seq <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">5</span>, <span class="dv">11</span>, <span class="at">length.out =</span> <span class="dv">100</span>)</span>
-<span id="cb5-27"><a href="index.html#cb5-27" tabindex="-1"></a>df_y_dens <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">y =</span> y_seq, <span class="at">x =</span> <span class="fu">dnorm</span>(y_seq, <span class="dv">8</span>, <span class="dv">1</span>) <span class="sc">*</span> <span class="sc">-</span><span class="dv">2</span> <span class="sc">+</span> <span class="fl">7.8</span>)</span>
-<span id="cb5-28"><a href="index.html#cb5-28" tabindex="-1"></a></span>
-<span id="cb5-29"><a href="index.html#cb5-29" tabindex="-1"></a><span class="co"># 5. Build the Plot</span></span>
-<span id="cb5-30"><a href="index.html#cb5-30" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(cum_data, <span class="fu">aes</span>(<span class="at">x =</span> y1, <span class="at">y =</span> y2)) <span class="sc">+</span></span>
-<span id="cb5-31"><a href="index.html#cb5-31" tabindex="-1"></a>  <span class="co"># Static layers: Red and Green indicators</span></span>
-<span id="cb5-32"><a href="index.html#cb5-32" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">10</span>, <span class="at">y =</span> <span class="dv">5</span>, <span class="at">xend =</span> <span class="dv">10</span>, <span class="at">yend =</span> <span class="dv">8</span>), <span class="at">color =</span> <span class="st">&quot;tomato&quot;</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb5-33"><a href="index.html#cb5-33" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">7</span>, <span class="at">y =</span> <span class="dv">8</span>, <span class="at">xend =</span> <span class="dv">10</span>, <span class="at">yend =</span> <span class="dv">8</span>), <span class="at">color =</span> <span class="st">&quot;darkgreen&quot;</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb5-34"><a href="index.html#cb5-34" tabindex="-1"></a>  <span class="fu">geom_path</span>(<span class="at">data =</span> df_x_dens, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y), <span class="at">color =</span> <span class="st">&quot;tomato&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span></span>
-<span id="cb5-35"><a href="index.html#cb5-35" tabindex="-1"></a>  <span class="fu">geom_path</span>(<span class="at">data =</span> df_y_dens, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y), <span class="at">color =</span> <span class="st">&quot;darkgreen&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dotted&quot;</span>) <span class="sc">+</span></span>
-<span id="cb5-36"><a href="index.html#cb5-36" tabindex="-1"></a>  <span class="co"># Animated layer: Points stay because they exist in every subsequent frame</span></span>
-<span id="cb5-37"><a href="index.html#cb5-37" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">1</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
-<span id="cb5-38"><a href="index.html#cb5-38" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb5-39"><a href="index.html#cb5-39" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Generatig Random Samples from a Bivariate Normal Distribution&quot;</span>,</span>
-<span id="cb5-40"><a href="index.html#cb5-40" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;Sample Size: {closest_state}&quot;</span>,</span>
-<span id="cb5-41"><a href="index.html#cb5-41" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">TeX</span>(<span class="st">&quot;$y_1$&quot;</span>), </span>
-<span id="cb5-42"><a href="index.html#cb5-42" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">TeX</span>(<span class="st">&quot;$y_2$&quot;</span>)</span>
-<span id="cb5-43"><a href="index.html#cb5-43" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb5-44"><a href="index.html#cb5-44" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb5-45"><a href="index.html#cb5-45" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">7</span>, <span class="fl">13.5</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">11</span>)) <span class="sc">+</span></span>
-<span id="cb5-46"><a href="index.html#cb5-46" tabindex="-1"></a>  <span class="co"># transition_states tells R to switch between the &#39;frame&#39; groups</span></span>
-<span id="cb5-47"><a href="index.html#cb5-47" tabindex="-1"></a>  <span class="fu">transition_states</span>(frame, <span class="at">transition_length =</span> <span class="fl">0.5</span>, <span class="at">state_length =</span> <span class="fl">0.1</span>)</span>
-<span id="cb5-48"><a href="index.html#cb5-48" tabindex="-1"></a></span>
-<span id="cb5-49"><a href="index.html#cb5-49" tabindex="-1"></a><span class="co"># 6. Render with fixed units to avoid the png() error</span></span>
-<span id="cb5-50"><a href="index.html#cb5-50" tabindex="-1"></a><span class="fu">options</span>(<span class="at">bitmapType =</span> <span class="st">&#39;cairo&#39;</span>)</span>
-<span id="cb5-51"><a href="index.html#cb5-51" tabindex="-1"></a><span class="fu">animate</span>(</span>
-<span id="cb5-52"><a href="index.html#cb5-52" tabindex="-1"></a>  p, </span>
-<span id="cb5-53"><a href="index.html#cb5-53" tabindex="-1"></a>  <span class="at">nframes =</span> <span class="fu">length</span>(steps), </span>
-<span id="cb5-54"><a href="index.html#cb5-54" tabindex="-1"></a>  <span class="at">fps =</span> <span class="dv">12</span>, </span>
-<span id="cb5-55"><a href="index.html#cb5-55" tabindex="-1"></a>  <span class="at">width =</span> <span class="dv">6</span>, </span>
-<span id="cb5-56"><a href="index.html#cb5-56" tabindex="-1"></a>  <span class="at">height =</span> <span class="dv">4</span>, </span>
-<span id="cb5-57"><a href="index.html#cb5-57" tabindex="-1"></a>  <span class="at">units =</span> <span class="st">&quot;in&quot;</span>, </span>
-<span id="cb5-58"><a href="index.html#cb5-58" tabindex="-1"></a>  <span class="at">res =</span> <span class="dv">150</span>, </span>
-<span id="cb5-59"><a href="index.html#cb5-59" tabindex="-1"></a>  <span class="at">duration =</span> <span class="dv">40</span>,</span>
-<span id="cb5-60"><a href="index.html#cb5-60" tabindex="-1"></a>  <span class="at">renderer =</span> <span class="fu">gifski_renderer</span>()</span>
-<span id="cb5-61"><a href="index.html#cb5-61" tabindex="-1"></a>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-5-1.gif" /><!-- --></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-29-1.gif" /><!-- --></p>
 </div>
 </div>
 <div id="the-most-common-statistical-model" class="section level2 hasAnchor" number="1.8">
@@ -780,45 +553,54 @@ Optional: Bayesian modeling &amp; inference II
 <li><p>Intrinsic uncertainty</p></li>
 </ul>
 </div>
-<div id="uncertainty---applied-example" class="section level3 hasAnchor" number="1.9.2">
-<h3><span class="header-section-number">1.9.2</span> Uncertainty - applied example<a href="index.html#uncertainty---applied-example" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="types-of-uncertainty-in-the-general-linear-model" class="section level3 hasAnchor" number="1.9.2">
+<h3><span class="header-section-number">1.9.2</span> Types of uncertainty in the general linear model<a href="index.html#types-of-uncertainty-in-the-general-linear-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>Recall <span class="math inline">\(\mathbf{y} \sim N(\boldsymbol{\mu}, \boldsymbol{\Sigma})\)</span>, where <span class="math inline">\(\boldsymbol{\mu} = \mathbf{X}\boldsymbol{\beta}\)</span>, and suppose <span class="math inline">\(\boldsymbol{\Sigma} = \sigma^2 \mathbf{I}\)</span>.</p></li>
+<li><p>We use the estimator of <span class="math inline">\(\boldsymbol{\beta}\)</span>, <span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span>.</p></li>
+<li><p><span class="math inline">\(Var(\mathbf{y}) = \sigma^2 = \frac{SSE}{df_e}\)</span>,</p></li>
+<li><p><span class="math inline">\(Var(\hat{\boldsymbol{\beta}}) = \frac{\sigma^2}{\mathbf{X}^T\mathbf{X}}\)</span>,</p></li>
+</ul>
+</div>
+<div id="uncertainty---applied-example" class="section level3 hasAnchor" number="1.9.3">
+<h3><span class="header-section-number">1.9.3</span> Uncertainty - applied example<a href="index.html#uncertainty---applied-example" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Assume that the model <span class="math inline">\(y_i \sim N(\mu_i, \sigma^2), \mu_i = \beta_0 + \beta_1 x_i+ \beta_2 x_i^2\)</span> describes the data generating process.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="index.html#cb6-1" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;https://raw.githubusercontent.com/k-state-id3a/mixed-models-fall25/refs/heads/newpart3/data/nitrogen_yield.csv&quot;</span></span>
-<span id="cb6-2"><a href="index.html#cb6-2" tabindex="-1"></a>df_n_ss  <span class="ot">&lt;-</span>  <span class="fu">read.csv</span>(url)</span>
-<span id="cb6-3"><a href="index.html#cb6-3" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="index.html#cb6-4" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Yield_SY <span class="sc">~</span> Total_N <span class="sc">+</span> <span class="fu">I</span>(Total_N<span class="sc">^</span><span class="dv">2</span>), <span class="at">data =</span> df_n_ss)</span>
-<span id="cb6-5"><a href="index.html#cb6-5" tabindex="-1"></a>DHARMa<span class="sc">::</span><span class="fu">simulateResiduals</span>(m1, <span class="at">plot =</span> T)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="index.html#cb3-1" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;https://raw.githubusercontent.com/k-state-id3a/mixed-models-fall25/refs/heads/newpart3/data/nitrogen_yield.csv&quot;</span></span>
+<span id="cb3-2"><a href="index.html#cb3-2" tabindex="-1"></a>df_n_ss  <span class="ot">&lt;-</span>  <span class="fu">read.csv</span>(url)</span>
+<span id="cb3-3"><a href="index.html#cb3-3" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="index.html#cb3-4" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Yield_SY <span class="sc">~</span> Total_N <span class="sc">+</span> <span class="fu">I</span>(Total_N<span class="sc">^</span><span class="dv">2</span>), <span class="at">data =</span> df_n_ss)</span>
+<span id="cb3-5"><a href="index.html#cb3-5" tabindex="-1"></a>DHARMa<span class="sc">::</span><span class="fu">simulateResiduals</span>(m1, <span class="at">plot =</span> T)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
 <pre><code>## Object of Class DHARMa with simulated residuals based on 250 simulations with refit = FALSE . See ?DHARMa::simulateResiduals for help. 
 ##  
 ## Scaled residual values: 0.1 0.3 0.004 0.588 0.792 0.556 0.168 0.344 0.256 0.452 0.388 0.388 0.832 0.94 0.692 0.936 0.132 0.312 0.424 0.664 ...</code></pre>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="index.html#cb8-1" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Yield_SY <span class="sc">~</span> Total_N <span class="sc">+</span> <span class="fu">I</span>(Total_N<span class="sc">^</span><span class="dv">2</span>), <span class="at">data =</span> df_n_ss)</span>
-<span id="cb8-2"><a href="index.html#cb8-2" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="index.html#cb8-3" tabindex="-1"></a>df_plot <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Total_N =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">280</span>)</span>
-<span id="cb8-4"><a href="index.html#cb8-4" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="index.html#cb8-5" tabindex="-1"></a>df_plot<span class="sc">$</span>yhat <span class="ot">&lt;-</span> <span class="fu">predict</span>(m1, <span class="at">newdata =</span> df_plot)</span>
-<span id="cb8-6"><a href="index.html#cb8-6" tabindex="-1"></a></span>
-<span id="cb8-7"><a href="index.html#cb8-7" tabindex="-1"></a><span class="co"># estimation uncertainty</span></span>
-<span id="cb8-8"><a href="index.html#cb8-8" tabindex="-1"></a>confid_est <span class="ot">&lt;-</span> <span class="fu">predict</span>(m1, <span class="at">newdata =</span> df_plot, <span class="at">se.fit =</span> <span class="cn">TRUE</span>, <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>)</span>
-<span id="cb8-9"><a href="index.html#cb8-9" tabindex="-1"></a>df_plot<span class="sc">$</span>est_low <span class="ot">&lt;-</span> (confid_est<span class="sc">$</span>fit)[,<span class="dv">2</span>]</span>
-<span id="cb8-10"><a href="index.html#cb8-10" tabindex="-1"></a>df_plot<span class="sc">$</span>est_up <span class="ot">&lt;-</span> (confid_est<span class="sc">$</span>fit)[,<span class="dv">3</span>]</span>
-<span id="cb8-11"><a href="index.html#cb8-11" tabindex="-1"></a></span>
-<span id="cb8-12"><a href="index.html#cb8-12" tabindex="-1"></a><span class="co"># estimation uncertainty</span></span>
-<span id="cb8-13"><a href="index.html#cb8-13" tabindex="-1"></a>confid_pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(m1, <span class="at">newdata =</span> df_plot, <span class="at">se.fit =</span> <span class="cn">TRUE</span>, <span class="at">interval =</span> <span class="st">&quot;predict&quot;</span>)</span>
-<span id="cb8-14"><a href="index.html#cb8-14" tabindex="-1"></a>df_plot<span class="sc">$</span>pred_low <span class="ot">&lt;-</span> (confid_pred<span class="sc">$</span>fit)[,<span class="dv">2</span>]</span>
-<span id="cb8-15"><a href="index.html#cb8-15" tabindex="-1"></a>df_plot<span class="sc">$</span>pred_up <span class="ot">&lt;-</span> (confid_pred<span class="sc">$</span>fit)[,<span class="dv">3</span>]</span></code></pre></div>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="index.html#cb9-1" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
-<span id="cb9-2"><a href="index.html#cb9-2" tabindex="-1"></a>df_plot <span class="sc">|&gt;</span> </span>
-<span id="cb9-3"><a href="index.html#cb9-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(Total_N, yhat))<span class="sc">+</span></span>
-<span id="cb9-4"><a href="index.html#cb9-4" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> pred_low, <span class="at">ymax =</span> pred_up), </span>
-<span id="cb9-5"><a href="index.html#cb9-5" tabindex="-1"></a>              <span class="at">alpha =</span> .<span class="dv">3</span>, <span class="at">fill =</span> <span class="st">&quot;#B388EB&quot;</span>)<span class="sc">+</span></span>
-<span id="cb9-6"><a href="index.html#cb9-6" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> est_low, <span class="at">ymax =</span> est_up), </span>
-<span id="cb9-7"><a href="index.html#cb9-7" tabindex="-1"></a>              <span class="at">alpha =</span> .<span class="dv">6</span>, <span class="at">fill =</span> <span class="st">&quot;#B200EB&quot;</span>)<span class="sc">+</span></span>
-<span id="cb9-8"><a href="index.html#cb9-8" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
-<span id="cb9-9"><a href="index.html#cb9-9" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> latex2exp<span class="sc">::</span><span class="fu">TeX</span>(<span class="st">&quot;$</span><span class="sc">\\</span><span class="st">hat{y}$&quot;</span>), </span>
-<span id="cb9-10"><a href="index.html#cb9-10" tabindex="-1"></a>       <span class="at">x =</span> <span class="fu">expression</span>(Total<span class="sc">~</span>N<span class="sc">~</span>(lb<span class="sc">~</span>ac<span class="sc">^</span>{<span class="sc">-</span><span class="dv">1</span>})))<span class="sc">+</span></span>
-<span id="cb9-11"><a href="index.html#cb9-11" tabindex="-1"></a>  <span class="fu">theme_pubclean</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-8-1.png" width="576" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="index.html#cb5-1" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Yield_SY <span class="sc">~</span> Total_N <span class="sc">+</span> <span class="fu">I</span>(Total_N<span class="sc">^</span><span class="dv">2</span>), <span class="at">data =</span> df_n_ss)</span>
+<span id="cb5-2"><a href="index.html#cb5-2" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="index.html#cb5-3" tabindex="-1"></a>df_plot <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Total_N =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">280</span>)</span>
+<span id="cb5-4"><a href="index.html#cb5-4" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="index.html#cb5-5" tabindex="-1"></a>df_plot<span class="sc">$</span>yhat <span class="ot">&lt;-</span> <span class="fu">predict</span>(m1, <span class="at">newdata =</span> df_plot)</span>
+<span id="cb5-6"><a href="index.html#cb5-6" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="index.html#cb5-7" tabindex="-1"></a><span class="co"># estimation uncertainty</span></span>
+<span id="cb5-8"><a href="index.html#cb5-8" tabindex="-1"></a>confid_est <span class="ot">&lt;-</span> <span class="fu">predict</span>(m1, <span class="at">newdata =</span> df_plot, <span class="at">se.fit =</span> <span class="cn">TRUE</span>, <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>)</span>
+<span id="cb5-9"><a href="index.html#cb5-9" tabindex="-1"></a>df_plot<span class="sc">$</span>est_low <span class="ot">&lt;-</span> (confid_est<span class="sc">$</span>fit)[,<span class="dv">2</span>]</span>
+<span id="cb5-10"><a href="index.html#cb5-10" tabindex="-1"></a>df_plot<span class="sc">$</span>est_up <span class="ot">&lt;-</span> (confid_est<span class="sc">$</span>fit)[,<span class="dv">3</span>]</span>
+<span id="cb5-11"><a href="index.html#cb5-11" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="index.html#cb5-12" tabindex="-1"></a><span class="co"># estimation uncertainty</span></span>
+<span id="cb5-13"><a href="index.html#cb5-13" tabindex="-1"></a>confid_pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(m1, <span class="at">newdata =</span> df_plot, <span class="at">se.fit =</span> <span class="cn">TRUE</span>, <span class="at">interval =</span> <span class="st">&quot;predict&quot;</span>)</span>
+<span id="cb5-14"><a href="index.html#cb5-14" tabindex="-1"></a>df_plot<span class="sc">$</span>pred_low <span class="ot">&lt;-</span> (confid_pred<span class="sc">$</span>fit)[,<span class="dv">2</span>]</span>
+<span id="cb5-15"><a href="index.html#cb5-15" tabindex="-1"></a>df_plot<span class="sc">$</span>pred_up <span class="ot">&lt;-</span> (confid_pred<span class="sc">$</span>fit)[,<span class="dv">3</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="index.html#cb6-1" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
+<span id="cb6-2"><a href="index.html#cb6-2" tabindex="-1"></a>df_plot <span class="sc">|&gt;</span> </span>
+<span id="cb6-3"><a href="index.html#cb6-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(Total_N, yhat))<span class="sc">+</span></span>
+<span id="cb6-4"><a href="index.html#cb6-4" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> pred_low, <span class="at">ymax =</span> pred_up), </span>
+<span id="cb6-5"><a href="index.html#cb6-5" tabindex="-1"></a>              <span class="at">alpha =</span> .<span class="dv">3</span>, <span class="at">fill =</span> <span class="st">&quot;#B388EB&quot;</span>)<span class="sc">+</span></span>
+<span id="cb6-6"><a href="index.html#cb6-6" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> est_low, <span class="at">ymax =</span> est_up), </span>
+<span id="cb6-7"><a href="index.html#cb6-7" tabindex="-1"></a>              <span class="at">alpha =</span> .<span class="dv">6</span>, <span class="at">fill =</span> <span class="st">&quot;#B200EB&quot;</span>)<span class="sc">+</span></span>
+<span id="cb6-8"><a href="index.html#cb6-8" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb6-9"><a href="index.html#cb6-9" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> latex2exp<span class="sc">::</span><span class="fu">TeX</span>(<span class="st">&quot;$</span><span class="sc">\\</span><span class="st">hat{y}$&quot;</span>), </span>
+<span id="cb6-10"><a href="index.html#cb6-10" tabindex="-1"></a>       <span class="at">x =</span> <span class="fu">expression</span>(Total<span class="sc">~</span>N<span class="sc">~</span>(lb<span class="sc">~</span>ac<span class="sc">^</span>{<span class="sc">-</span><span class="dv">1</span>})))<span class="sc">+</span></span>
+<span id="cb6-11"><a href="index.html#cb6-11" tabindex="-1"></a>  <span class="fu">theme_pubclean</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-32-1.png" width="576" style="display: block; margin: auto;" /></p>
 
 </div>
 </div>

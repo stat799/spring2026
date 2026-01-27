@@ -36,13 +36,14 @@ read.csv("../../../students_STAT_799_C.csv") |>
 - Statistical programming requirements  
 - Rough mindmap of the course (on whiteboard)  
 - [Semester project](https://stat799.github.io/spring2026/notes/semester-project.html)   
-- Grades: A (100-89.999999999(!!!)), B (89.99-79.99), C (79.99-69.99), D (69.99-59.99), F (<59.99). 
+- Grades: Pass (100-69.99), Fail (<69.99). 
 - Attendance policies  
 - Semester projects
 
 ## Learning goals   
 
 By the end of this course, you should be able to:  
+
 -	Identify the data structure for a given dataset and write the statistical model that corresponds to said data structure using statistical notation. 
 -	Distinguish the benefits and disadvantages of different modeling approaches. 
 -	Write the Materials and Methods section in a paper (or graduate thesis) that describes the data generating process and the statistical model. 
@@ -70,118 +71,37 @@ By the end of this course, you should be able to:
 
 ## Roadmap of this course 
 
-<style>
-  .syllabus-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-family: sans-serif;
-    margin: 25px 0;
-    font-size: 0.9em;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  }
-  .syllabus-table thead tr {
-    background-color: #2c3e50;
-    color: #ffffff;
-    text-align: left;
-    font-weight: bold;
-  }
-  .syllabus-table th, .syllabus-table td {
-    padding: 12px 15px;
-    border: 1px solid #dddddd;
-  }
-  .syllabus-table tbody tr:nth-of-type(even) {
-    background-color: #f3f3f3;
-  }
-  .weekend-row {
-    background-color: #e9ecef !important;
-    text-align: center;
-    font-style: italic;
-    font-weight: bold;
-    color: #6c757d;
-  }
-  .kahoot-yes {
-    color: #46178f;
-    font-weight: bold;
-  }
-</style>
+```{r echo=FALSE}
+schedule_df <- data.frame(
+  Date = c("01/28", "01/29", "01/30", "Weekend", "02/02", "02/03", 
+           "02/04", "02/05", "02/06", "Weekend", "02/09", "02/10", 
+           "02/11", "02/12", "02/13"),
+  Topic = c(
+    "Statistical modeling. Continuous and categorical predictors. Review of mean, variance, and covariance. Types of uncertainty and sources of uncertainty.",
+    "Linear mixed models I. Model diagnostics and model selection.",
+    "Linear mixed models II. Model diagnostics and model selection.",
+    NA, # Weekend
+    "Analysis of variance.",
+    "Non-linear mixed models.",
+    "Troubleshooting in mixed models fitting using R software. Computational and analytical solutions.",
+    "Generalized linear mixed models I. Beta, Binomial.",
+    "Statistical inference. Statistical power in designed experiments",
+    NA, # Weekend
+    "Students are encouraged to attend",
+    "", # 02/10
+    "", # 02/11
+    "Scientific writing. Dos & don’ts.",
+    "Wrap-up"
+  ),
+  Kahoot = c("", "", "Yes", NA, "", "", "Yes", "", "", NA, "", "", "", "", "Yes"),
+  stringsAsFactors = FALSE
+)
 
-<table class="syllabus-table">
-  <thead>
-    <tr>
-      <th>Date</th>
-      <th>Topic</th>
-      <th>Kahoot</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>01/26</td>
-      <td>Statistical modeling. Continuous and categorical predictors. Review of mean, variance, and covariance. Types of uncertainty and sources of uncertainty.</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td>01/27</td>
-      <td>Linear mixed models I. Model diagnostics and model selection.</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td>01/28</td>
-      <td>Linear mixed models II. Model diagnostics and model selection.</td>
-      <td class="kahoot-yes">Yes</td>
-    </tr>
-    <tr>
-      <td>01/29</td>
-      <td>Analysis of variance.</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td>01/30</td>
-      <td>Non-linear mixed models I.</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr class="weekend-row">
-      <td colspan="3">Weekend</td>
-    </tr>
-    <tr>
-      <td>02/02</td>
-      <td>Troubleshooting in mixed models fitting using R software. Computational and analytical solutions.</td>
-      <td class="kahoot-yes">Yes</td>
-    </tr>
-    <tr>
-      <td>02/03</td>
-      <td>Generalized linear mixed models I. Beta, Binomial.</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td>02/04</td>
-      <td>Statistical power in designed experiments</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td>02/05</td>
-      <td>Statistical inference. Scientific writing. Dos & don’ts.</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td>02/06</td>
-      <td>Wrap-up</td>
-      <td class="kahoot-yes">Yes</td>
-    </tr>
-    <tr class="weekend-row">
-      <td colspan="3">Weekend</td>
-    </tr>
-    <tr>
-      <td>02/09</td>
-      <td>Optional: Bayesian modeling & inference</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td>02/10</td>
-      <td>Optional: Bayesian modeling & inference II</td>
-      <td>&nbsp;</td>
-    </tr>
-  </tbody>
-</table>
+knitr::kable(schedule_df, 
+      col.names = c("Date", "Topic", "Kahoot?"), 
+      caption = "Course Schedule: Statistical Modeling & Mixed Models")
+```
+
 
 ## Getting started with statistical modeling
 
@@ -274,7 +194,7 @@ knitr::include_graphics("figures/distributions.png")
 - **Mean**: the balancing point of a probability distribution  
 - **Variance**: dispersion of $y$  
 
-```{r fig.height=4, fig.width=5, fig.align='center'}
+```{r echo=FALSE, fig.align='center', fig.height=4, fig.width=5}
 set.seed(42)
 
 x <- seq(-6, 6, length=100)
@@ -296,7 +216,7 @@ legend("topleft", inset=.05, title="Distributions",
 
 What do these distributions mean in practice?  
 
-```{r message=FALSE, warning=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
 options(bitmapType = 'cairo')
 library(gganimate)
 
@@ -364,7 +284,7 @@ $$\begin{bmatrix}y_1 \\ y_2 \end{bmatrix} \sim MVN \left( \begin{bmatrix} E(y_1)
 
 
 
-```{r message=FALSE, warning=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
 library(MASS)
 library(purrr)
 
@@ -471,6 +391,14 @@ Uncertainty will be one of the central topics in this course. Uncertainty is imp
 
 -   Intrinsic uncertainty
 
+### Types of uncertainty in the general linear model 
+
+- Recall $\mathbf{y} \sim N(\boldsymbol{\mu}, \boldsymbol{\Sigma})$, where $\boldsymbol{\mu} = \mathbf{X}\boldsymbol{\beta}$, and suppose $\boldsymbol{\Sigma} = \sigma^2 \mathbf{I}$. 
+
+- We use the estimator of $\boldsymbol{\beta}$, $\hat{\boldsymbol{\beta}}$. 
+- $Var(\mathbf{y}) = \sigma^2 = \frac{SSE}{df_e}$, 
+- $Var(\hat{\boldsymbol{\beta}}) = \frac{\sigma^2}{\mathbf{X}^T\mathbf{X}}$, 
+
 ### Uncertainty - applied example 
 
 Assume that the model $y_i \sim N(\mu_i, \sigma^2), \mu_i = \beta_0 + \beta_1 x_i+ \beta_2 x_i^2$ describes the data generating process. 
@@ -514,4 +442,6 @@ df_plot |>
        x = expression(Total~N~(lb~ac^{-1})))+
   theme_pubclean()
 ```
+
+
 

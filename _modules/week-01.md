@@ -1,12 +1,15 @@
 ---
-title: Introduction 
+title: Week I: Introduction & Mixed Models 
 ---
 
-August 25 
+January 28 
 : Welcome!
-  : [html](https://stat720.github.io/summer2025/notes/)
+  : [html](https://stat799.github.io/spring2026/notes/)
 
-August 27 
-: Designed experiments basics I 
-  : [html](https://stat720.github.io/summer2025/notes/basic-types-of-designed-experiments.html)
-  : [**HW 1**](#){: .label .label-green } 
+January 29 
+: Mixed models I 
+  : [html](https://stat799.github.io/spring2026/notes/mixed-models-i.html)
+
+January 30 
+: Mixed models II 
+  : [html](https://stat799.github.io/spring2026/notes/mixed-models-ii.html)

@@ -1,3 +1,4 @@
+tab:unnamed-chunk-25
 welcome-to-stat-799
 about-this-course
 logistics
@@ -20,6 +21,7 @@ the-most-common-statistical-model
 properties-of-the-general-linear-model
 uncertainty
 types-of-uncertainty
+types-of-uncertainty-in-the-general-linear-model
 uncertainty---applied-example
 mixed-models-i
 recall-the-most-common-statistical-model
@@ -29,7 +31,8 @@ applied-examples
 example-a-independence-holds
 example-b-simple-groups-of-similar-observations
 example-c-different-groups-of-similar-observations
-model-selection
+model-checking-and-comparison
+model-checking
 some-useful-metrics-to-compare-models
 semester-project-1
 learning-objectives

@@ -2,14 +2,14 @@
 title: Week III: Wrapping up 
 ---
   
-February 9-11 
+Feb 9-11 
 : Bayes workshop
   
-February 12 
+Feb 12 
 : Scientific writing & communicating results.    
   : [](#)
   
-February 13 
+Feb 13 
 : Wrap-up     
   : [](#)
 

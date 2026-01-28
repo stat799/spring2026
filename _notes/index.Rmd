@@ -87,9 +87,9 @@ schedule_df <- data.frame(
     "Generalized linear mixed models I. Beta, Binomial.",
     "Statistical inference. Statistical power in designed experiments",
     NA, # Weekend
-    "Students are encouraged to attend",
-    "", # 02/10
-    "", # 02/11
+    "Students are encouraged to attend Workshop 'Non-linear models for the plant sciences'",
+    "Students are encouraged to attend Workshop 'Non-linear models for the plant sciences'", 
+    "Students are encouraged to attend Workshop 'Non-linear models for the plant sciences'", 
     "Scientific writing. Dos & don’ts.",
     "Wrap-up"
   ),
@@ -397,7 +397,10 @@ Uncertainty will be one of the central topics in this course. Uncertainty is imp
 
 - We use the estimator of $\boldsymbol{\beta}$, $\hat{\boldsymbol{\beta}}$. 
 - $Var(\mathbf{y}) = \sigma^2 = \frac{SSE}{df_e}$, 
-- $Var(\hat{\boldsymbol{\beta}}) = \frac{\sigma^2}{\mathbf{X}^T\mathbf{X}}$, 
+- $Var(\hat{\boldsymbol{\beta}}) = \frac{\sigma^2}{\mathbf{X}^T\mathbf{X}}$. 
+
+- Discuss the connection between $n$, ${df_e}$, $\sigma^2$ and $Var(\hat{\boldsymbol{\beta}})$. 
+
 
 ### Uncertainty - applied example 
 
@@ -443,5 +446,7 @@ df_plot |>
   theme_pubclean()
 ```
 
+## Coming up tomorrow: 
 
-
+- Reach Ch1 in Stroup et al. (2024) 
+- We start with mixed models 

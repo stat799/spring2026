@@ -184,14 +184,19 @@ Important things to keep in mind:
 
 ### Model checking 
 
+**Distributional assumptions**
+
+**Variance assumptions** 
+
+
+**Simulation-based model-checking** 
+
 ```{r include=FALSE}
 dat <- read.csv("../../../../stat870/fall2025/data_confid/fecalm_swine.csv")
 
 m1 <- lmer(Dry_matter_perc ~ Trt + (1|Pig), data= dat)
 ```
 
-
-**Simulation-based model-checking** 
 - Detect systematic differences between the model and observed data. 
 
 ```{r include=FALSE}
@@ -207,8 +212,7 @@ y_sim |>
                  data = dat)
 ```
 
-
-### Some useful metrics to compare models 
+## Some useful metrics to compare models 
 
 - Root mean squared error $RMSE = \sqrt{\frac{1}{n} \cdot \sum_{i=1}^n(\hat{y}_i-y_i)^2}$ 
 - In-sample versus out-of-sample RMSE 

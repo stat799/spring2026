@@ -13,9 +13,13 @@ January 26th, 2026
 - [About me](https://jlacasa.github.io/) 
 - About you: 
 
-```{r message=F, warning=FALSE}
+```{r message=FALSE, warning=FALSE}
 library(tidyverse)
 library(latex2exp)
+library(ggpubr)
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
 read.csv("../../../students_STAT_799_C.csv") |> 
   filter(degreeProgram != "") %>% 
   ggplot(aes(x = degreeProgram))+
@@ -397,7 +401,7 @@ Uncertainty will be one of the central topics in this course. Uncertainty is imp
 
 - We use the estimator of $\boldsymbol{\beta}$, $\hat{\boldsymbol{\beta}}$. 
 - $Var(\mathbf{y}) = \sigma^2 = \frac{SSE}{df_e}$, 
-- $Var(\hat{\boldsymbol{\beta}}) = \frac{\sigma^2}{\mathbf{X}^T\mathbf{X}}$. 
+- $Var(\hat{\boldsymbol{\beta}}) = \frac{\sigma^2}{\mathbf{X}^T\mathbf{X}}$, and $Var(\hat\beta_1) = \frac{\sigma^2}{(n-1)s^2_{x_1}}$. 
 
 - Discuss the connection between $n$, ${df_e}$, $\sigma^2$ and $Var(\hat{\boldsymbol{\beta}})$. 
 
@@ -433,7 +437,6 @@ df_plot$pred_up <- (confid_pred$fit)[,3]
 ```
 
 ```{r fig.height=4, fig.width=6, fig.align='center'}
-library(ggpubr)
 df_plot |> 
   ggplot(aes(Total_N, yhat))+
   geom_ribbon(aes(ymin = pred_low, ymax = pred_up), 

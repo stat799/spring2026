@@ -240,16 +240,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="index.html#cb1-2" tabindex="-1"></a><span class="fu">library</span>(latex2exp)</span>
-<span id="cb1-3"><a href="index.html#cb1-3" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">&quot;../../../students_STAT_799_C.csv&quot;</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb1-4"><a href="index.html#cb1-4" tabindex="-1"></a>  <span class="fu">filter</span>(degreeProgram <span class="sc">!=</span> <span class="st">&quot;&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb1-5"><a href="index.html#cb1-5" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> degreeProgram))<span class="sc">+</span></span>
-<span id="cb1-6"><a href="index.html#cb1-6" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">&quot;#B388EB&quot;</span>)<span class="sc">+</span></span>
-<span id="cb1-7"><a href="index.html#cb1-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
-<span id="cb1-8"><a href="index.html#cb1-8" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>)<span class="sc">+</span></span>
-<span id="cb1-9"><a href="index.html#cb1-9" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb1-10"><a href="index.html#cb1-10" tabindex="-1"></a>        <span class="at">panel.border =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb1-11"><a href="index.html#cb1-11" tabindex="-1"></a>        <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>())</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<span id="cb1-3"><a href="index.html#cb1-3" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <ul>
 <li>In rounds: What’s your major, what do you expect to learn?</li>
 </ul>
@@ -313,7 +305,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="roadmap-of-this-course" class="section level2 hasAnchor" number="1.5">
 <h2><span class="header-section-number">1.5</span> Roadmap of this course<a href="index.html#roadmap-of-this-course" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <table>
-<caption><span id="tab:unnamed-chunk-2">Table 1.1: </span>Course Schedule: Statistical Modeling &amp; Mixed Models</caption>
+<caption><span id="tab:unnamed-chunk-3">Table 1.1: </span>Course Schedule: Statistical Modeling &amp; Mixed Models</caption>
 <colgroup>
 <col width="4%" />
 <col width="90%" />
@@ -498,9 +490,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
 <li><strong>Variance</strong>: dispersion of <span class="math inline">\(y\)</span></li>
 </ul>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-4-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-5-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>What do these distributions mean in practice?</p>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-5-1.gif" /><!-- --></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-6-1.gif" /><!-- --></p>
 </div>
 <div id="covariance" class="section level3 hasAnchor" number="1.7.3">
 <h3><span class="header-section-number">1.7.3</span> Covariance<a href="index.html#covariance" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -508,7 +500,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><span class="math display">\[\begin{bmatrix}y_1 \\ y_2 \end{bmatrix} \sim MVN \left( \begin{bmatrix} 10 \\ 8 \end{bmatrix} , \begin{bmatrix}1 &amp; 0.6 \\ 0.6 &amp; 1 \end{bmatrix} \right),\]</span></p>
 <p>where the means of <span class="math inline">\(y_1\)</span> and <span class="math inline">\(y_2\)</span> are 10 and 8, respectively, and their covariance structure is represented in the variance-covariance matrix. Remember:</p>
 <p><span class="math display">\[\begin{bmatrix}y_1 \\ y_2 \end{bmatrix} \sim MVN \left( \begin{bmatrix} E(y_1) \\ E(y_2) \end{bmatrix} , \begin{bmatrix} Var(y_1) &amp; Cov(y_1, y_2) \\ Cov(y_2,y_2) &amp; Var(y_2) \end{bmatrix} \right).\]</span></p>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-6-1.gif" /><!-- --></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-7-1.gif" /><!-- --></p>
 </div>
 </div>
 <div id="the-most-common-statistical-model" class="section level2 hasAnchor" number="1.8">
@@ -560,7 +552,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Recall <span class="math inline">\(\mathbf{y} \sim N(\boldsymbol{\mu}, \boldsymbol{\Sigma})\)</span>, where <span class="math inline">\(\boldsymbol{\mu} = \mathbf{X}\boldsymbol{\beta}\)</span>, and suppose <span class="math inline">\(\boldsymbol{\Sigma} = \sigma^2 \mathbf{I}\)</span>.</p></li>
 <li><p>We use the estimator of <span class="math inline">\(\boldsymbol{\beta}\)</span>, <span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span>.</p></li>
 <li><p><span class="math inline">\(Var(\mathbf{y}) = \sigma^2 = \frac{SSE}{df_e}\)</span>,</p></li>
-<li><p><span class="math inline">\(Var(\hat{\boldsymbol{\beta}}) = \frac{\sigma^2}{\mathbf{X}^T\mathbf{X}}\)</span>.</p></li>
+<li><p><span class="math inline">\(Var(\hat{\boldsymbol{\beta}}) = \frac{\sigma^2}{\mathbf{X}^T\mathbf{X}}\)</span>, and <span class="math inline">\(Var(\hat\beta_1) = \frac{\sigma^2}{(n-1)s^2_{x_1}}\)</span>.</p></li>
 <li><p>Discuss the connection between <span class="math inline">\(n\)</span>, <span class="math inline">\({df_e}\)</span>, <span class="math inline">\(\sigma^2\)</span> and <span class="math inline">\(Var(\hat{\boldsymbol{\beta}})\)</span>.</p></li>
 </ul>
 </div>
@@ -572,7 +564,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-3"><a href="index.html#cb3-3" tabindex="-1"></a></span>
 <span id="cb3-4"><a href="index.html#cb3-4" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Yield_SY <span class="sc">~</span> Total_N <span class="sc">+</span> <span class="fu">I</span>(Total_N<span class="sc">^</span><span class="dv">2</span>), <span class="at">data =</span> df_n_ss)</span>
 <span id="cb3-5"><a href="index.html#cb3-5" tabindex="-1"></a>DHARMa<span class="sc">::</span><span class="fu">simulateResiduals</span>(m1, <span class="at">plot =</span> T)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <pre><code>## Object of Class DHARMa with simulated residuals based on 250 simulations with refit = FALSE . See ?DHARMa::simulateResiduals for help. 
 ##  
 ## Scaled residual values: 0.1 0.3 0.004 0.588 0.792 0.556 0.168 0.344 0.256 0.452 0.388 0.388 0.832 0.94 0.692 0.936 0.132 0.312 0.424 0.664 ...</code></pre>
@@ -591,18 +583,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb5-13"><a href="index.html#cb5-13" tabindex="-1"></a>confid_pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(m1, <span class="at">newdata =</span> df_plot, <span class="at">se.fit =</span> <span class="cn">TRUE</span>, <span class="at">interval =</span> <span class="st">&quot;predict&quot;</span>)</span>
 <span id="cb5-14"><a href="index.html#cb5-14" tabindex="-1"></a>df_plot<span class="sc">$</span>pred_low <span class="ot">&lt;-</span> (confid_pred<span class="sc">$</span>fit)[,<span class="dv">2</span>]</span>
 <span id="cb5-15"><a href="index.html#cb5-15" tabindex="-1"></a>df_plot<span class="sc">$</span>pred_up <span class="ot">&lt;-</span> (confid_pred<span class="sc">$</span>fit)[,<span class="dv">3</span>]</span></code></pre></div>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="index.html#cb6-1" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
-<span id="cb6-2"><a href="index.html#cb6-2" tabindex="-1"></a>df_plot <span class="sc">|&gt;</span> </span>
-<span id="cb6-3"><a href="index.html#cb6-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(Total_N, yhat))<span class="sc">+</span></span>
-<span id="cb6-4"><a href="index.html#cb6-4" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> pred_low, <span class="at">ymax =</span> pred_up), </span>
-<span id="cb6-5"><a href="index.html#cb6-5" tabindex="-1"></a>              <span class="at">alpha =</span> .<span class="dv">3</span>, <span class="at">fill =</span> <span class="st">&quot;#B388EB&quot;</span>)<span class="sc">+</span></span>
-<span id="cb6-6"><a href="index.html#cb6-6" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> est_low, <span class="at">ymax =</span> est_up), </span>
-<span id="cb6-7"><a href="index.html#cb6-7" tabindex="-1"></a>              <span class="at">alpha =</span> .<span class="dv">6</span>, <span class="at">fill =</span> <span class="st">&quot;#B200EB&quot;</span>)<span class="sc">+</span></span>
-<span id="cb6-8"><a href="index.html#cb6-8" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
-<span id="cb6-9"><a href="index.html#cb6-9" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> latex2exp<span class="sc">::</span><span class="fu">TeX</span>(<span class="st">&quot;$</span><span class="sc">\\</span><span class="st">hat{y}$&quot;</span>), </span>
-<span id="cb6-10"><a href="index.html#cb6-10" tabindex="-1"></a>       <span class="at">x =</span> <span class="fu">expression</span>(Total<span class="sc">~</span>N<span class="sc">~</span>(lb<span class="sc">~</span>ac<span class="sc">^</span>{<span class="sc">-</span><span class="dv">1</span>})))<span class="sc">+</span></span>
-<span id="cb6-11"><a href="index.html#cb6-11" tabindex="-1"></a>  <span class="fu">theme_pubclean</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-9-1.png" width="576" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="index.html#cb6-1" tabindex="-1"></a>df_plot <span class="sc">|&gt;</span> </span>
+<span id="cb6-2"><a href="index.html#cb6-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(Total_N, yhat))<span class="sc">+</span></span>
+<span id="cb6-3"><a href="index.html#cb6-3" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> pred_low, <span class="at">ymax =</span> pred_up), </span>
+<span id="cb6-4"><a href="index.html#cb6-4" tabindex="-1"></a>              <span class="at">alpha =</span> .<span class="dv">3</span>, <span class="at">fill =</span> <span class="st">&quot;#B388EB&quot;</span>)<span class="sc">+</span></span>
+<span id="cb6-5"><a href="index.html#cb6-5" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> est_low, <span class="at">ymax =</span> est_up), </span>
+<span id="cb6-6"><a href="index.html#cb6-6" tabindex="-1"></a>              <span class="at">alpha =</span> .<span class="dv">6</span>, <span class="at">fill =</span> <span class="st">&quot;#B200EB&quot;</span>)<span class="sc">+</span></span>
+<span id="cb6-7"><a href="index.html#cb6-7" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb6-8"><a href="index.html#cb6-8" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> latex2exp<span class="sc">::</span><span class="fu">TeX</span>(<span class="st">&quot;$</span><span class="sc">\\</span><span class="st">hat{y}$&quot;</span>), </span>
+<span id="cb6-9"><a href="index.html#cb6-9" tabindex="-1"></a>       <span class="at">x =</span> <span class="fu">expression</span>(Total<span class="sc">~</span>N<span class="sc">~</span>(lb<span class="sc">~</span>ac<span class="sc">^</span>{<span class="sc">-</span><span class="dv">1</span>})))<span class="sc">+</span></span>
+<span id="cb6-10"><a href="index.html#cb6-10" tabindex="-1"></a>  <span class="fu">theme_pubclean</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-10-1.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="coming-up-tomorrow" class="section level2 hasAnchor" number="1.10">

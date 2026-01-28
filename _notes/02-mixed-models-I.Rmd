@@ -188,7 +188,6 @@ Important things to keep in mind:
 
 **Variance assumptions** 
 
-
 **Simulation-based model-checking** 
 
 ```{r include=FALSE}

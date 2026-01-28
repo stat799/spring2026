@@ -285,7 +285,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb8-10"><a href="mixed-models-i.html#cb8-10" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">fill =</span> value))<span class="sc">+</span></span>
 <span id="cb8-11"><a href="mixed-models-i.html#cb8-11" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>()<span class="sc">+</span></span>
 <span id="cb8-12"><a href="mixed-models-i.html#cb8-12" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;variance/covariance&quot;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="mixed-models-i.html#cb9-1" tabindex="-1"></a>m_cs <span class="ot">&lt;-</span> <span class="fu">lmer</span>(diameter <span class="sc">~</span> time <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>appleid), </span>
 <span id="cb9-2"><a href="mixed-models-i.html#cb9-2" tabindex="-1"></a>             <span class="at">data =</span> agridat<span class="sc">::</span>byers.apple <span class="sc">|&gt;</span> <span class="fu">filter</span>(appleid <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">32</span>)))</span>
 <span id="cb9-3"><a href="mixed-models-i.html#cb9-3" tabindex="-1"></a>Z <span class="ot">&lt;-</span>  <span class="fu">getME</span>(m_cs, <span class="st">&quot;Z&quot;</span>) </span>
@@ -320,7 +320,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb9-32"><a href="mixed-models-i.html#cb9-32" tabindex="-1"></a>        <span class="at">axis.title =</span> <span class="fu">element_blank</span>(), </span>
 <span id="cb9-33"><a href="mixed-models-i.html#cb9-33" tabindex="-1"></a>        <span class="at">axis.ticks =</span> <span class="fu">element_blank</span>())</span></code></pre></div>
 <pre><code>## Joining with `by = join_by(x, y)`</code></pre>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="mixed-models-i.html#cb11-1" tabindex="-1"></a>m_cs <span class="ot">&lt;-</span> <span class="fu">lmer</span>(diameter <span class="sc">~</span> time <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>tree<span class="sc">/</span>appleid), </span>
 <span id="cb11-2"><a href="mixed-models-i.html#cb11-2" tabindex="-1"></a>             <span class="at">data =</span> agridat<span class="sc">::</span>byers.apple <span class="sc">|&gt;</span> <span class="fu">filter</span>(appleid <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">32</span>)))</span></code></pre></div>
 <pre><code>## boundary (singular) fit: see help(&#39;isSingular&#39;)</code></pre>
@@ -358,7 +358,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb13-32"><a href="mixed-models-i.html#cb13-32" tabindex="-1"></a>        <span class="at">axis.title =</span> <span class="fu">element_blank</span>(), </span>
 <span id="cb13-33"><a href="mixed-models-i.html#cb13-33" tabindex="-1"></a>        <span class="at">axis.ticks =</span> <span class="fu">element_blank</span>())</span></code></pre></div>
 <pre><code>## Joining with `by = join_by(x, y)`</code></pre>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 </div>
 <div id="applied-examples" class="section level2 hasAnchor" number="2.4">
 <h2><span class="header-section-number">2.4</span> Applied examples<a href="mixed-models-i.html#applied-examples" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -369,7 +369,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb15-2"><a href="mixed-models-i.html#cb15-2" tabindex="-1"></a></span>
 <span id="cb15-3"><a href="mixed-models-i.html#cb15-3" tabindex="-1"></a>m_independent <span class="ot">&lt;-</span> <span class="fu">lm</span>(yield <span class="sc">~</span> <span class="fu">factor</span>(K2O_lbac), <span class="at">data =</span> dat_independent)</span>
 <span id="cb15-4"><a href="mixed-models-i.html#cb15-4" tabindex="-1"></a>DHARMa<span class="sc">::</span><span class="fu">simulateResiduals</span>(m_independent, <span class="at">plot=</span>T)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 <pre><code>## Object of Class DHARMa with simulated residuals based on 250 simulations with refit = FALSE . See ?DHARMa::simulateResiduals for help. 
 ##  
 ## Scaled residual values: 0.168 0.528 0.452 0.072 0.352 0.78 0.788 0.68 0.724 0.912 0.544 0.228 0.408 0.732 0.136</code></pre>
@@ -381,7 +381,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb17-3"><a href="mixed-models-i.html#cb17-3" tabindex="-1"></a></span>
 <span id="cb17-4"><a href="mixed-models-i.html#cb17-4" tabindex="-1"></a>m_blocked <span class="ot">&lt;-</span> <span class="fu">lmer</span>(yield <span class="sc">~</span> trt <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>block), <span class="at">data =</span> dat_blocked)</span>
 <span id="cb17-5"><a href="mixed-models-i.html#cb17-5" tabindex="-1"></a>DHARMa<span class="sc">::</span><span class="fu">simulateResiduals</span>(m_blocked, <span class="at">plot=</span>T)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 <pre><code>## Object of Class DHARMa with simulated residuals based on 250 simulations with refit = FALSE . See ?DHARMa::simulateResiduals for help. 
 ##  
 ## Scaled residual values: 0.728 0.692 0.848 0.26 0.72 0.388 0.868 0.352 0.392 0.58 0.172 0.336 0.188 0.512 0.444 0.856 0.728 0.124 0.324 0.232 ...</code></pre>

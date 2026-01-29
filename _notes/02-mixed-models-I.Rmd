@@ -17,16 +17,100 @@ The most typical model typically has:
 - $\boldsymbol\mu = \mathbf{X}\boldsymbol{\beta}$ and 
 - $\boldsymbol\Sigma = \sigma^2\mathbf{I}$. 
 
+We can write the default model in most software written above as: 
+
+$$\mathbf{y} \sim N(\boldsymbol{\mu}, \Sigma),\\
+\begin{bmatrix}y_1 \\ y_2 \\ y_3 \\ y_4 \\ \vdots \\ y_n \end{bmatrix} \sim N
+\left( \begin{bmatrix}\mu_1 \\ \mu_2 \\ \mu_3 \\ \mu_4 \\ \vdots \\ \mu_n \end{bmatrix}, 
+\sigma^2 
+\begin{bmatrix} 1 & 0 & 0 & 0 & \dots & 0 \\ 
+0 & 1 & 0 & 0 & \dots & 0 \\
+0 & 0 & 1 & 0 & \dots & 0 \\
+0 & 0 & 0 & 1 & \dots & 0 \\
+\vdots & \vdots & \vdots & \vdots & \ddots & \vdots\\  
+0 & 0 & 0 & 0 & \dots & 1 \end{bmatrix}
+\right),$$
+
+which is the same as 
+
+$$\begin{bmatrix}y_1 \\ y_2 \\ y_3 \\ y_4 \\ \vdots \\ y_n \end{bmatrix} \sim N
+\left( \begin{bmatrix}\mu_1 \\ \mu_2 \\ \mu_3 \\ \mu_4 \\ \vdots \\ \mu_n \end{bmatrix}, 
+\begin{bmatrix} \sigma^2 & 0 & 0 & 0 & \dots & 0 \\ 
+0 & \sigma^2 & 0 & 0 & \dots & 0 \\
+0 & 0 & \sigma^2 & 0 & \dots & 0 \\
+0 & 0 & 0 & \sigma^2 & \dots & 0 \\
+\vdots & \vdots & \vdots & \vdots & \ddots & \vdots\\  
+0 & 0 & 0 & 0 & \dots & \sigma^2 \end{bmatrix}
+\right).$$
+
+
 In summary, the assumptions are: 
 
+- Linearity (or whatever the deterministic equation is) 
 - Normality 
 - Independence 
 - Constant variance 
+
+### Types of predictors 
+
+**Quantitative predictors** 
+
+Just like yesterday: 
+
+$$y_{i} \sim N(\mu_i, \sigma^2), \\ \mu_i = \beta_0 + x_{1i} \beta_1 + x_{2i} \beta_2,$$
+and say that $y_{i}$ is the observed value for the $i$th observation, 
+$\beta_0$ is the intercept, 
+$x_{1i}$ if the $i$th observation of $x_1$,
+$\beta_1$ is the expected increase in $y$ for each unit increase of $x_1$, 
+$x_{2i}$ if the $i$th observation of $x_2$,
+$\beta_2$ is the expected increase in $y$ for each unit increase of $x_2$. 
+
+
+**Qualitative predictors**  
+
+Instead of a quantitative predictor, we could have a qualitative (or categorical) predictor. 
+Let the qualitative predictor have two possible levels, A and B. 
+We could use the same model as before,  
+
+$$y_{i} \sim N(\mu_i, \sigma^2), \\ \mu_i = \beta_0 + x_i \beta_1,$$
+
+and say that $y_{i}$ is the observed value for the $i$th observation, 
+$\beta_0$ is the expected value for A, 
+$x_i = 0$ if the $i$th observation belongs to A, and $x_i = 1$ if the $i$th observation belongs to B.
+That way, $\beta_1$ is the difference between A and B. 
+
+If the categorical predictor has more than two levels, 
+
+$$y_{i} \sim N(\mu_i, \sigma^2), \\ \mu_i = \beta_0 + x_{1i} \beta_1 + x_{2i} \beta_2+ ... + x_{ji} \beta_j,$$
+
+$y_{i}$ is still the observed value for the $i$th observation, 
+$\beta_0$ is the expected value for A (sometimes in designed experiments this level is a control), 
+
+$$x_{1i} = \begin{cases}
+    1, & \text{if } \text{Treatment is B} \\
+    0, & \text{if } \text{else}
+\end{cases}, \\
+x_{2i} = \begin{cases}
+    1, & \text{if } \text{Treatment is C} \\
+    0, & \text{if } \text{else}
+\end{cases}, \\
+\\
+\dots, 
+\\
+\\
+x_{ji} = \begin{cases}
+    1, & \text{if } \text{Treatment is J} \\
+    1, & \text{if } \text{else}
+\end{cases}. $$
+
+That way, all $\beta$s are the differences between the treatment and the control. 
+
 
 ## Variations to that very common statistical model 
 
 We can adapt the assumptions one by one:
 
+- **Linearity** -- change the deterministic equation 
 - **Normality** -- assume a different distribution 
 - **Independence** -- implement a hierarchical/multi-level/mixed model that models the data that were generated together. 
 - **Constant variance** -- model the variance/assume a different distribution where the mean and the variance are not independent. 
@@ -36,7 +120,7 @@ We can adapt the assumptions one by one:
 
 - What if we can model the variance-covariance matrix with something else that's not $\sigma^2 \mathbf{I}$? 
 
-```{r message=FALSE, warning=FALSE}
+```{r message=FALSE, warning=FALSE, echo=FALSE}
 library(tidyverse)
 my_theme <-
   theme_minimal()+
@@ -50,7 +134,9 @@ my_theme <-
 theme_set(my_theme)
 ```
 
-```{r}
+This is a visualization of the classical, default statistical model: 
+
+```{r echo=FALSE}
 sigma <- 2
 
 diag(sigma^2, nrow = 18) |>  
@@ -65,7 +151,11 @@ diag(sigma^2, nrow = 18) |>
   labs(fill = "variance/covariance")
 ```
 
-```{r}
+This is a visualization of what's coming with mixed models: 
+
+Example 1: 
+
+```{r echo=FALSE}
 m_cs <- lmer(diameter ~ time + (1|appleid), 
              data = agridat::byers.apple |> filter(appleid %in% c(1,4,32)))
 Z <-  getME(m_cs, "Z") 
@@ -101,7 +191,9 @@ Z %*% G %*% t(Z) %>%
         axis.ticks = element_blank())
 ```
 
-```{r}
+Example 2: 
+
+```{r echo=FALSE}
 m_cs <- lmer(diameter ~ time + (1|tree/appleid), 
              data = agridat::byers.apple |> filter(appleid %in% c(1,4,32)))
 Z <-  getME(m_cs, "Z") 
@@ -139,6 +231,186 @@ Z %*% G %*% t(Z) %>%
         axis.ticks = element_blank())
 ```
 
+## Fixed effects and random effects  
+
+In what follows, we have a small elaboration of what it means to model that "structure in the data" (i.e., the groups of similarly generated points). 
+
+### Going from fixed effects to fixed+random effects  
+
+The data below were generated by an experiment that tested 18 sorghum genotypes in a randomized complete block design. 
+
+- Discuss the treatment structure 
+- Discuss the design structure 
+
+```{r}
+dat_blocked <- agridat::omer.sorghum |> filter(env == "E3")
+
+str(dat_blocked)
+```
+
+Now, remember that the blocks are supposed to indicate "groups of similar experimental units". 
+Said "groups of similar experimental units" means that the assumption of independence would be kind of a stretch. 
+In reality, all observations from the same block (are supposed to) have *something* in common. 
+It's not reasonable to assume that the observations are independent, because observations from the same field have more in common than observations from different fields. 
+They share more similar soil and, with that, a baseline fertility and yield. 
+
+Basically, we expect the genotypes relative performance to be similar across fields, but the baseline (a.k.a., the intercept) to be field-specific. Then, we could say    
+$$y_{ij} = \beta_{0j} + G_i + \varepsilon_{ij}, \\ \varepsilon_{ij} \sim N(0, \sigma^2),$$  
+where $\beta_{0j}$ is a block-specific intercept, and $G_i$ is the genotype effect.  
+Now, there are different ways to model that block-specific intercept. 
+
+This is a big forking path in statistical modeling. 
+All-fixed models estimate the effects of **everything**. 
+Mixed-effects models indicate *what is similar to what* via random effects. 
+
+**Fixed effects** 
+
+We could define an all-fixed model,  
+
+$$y_{ij} = \beta_{0j} + G_i + \varepsilon_{ij}, \\ \beta_{0j} = \beta_0 + u_j \\ \varepsilon_{ij} \sim N(0, \sigma^2),$$  
+
+where $u_j$ is the effect of the $j$th block on the intercept (i.e., on the baseline). 
+In this case, $u_j$ is a fixed effect, which means it may be estimated via least squares estimation or maximum likelihood estimation. 
+Under both least squares and maximum likelihood (assuming normal distribution), we may estimate the parameters by computing 
+
+$$\hat{\boldsymbol{\beta}}_{ML} = (\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{y},$$
+
+which yields the minimum variance unbiased estimate of $\boldsymbol{\beta}$. 
+
+We still have $$\boldsymbol{\Sigma} = 
+\begin{bmatrix} \sigma_{\varepsilon}^2 & 0 & 0 & 0 & \dots & 0 \\ 
+0 & \sigma_{\varepsilon}^2 & 0 & 0 & \dots & 0 \\
+0 & 0 & \sigma_{\varepsilon}^2 & 0 & \dots & 0 \\
+0 & 0 & 0 & \sigma_{\varepsilon}^2 & \dots & 0 \\
+\vdots & \vdots & \vdots & \vdots & \ddots & \vdots\\  
+0 & 0 & 0 & 0 & \dots & \sigma_{\varepsilon}^2 \end{bmatrix}$$. 
+
+
+```{r}
+m_fixed <- lm(yield ~ gen + rep, data = dat_blocked)
+
+summary(m_fixed)
+```
+
+**Random effects** 
+
+We could also assume that the effects of the $j$th block (i.e., $u_j$) arise from a random distribution. 
+The most common assumption (and the default in most statistical software) is that 
+
+$$u_j \sim N(0, \sigma^2_b).$$
+
+Now, we don't estimate the effect, but the variance $\sigma^2_b$. 
+Note that there are $J$ levels of the random effects, meaning that a random effect is always **categorical**.  
+Also, now 
+
+$$\hat{\boldsymbol{\beta}}_{REML} = (\mathbf{X}^T \mathbf{V}^{-1} \mathbf{X})^{-1}\mathbf{X}^T \mathbf{V}^{-1} \mathbf{y},$$
+
+where $\mathbf{V} = Var(\mathbf{y})$ is the variance-covariance matrix of $\mathbf{y}$, 
+including residual variance and random-effects variance. Note that this formula yields 
+the same point estimate for $\boldsymbol{\beta}$, but with a different confidence interval.  
+
+Now, the variance-covariance matrix $\boldsymbol{\Sigma}$ of the marginal distribution has changed. 
+
+```{r}
+library(lme4)
+m_mixed <- lmer(yield ~ gen + (1|rep), data = dat_blocked)
+
+summary(m_mixed)
+```
+
+## Generalities on mixed models 
+
+Mixed models combine fixed effects and random effects. 
+Generally speaking, we can write out a mixed-effects model using the model equation form, as   
+
+$$\mathbf{y} = \mathbf{X} \boldsymbol{\beta} + \mathbf{Z}\mathbf{u} + \boldsymbol{\varepsilon}, \\ 
+\begin{bmatrix}\mathbf{u} \\ \boldsymbol{\varepsilon} \end{bmatrix} \sim \left(
+\begin{bmatrix}\boldsymbol{0} \\ \boldsymbol{0} \end{bmatrix}, 
+\begin{bmatrix}\mathbf{G} & \boldsymbol{0} \\
+\boldsymbol{0} & \mathbf{R} \end{bmatrix} 
+\right),$$
+
+where $\mathbf{y}$ is the observed response, 
+$\mathbf{X}$ is the matrix with the explanatory variables, 
+$\mathbf{Z}$ is the design matrix,
+$\boldsymbol{\beta}$ is the vector containing the fixed-effects, 
+$\mathbf{u}$ is the vector containing the random effects, 
+$\boldsymbol{\varepsilon}$ is the vector containing the residuals, 
+$\mathbf{G}$ is the variance-covariance matrix of the random effects, 
+and $\mathbf{R}$ is the variance-covariance matrix of the residuals. 
+Note that $\mathbf{X} \boldsymbol{\beta}$ is the fixed effects part of the model, and 
+$\mathbf{Z}\mathbf{u}$ is the random effects part of the model.
+
+
+Using the probability distribution form, we can then say that $E(\mathbf{y}) = \mathbf{X}\boldsymbol{\beta}$ 
+and $Var(\mathbf{y}) = \mathbf{V} = \mathbf{Z}\mathbf{G}\mathbf{Z}' + \mathbf{R}$. 
+Usually, we assume $$\mathbf{G} = \sigma^2_u 
+\begin{bmatrix} 1 & 0 & 0 & \dots 0 \\
+0 & 1 & 0 & \dots & 0 \\
+0 & 0 & 1 & \dots & 0 \\
+\vdots & \vdots & \vdots & \ddots & \vdots \\
+0 & 0 & 0 & \dots & 1
+\end{bmatrix}$$ and  $$\mathbf{R} = \sigma^2 
+\begin{bmatrix} 1 & 0 & 0 & \dots & 0 \\
+0 & 1 & 0 & \dots & 0 \\
+0 & 0 & 1 & \dots & 0 \\
+\vdots & \vdots & \vdots & \ddots & \vdots \\
+0 & 0 & 0 & \dots & 1
+\end{bmatrix} $$. 
+
+Then,   
+
+$$\mathbf{y} \sim N(\boldsymbol{\mu}, \Sigma), \\ 
+\Sigma = \begin{bmatrix} \sigma^2 + \sigma^2_u & \sigma^2_u & 0 & 0 & 0 & 0 &\dots & 0\\
+\sigma^2_u & \sigma^2 + \sigma^2_u & 0 & 0 & 0 & 0 & \dots & 0 \\
+0 & 0 & \sigma^2 + \sigma^2_u & \sigma^2_u  & 0 & 0 & \dots & 0 \\
+0 & 0 & \sigma^2_u & \sigma^2 + \sigma^2_u  & 0 & 0 & \dots & 0 \\
+0 & 0 & 0 & 0 & \sigma^2 + \sigma^2_u & \sigma^2_u  & \dots & 0 \\
+0 & 0 & 0 & 0 & \sigma^2_u & \sigma^2 + \sigma^2_u  & \dots & \vdots \\
+\vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \ddots & \vdots \\ 
+0 & 0 & 0 & 0 & 0 & 0 & \dots & \sigma^2 + \sigma^2_u
+\end{bmatrix}.$$
+
+Take your time to digest the variance-covariance matrix above. What type of data do you think generated it? 
+
+### Random effects    
+
+- By definition, random effects are regression coefficients that arise from a random distribution. 
+- Typically, a random effect $u \sim N(0, \sigma^2_u)$.   
+- Note that this model for the parameter may result in shrinkage. 
+- We estimate the variance $\sigma^2_u$.  
+- Calculating degrees of freedom can get much more complex than in all-fixed effects models (e.g., with unbalanced data, spatio-temporally correlated data, or non-normal data).  
+- In the context of designed experiments, random effects are assumed to be independent to each other and independent to the residual.  
+
+
+### Estimation of parameters   
+
+"Estimation" is a term held mostly exclusive to fixed effects and variance components. 
+Restricted maximum likelihood estimation (REML) is the default in most mixed effects models because, for small data (aka most experimental data), maximum likelihood (ML) provides variance estimates that are downward biased.
+- In REML, the likelihood is maximized after accounting for the model’s fixed effects.  
+
+- In ML, $\ell_{ML}(\boldsymbol{\sigma; \boldsymbol{\beta}, \mathbf{y}}) = - (\frac{n}{2}) \log(2\pi)-(\frac{1}{2}) \log ( \vert \mathbf{V}(\boldsymbol\sigma) \vert ) - (\frac{1}{2}) (\mathbf{y}-\mathbf{X}\boldsymbol{\beta})^T[\mathbf{V}(\boldsymbol\sigma)]^{-1}(\mathbf{y}-\mathbf{X}\boldsymbol{\beta})$  
+- In REML, $\ell_{REML}(\boldsymbol{\sigma};\mathbf{y}) = - (\frac{n-p}{2}) \log (2\pi) - (\frac{1}{2}) \log ( \vert \mathbf{V}(\boldsymbol\sigma) \vert ) - (\frac{1}{2})log \left(  \vert \mathbf{X}^T[\mathbf{V}(\boldsymbol\sigma)]^{-1}\mathbf{X} \vert \right) - (\frac{1}{2})\mathbf{r}[\mathbf{V}(\boldsymbol\sigma)]^{-1}\mathbf{r}$, 
+where $p = rank(\mathbf{X})$, $\mathbf{r} = \mathbf{y}-\mathbf{X}\hat{\boldsymbol{\beta}}_{ML}$.  
+  - Start with initial values for $\boldsymbol{\sigma}$, $\tilde{\boldsymbol{\sigma}}$.  
+  - Compute $\mathbf{G}(\tilde{\boldsymbol{\sigma}})$ and $\mathbf{R}(\tilde{\boldsymbol{\sigma}})$.  
+  - Obtain $\boldsymbol{\beta}$ and $\mathbf{b}$.   
+  - Update $\tilde{\boldsymbol{\sigma}}$.  
+  - Repeat until convergence.  
+
+
+### Fixed effects versus random effects  
+
+What is behind a random effect:  
+
+- $\hat{\boldsymbol{\beta}} \sim N \left( \boldsymbol{\beta}, (\mathbf{X}^T \mathbf{V}^{-1} \mathbf{X})^{-1} \right) $ 
+- $u_j \sim N(0, \sigma^2_u)$ 
+- What process is being studied?  
+- How were the levels selected? (randomly, carefully selected)  
+- How many levels does the factor have, vs. how many did we observe?   
+- BLUEs versus BLUPs. 
+
+Read more in in Gelman (2005, page 20), "Analysis of variance—why it is more important than ever" [[link](https://projecteuclid.org/journals/annals-of-statistics/volume-33/issue-1/Analysis-of-variancewhy-it-is-more-important-than-ever/10.1214/009053604000001048.full)], and [Gelman and Hill (2006), page 245](https://sites.stat.columbia.edu/gelman/arm/). 
 
 
 ## Applied examples 
@@ -159,9 +431,9 @@ DHARMa::simulateResiduals(m_independent, plot=T)
 
 ```{r message=FALSE, warning=FALSE}
 library(lme4)
-dat_blocked <- agridat::cochran.factorial
+dat_blocked <- agridat::omer.sorghum |> filter(env == "E3")
 
-m_blocked <- lmer(yield ~ trt + (1|block), data = dat_blocked)
+m_blocked <- lmer(yield ~ gen + (1|rep), data = dat_blocked)
 DHARMa::simulateResiduals(m_blocked, plot=T)
 ```
 
@@ -175,51 +447,7 @@ m_multilevel <- lmer(yield ~ gen*fung + (1|block/fung), data = dat_multilevel)
 ```
 
 
-## Model checking and comparison 
+## Coming up tomorrow: 
 
-Important things to keep in mind: 
-
-- Statistical models to analyze data generated by designed experiments. 
-- Models created to explain vs. models created to predict. 
-
-### Model checking 
-
-**Distributional assumptions**
-
-**Variance assumptions** 
-
-**Simulation-based model-checking** 
-
-```{r include=FALSE}
-dat <- read.csv("../../../../stat870/fall2025/data_confid/fecalm_swine.csv")
-
-m1 <- lmer(Dry_matter_perc ~ Trt + (1|Pig), data= dat)
-```
-
-- Detect systematic differences between the model and observed data. 
-
-```{r include=FALSE}
-
-y_sim <- simulate(m1, nsim =2, seed = 42) |> 
-  pivot_longer(cols = everything())
-
-
-y_sim |> 
-  ggplot(aes(value))+
-  geom_histogram()+
-  geom_histogram(aes(Dry_matter_perc), color ="black", fill="black",
-                 data = dat)
-```
-
-## Some useful metrics to compare models 
-
-- Root mean squared error $RMSE = \sqrt{\frac{1}{n} \cdot \sum_{i=1}^n(\hat{y}_i-y_i)^2}$ 
-- In-sample versus out-of-sample RMSE 
-- R^2^ 
-  - Why is R^2^ a suboptimal metric?  
-  - In-sample versus out-of-sample R^2^  
-- Akaike information criterion (AIC) 
-- Bayesian information criterion (BIC) 
-
-
-
+- Review on mixed models 
+- Model diagnostics and model comparison 

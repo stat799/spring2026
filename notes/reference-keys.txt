@@ -1,4 +1,4 @@
-tab:unnamed-chunk-6
+tab:unnamed-chunk-17
 welcome-to-stat-799
 about-this-course
 logistics

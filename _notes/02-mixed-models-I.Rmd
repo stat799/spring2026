@@ -136,7 +136,7 @@ theme_set(my_theme)
 
 This is a visualization of the classical, default statistical model: 
 
-```{r echo=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
 sigma <- 2
 
 diag(sigma^2, nrow = 18) |>  
@@ -155,7 +155,7 @@ This is a visualization of what's coming with mixed models:
 
 Example 1: 
 
-```{r echo=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
 m_cs <- lmer(diameter ~ time + (1|appleid), 
              data = agridat::byers.apple |> filter(appleid %in% c(1,4,32)))
 Z <-  getME(m_cs, "Z") 
@@ -193,7 +193,7 @@ Z %*% G %*% t(Z) %>%
 
 Example 2: 
 
-```{r echo=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
 m_cs <- lmer(diameter ~ time + (1|tree/appleid), 
              data = agridat::byers.apple |> filter(appleid %in% c(1,4,32)))
 Z <-  getME(m_cs, "Z") 
@@ -423,7 +423,6 @@ Three sets of data describe the relationship between treatment and crop yield. H
 dat_independent <- read.csv("../data/cochrancox_kfert.csv")
 
 m_independent <- lm(yield ~ factor(K2O_lbac), data = dat_independent)
-DHARMa::simulateResiduals(m_independent, plot=T)
 ```
 
 
@@ -434,7 +433,6 @@ library(lme4)
 dat_blocked <- agridat::omer.sorghum |> filter(env == "E3")
 
 m_blocked <- lmer(yield ~ gen + (1|rep), data = dat_blocked)
-DHARMa::simulateResiduals(m_blocked, plot=T)
 ```
 
 
@@ -451,3 +449,5 @@ m_multilevel <- lmer(yield ~ gen*fung + (1|block/fung), data = dat_multilevel)
 
 - Review on mixed models 
 - Model diagnostics and model comparison 
+- Kahoot 
+

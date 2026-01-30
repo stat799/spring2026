@@ -1,0 +1,377 @@
+# Mixed models II  
+
+*January 30th, 2026*
+
+## Generalities of linear mixed models 
+
+Mixed-effects models combine fixed effects and random effects. 
+Typically, we can define a Gaussian mixed-effects model as 
+
+$$\mathbf{y} = \mathbf{X} \boldsymbol{\beta} + \mathbf{Z}\mathbf{u} + \boldsymbol{\varepsilon}, \\ 
+\begin{bmatrix}\mathbf{u} \\ \boldsymbol{\varepsilon} \end{bmatrix} \sim \left(
+\begin{bmatrix}\boldsymbol{0} \\ \boldsymbol{0} \end{bmatrix}, 
+\begin{bmatrix}\mathbf{G} & \boldsymbol{0} \\
+\boldsymbol{0} & \mathbf{R} \end{bmatrix} 
+\right),$$
+
+where $\mathbf{y}$ is the observed response, 
+$\mathbf{X}$ is the matrix with the explanatory variables, 
+$\mathbf{Z}$ is the design matrix,
+$\boldsymbol{\beta}$ is the vector containing the fixed-effects parameters, 
+$\mathbf{u}$ is the vector containing the random effects parameters, 
+$\boldsymbol{\varepsilon}$ is the vector containing the residuals, 
+$\mathbf{G}$ is the variance-covariance matrix of the random effects, 
+and $\mathbf{R}$ is the variance-covariance matrix of the residuals. 
+Typically, $\mathbf{G} = \sigma^2_u \mathbf{I}$ and $\mathbf{R} = \sigma^2 \mathbf{I}$.  
+If we do the math, we get that  
+
+$$E(\mathbf{y}) = \mathbf{X}\boldsymbol{\beta},$$
+$$Var(\mathbf{y}) = \mathbf{Z}\mathbf{G}\mathbf{Z}' + \mathbf{R}.$$
+
+**Fixed effects versus random effects**  
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fixed vs Random Effects Table</title>
+    <style>
+        table.unique-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table.unique-table th, table.unique-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        table.unique-table th {
+            background-color: #f4f4f4;
+            font-weight: bold;
+        }
+        table.unique-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+
+<body>
+
+<table class="unique-table">
+    <tr>
+        <th> </th>
+        <th>Fixed effects</th>
+        <th>Random effects</th>
+    </tr>
+    <tr>
+        <th>Where</th>
+        <td>Expected value</td>
+        <td>Variance-covariance matrix</td>
+    </tr>
+    <tr>
+        <th>Inference</th>
+        <td>Constant for all groups in the population of study</td>
+        <td>Differ from group to group</td>
+    </tr>
+    <tr>
+        <th>Usually used to model</th>
+        <td>Carefully selected treatments or genotypes</td>
+        <td>The study design (aka structure in the data, or what is similar to what)</td>
+    </tr>
+    <tr>
+        <th>Assumptions</th>
+        <td>$$\hat{\boldsymbol{\beta}} \sim N \left( \boldsymbol{\beta}, (\mathbf{X}^T \mathbf{V}^{-1} \mathbf{X})^{-1} \right) $$</td>
+        <td>$$u_j \sim N(0, \sigma^2_u)$$</td>
+    </tr>
+    <tr>
+        <th>Method of estimation</th>
+        <td>Maximum likelihood, least squares</td>
+        <td>Restricted maximum likelihood (shrinkage)</td>
+    </tr>
+</table>
+</body>
+
+
+## Inference from linear mixed models 
+
+### Balanced designs -- blocks as fixed or as random? 
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fixed vs Random Blocks</title>
+    <style>
+        table.unique-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table.unique-table th, table.unique-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        table.unique-table th {
+            background-color: #f4f4f4;
+            font-weight: bold;
+        }
+        table.unique-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+
+<body>
+
+<table class="unique-table">
+    <tr>
+        <th> </th>
+        <th>Fixed effects</th>
+        <th>Random effects</th>
+    </tr>
+    <tr>
+        <th>Standard error of the mean</th>
+        <td>$\sqrt{\frac{\sigma^2_\varepsilon}{b}}$</td>
+        <td>$\sqrt{\frac{\sigma^2_\varepsilon + \sigma^2_b}{b}}$</td>
+    </tr>
+    <tr>
+        <th>Stanard error of the difference of means</th>
+        <td>$\sqrt{\frac{2\sigma^2_\varepsilon}{b}}$</td>
+        <td>$\sqrt{\frac{2\sigma^2_\varepsilon}{b}}$</td>
+    </tr>
+</table>
+</body>
+
+See [Dixon (2016)](https://newprairiepress.org/cgi/viewcontent.cgi?article=1474&context=agstatconference).
+
+```{r message=FALSE, warning=FALSE}
+library(lme4)
+library(tidyverse)
+library(emmeans)
+library(latex2exp)
+
+df <- read.csv("../data/cochrancox_kfert.csv")
+df$rep <- as.factor(df$rep)
+df$K2O_lbac <- as.factor(df$K2O_lbac)
+m_fixed <- lm(yield ~ K2O_lbac + rep, data = df)
+m_random <- lmer(yield ~ K2O_lbac + (1|rep), data = df)
+
+(mg_means_fixed <- emmeans(m_fixed, ~K2O_lbac, contr = list(c(1, 0, 0, 0, -1))))
+(mg_means_random <- emmeans(m_random, ~K2O_lbac, contr = list(c(1, 0, 0, 0, -1))))
+```
+
+```{r message=FALSE, warning=FALSE}
+as.data.frame(mg_means_fixed$emmeans) %>%
+  mutate(blocks = "fixed") %>% 
+  bind_rows(as.data.frame(mg_means_random$emmeans) %>%
+              mutate(blocks = "random")) %>% 
+  ggplot(aes(K2O_lbac, emmean))+
+  geom_errorbar(aes(ymin = emmean-SE, ymax = emmean+SE, 
+                    color = blocks), 
+                position = position_dodge(width = .2),
+                width = 0)+
+  geom_text(aes(x = 4.6, y = 8), label = "s.e.(difference\nbetween means)",
+            color = "grey30", size = 3.5)+ 
+  geom_point(aes(x = 5.2, y = 8), color = "grey50")+ 
+  geom_point(aes(x = 5.4, y = 8), color = "grey50")+ 
+  geom_errorbar(aes(x = 5.4, y = 8, ymin = 8 - SE, ymax = 8 + SE), 
+                width = 0, color = "grey50",
+                data = as.data.frame(mg_means_random$contrasts))+
+  geom_errorbar(aes(x = 5.2, y = 8, ymin = 8 - SE, ymax = 8 + SE), 
+                width = 0, color = "grey50", 
+                data = as.data.frame(mg_means_fixed$contrasts))+
+  scale_color_manual(values = c("grey30", "tomato"))+
+  
+  geom_point(aes(color = blocks), position = position_dodge(width = .2))+
+  theme_classic()+
+  labs(title = "Spoiler: difference in results for RCBD data\nmodeled with fixed vs. random blocks", 
+       color = "Blocks modeled as",
+       y = expression(Yield~(tn~ac^{-1})),
+       x = expression(K[2]~O~(lb~ac^{-1})))+
+  theme(legend.position = "bottom", 
+        plot.title = element_text(hjust = .5))
+```
+
+### Unbalanced designs  
+
+- Unbalanced designs sometimes occur due to logistical (practical) convenience. 
+- In unbalanced designs, the simple comparison of group averages, $\bar{y}_1 - \bar{y}_0$, is not, in general, a good estimate of the average treatment effect. 
+- See Chapter 10 in Gelman and Hill. 
+- Multilevel (mixed) models are useful to recover inter-group information. 
+
+- Intra-block information: differences between treatments inside the same block. 
+- Inter-block information: differences between the totals of blocks containing different treatments.
+
+**If you're new to this**: 
+
+- Mixed models are better at recovering inter-block information (i.e., comparing across blocks, even though maybe blocks don't share the same treatments) than all-fixed effects models. 
+- Recovering inter-block information means that they have more information about, for e.g., mean comparisons. 
+- Then, mean comparisons are more precise (i.e., more narrow CI). 
+
+**If you're not new to this**:
+
+- [Yates (1940)](https://onlinelibrary.wiley.com/doi/10.1111/j.1469-1809.1940.tb02257.x): 
+  - Fixed-only models only recover intra-block information. 
+  - To recover inter-block information, we can weigh the means depending on what block they fell in  
+  - *"(...)estimates of the varietal differences will be given by the differences of the weighted means."*
+- [Patterson and Thompson (1971)](https://doi.org/10.1093/biomet/58.3.545) discuss the recovery of inter-block information when block sizes are unequal. 
+  - Henderson's mixed models are already around to estimate the weights for the means. 
+- Where are those weights you ask? 
+- $\mathbf{V}$ in the estimator $\hat{\boldsymbol{\beta}}_{REML} = (\mathbf{X}^T \mathbf{V}^{-1} \mathbf{X})^{-1}\mathbf{X}^T \mathbf{V}^{-1} \mathbf{y}.$ 
+- Weights are inversely proportional to $\sigma^2_b$. 
+
+
+**Let's look at an example** 
+
+The data below were generated by a balanced incomplete block design, where genotypes are the treatment factor (one-way trt structure with 13 levels) and the locations are the blocking factor. 
+
+As discussed, there are two obvious candidate models: 
+
+**All-fixed model** 
+
+$$y_{ij} = \mu + G_i + L_j + \varepsilon_{ij}, \\ \varepsilon_{ij} \sim N(0, \sigma^2).$$
+
+**Mixed model** 
+
+$$y_{ij} = \mu + G_i + L_j + \varepsilon_{ij}, \\ L_{j} \sim N(0, \sigma_L^2), \\ \varepsilon_{ij} \sim N(0, \sigma^2).$$
+
+Let's fit those models to the data and see what we get: 
+```{r message=FALSE, warning=FALSE}
+library(lme4)
+library(emmeans)
+
+# data generated by an BIBD 
+dat_bibd <- agridat::cochran.bib
+
+# all-fixed option 
+m_fixed_intra <- lm(yield ~ gen + loc , data = dat_bibd) 
+
+# mixed option 
+m_mixed_inter <- lmer(yield ~ gen + (1|loc) , data = dat_bibd)
+```
+
+Let's look at a summary of both. Note that the genotype effects don't match like they would for an RCBD. 
+
+```{r message=FALSE, warning=FALSE}
+summary(m_fixed_intra)
+summary(m_mixed_inter)
+```
+
+Look at the variance.  
+
+```{r}
+sigma(m_fixed_intra)
+sigma(m_mixed_inter)
+```
+
+Look at some treatment means. 
+
+- Why are all s.e. the same? 
+- Why are s.e.(fixed) < s.e.(random)?
+
+```{r}
+head(as.data.frame(emmeans(m_fixed_intra, ~gen)))
+head(as.data.frame(emmeans(m_mixed_inter, ~gen)))
+```
+
+Look at some treatment **differences**. 
+
+- Why are s.e.(fixed) > s.e.(random)?
+
+```{r}
+emmeans(m_fixed_intra, ~gen, contr = list(c(1, -1, rep(0, 11))))$contrasts
+emmeans(m_mixed_inter, ~gen, contr = list(c(1, -1, rep(0, 11))))$contrasts
+```
+
+## Model checking and comparison 
+
+Important things to keep in mind: 
+
+- Statistical models to analyze data generated by designed experiments. 
+- Models created to explain vs. models created to predict. See [Shmueli (2010)](http://dx.doi.org/10.1214/10-STS330).
+
+## Model checking 
+
+## Simulation-based model-checking  
+
+- Goal: to detect systematic differences between the model and observed data. 
+- See Chapter 8 in Gelman and Hill. 
+
+```{r message=FALSE, warning=FALSE}
+dat <- read.csv("../data/N_fert.csv")
+
+m1 <- lm(Yield_SY ~ Total_N, data= dat)
+
+y_sim <- simulate(m1, nsim =100, seed = 42) |>
+  mutate(Total_N = dat$Total_N, 
+         Yield_SY = dat$Yield_SY) |> 
+  pivot_longer(cols = -c(Total_N, Yield_SY))
+
+y_sim |> 
+  ggplot(aes(Total_N, value))+
+  geom_point(color = "grey20", alpha = .1)+
+  geom_point(aes(Total_N, Yield_SY), shape =21,
+                 color ="black", fill="gold")+
+  labs(y = "yield (observed/simulated)", x = expression(N~(kg~ha^{-1})))+
+  theme_pubr()
+```
+
+
+Discuss the plot above: how are the simulated data compared to the observed data?
+
+
+
+## Some useful metrics to compare models 
+
+### Root mean squared error
+
+- Root mean squared error $RMSE = \sqrt{\frac{1}{n} \cdot \sum_{i=1}^n(\hat{y}_i-y_i)^2}$ 
+- In-sample versus out-of-sample RMSE 
+
+### The coefficient of determination R^2^
+
+-   Usually interpreted as the proportion of the variation in $y$ that is explained with the variation in $x$. 
+-   Used as a metric for predictive ability and model fit. 
+-   Can increase when adding more predictors. 
+
+The R^2^ of a given model (and observed data) is calculated as $$R^2 = \frac{MSS}{TSS}= 1 - \frac{RSS}{TSS} = 1- \frac{MSE}{MST},$$ where $RSS$ is the residual sum of squares and $TSS$ is the total sum o squares, and $MSE$ is the mean squared error and $MST$ is the mean squared of the data (i.e., $y$ versus $\bar{y}$. 
+
+### Adjusted R^2^
+
+The adjusted R^2^ also penalizes the addition of extra parameters 
+
+$$R^2_{adj} = R^2 - (1 - R^2) \frac{p-1}{n-p},$$ 
+
+where $R^2$ is the one defined above, $p$ is the number of parameters and $n$ is the total number of observations. 
+
+### Some issues with R^2^
+
+- Bootstrapped R^2^ 
+- Anscombe's quartet 
+- [Out-of-Sample R^2^: Estimation and Inference](https://www.tandfonline.com/doi/abs/10.1080/00031305.2023.2216252) 
+
+
+### Akaike Information Criterion (AIC)
+
+- Used as a metric for predictive ability and model fit. 
+- Lower value is better. 
+- Values are always compared to other models (i.e., there are no general rules about reasonable AIC values). 
+
+The AIC of a given model $M$ and observed data $\mathbf{y}$ is calculated as  
+$$AIC_M = 2p - 2\log(\hat{L}),$$  
+$p$ is the number of parameters estimated in the model and $\hat{L}$ is the maximized value of the likelihood function for the model (i.e., $\hat{L}=p(\mathbf{y}|\hat{\boldsymbol\beta}, M)$).
+
+### Bayesian Information Criterion (BIC)
+
+The BIC of a given model (and observed data) is a variant of AIC and is calculated as  
+
+$$BIC = p\log(n) - 2\log(\hat{L}),$$  
+
+where $p$ is the number of parameters estimated in the model, $n$ is the number of observations, and $\hat{L}$ is the maximized value of the likelihood function for the model (i.e., $\hat{L}=p(\mathbf{y}|\hat{\boldsymbol\beta}, M)$).
+
+
+## Coming up Monday: 
+
+- A different look at ANOVA 
+- Statistical inference 
+

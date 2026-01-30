@@ -1,6 +1,6 @@
 # Mixed models I     
 
-*January 27th, 2026*
+*January 29th, 2026*
 
 ## Recall the most common statistical model 
 

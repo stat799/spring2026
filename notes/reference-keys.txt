@@ -1,4 +1,7 @@
-tab:unnamed-chunk-17
+tab:unnamed-chunk-3
+fig:unnamed-chunk-30
+tab:unnamed-chunk-31
+tab:unnamed-chunk-32
 welcome-to-stat-799
 about-this-course
 logistics
@@ -45,6 +48,9 @@ generalities-of-linear-mixed-models
 inference-from-linear-mixed-models
 balanced-designs-blocks-as-fixed-or-as-random
 unbalanced-designs
+coming-up-monday
+mixed-models-iii-model-checking-anova-statistical-inference
+review-1
 model-checking-and-comparison
 model-checking
 simulation-based-model-checking
@@ -55,7 +61,15 @@ adjusted-r2
 some-issues-with-r2
 akaike-information-criterion-aic
 bayesian-information-criterion-bic
-coming-up-monday
+analysis-of-variance-anova
+this-is-how-you-build-an-anova-table
+the-elements-of-the-anova
+critiques-of-anova-over-the-years
+a-different-take-on-anova-using-multilevel-modeling
+an-applied-example
+coming-up-tomorrow-2
+generalized-linear-mixed-models
+review-building-a-statistical-model
 semester-project-1
 learning-objectives
 partial-deadlines

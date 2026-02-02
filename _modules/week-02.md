@@ -7,7 +7,7 @@ Feb 2
   : [](#)
 
 Feb 3 
-: Non-linear mixed models 
+: GLMMs 
   : [](#)
 
 Feb 4 
@@ -15,7 +15,7 @@ Feb 4
   : [](#)
 
 Feb 5 
-: GLMMs 
+: Non-linear mixed models 
   : [](#)
 
 Feb 6 

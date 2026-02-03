@@ -1,5 +1,169 @@
 # Generalized linear mixed models 
 
-## Review -- building a statistical model 
+## GLMMs 
 
-1 -- 
+Learning objectives:
+
+- What are GLMMs 
+- What is a distributional assumption 
+- Working with GLMMs 
+
+### Review -- building a statistical model 
+
+1 -- Select a probability distribution for the data $\mathbf{y}|\mathbf{u}$. 
+2 -- Select a link function $g(\cdot)$, $\boldsymbol\eta = g(\mathbf{y}|\mathbf{u})$. 
+3 -- Define the (linear) predictor $\boldsymbol\eta = \mathbf{X}\boldsymbol{\beta} + \mathbf{Z}\mathbf{u}$. 
+
+```{r fig.height=20, fig.align='center', fig.cap="Probability distributions."}
+knitr::include_graphics("figures/distributions.png")
+```
+
+```{r fig.height=20, fig.align='center', fig.cap="Properties of probability distributions."}
+knitr::include_graphics("figures/stroup_distributions.jpg")
+```
+
+
+### Generalities of GLMMs 
+
+The structure of GLMMs is very similar to the notation we were using for LMMs.
+We can generally describe them as: 
+
+$$y|\mathbf{u} \sim P(\mu, \; \phi),$$
+where:
+
+- $y$ is the data, 
+- $\mathbf{u}$ are the random effects, 
+- $\mu$ is the mean, 
+- $\phi$ is the dispersion.  
+- The linear predictor for $\mu$ can be described as $g(\boldsymbol{\mu}) = \boldsymbol{\eta} = \mathbf{X} \boldsymbol{\beta} + Zu}$,
+  where $g(\mu) = \eta$ is the link function applied to the expected value.
+
+### Implications for model fitting 
+
+- Least Squares Estimator is no longer Maximum Likelihood Estimator 
+- Variance is no longer $\hat\sigma^2 = \frac{SSE}{df_e}$ 
+- The whole concept of degrees of freedom is more diffuse 
+- ANOVA shells are still useful to analyze designs are number of independent, true, replicates
+- The $Var(\mathbf{y}|\mathbf{u})$ may be specified, but not specify the full likelihood (check out the properties above) 
+- Quasi-likelihood for modeling overdispersion or repeated measures in GLMMs: 
+  - $E(\mathbf{y} \vert \mathbf{b}) = \boldsymbol{\mu}\vert \mathbf{b}$ 
+  - $Var(\mathbf{y} \vert \mathbf{b}) = \mathbf{V}_{\mu}^{1/2}\mathbf{A}\mathbf{V}_{\mu}^{1/2}$ 
+  
+  
+### Model diagnostics 
+
+Number of Orobanche seeds tested/germinated for two genotypes and two treatments.
+
+```{r message=FALSE, warning=FALSE}
+library(glmmTMB)
+dat <- agridat::crowder.seeds
+
+m_binom <- glmmTMB(cbind(germ, n-germ) ~ gen*extract + (1|plate),
+                   REML = TRUE,
+                   family = binomial, data = dat)
+```
+
+```{r}
+# If we followed conventional model checking, we couldn't find out about anything
+dat$phat <- predict(m_binom, type = "response")
+dat$resid <- dat$germ - (dat$phat * dat$n)
+
+plot(dat$phat, dat$resid)
+```
+
+```{r}
+DHARMa::simulateResiduals(m_binom, plot = T)
+```
+
+## Applied example -- picking distributions 
+
+A clinical field trial comparing the performance of different vaccines on the growth and survival of Atlantic salmon under standard production conditions. 
+
+- Treatment structure: two-way factorial (4 vaccines x 5 times) 
+- Design structure: completely randomized design. 
+- Experimental unit: fish 
+- Response: weight. 
+
+```{r}
+url <- "https://raw.githubusercontent.com/stat870/fall2025/refs/heads/main/data/fish_vaccines.csv"
+fish <- read.csv(url) 
+
+# plot the data
+fish %>% 
+  ggplot(aes(day, wt))+
+  geom_point(aes(fill = factor(vaccine), 
+                 group = factor(vaccine)),
+             position = position_dodge(width = 60),
+             shape=21, size =3.5, alpha =.7)+
+  labs(y = expression(Weight~(g~fish^{-1})), x = "Time (days)")+
+  theme_classic()+
+  labs(fill="Vaccine treatment")+
+  theme(legend.position = "bottom")+
+  scico::scale_fill_scico_d()
+```
+
+Considering that the variance increases with the mean, a fair model for fish weight could be: 
+
+$$y_{ijk}|u_{ijk} \sim P(\mu_{ijk}, \phi),\\
+\log(\mu_{ijk}) = \eta_{ijk} = \eta_0 + V_i + T_j + VT_{ij} + u_{ijk},$$
+where: 
+
+- $y_{ijk}$ is the fish weight of the $k$th fish under the $i$th vaccine treatment at the $j$th timepoint, and (conditional on $u_{ijk}$) arises from a Gamma distribution with mean $\mu_{ijk}$ and dispersion $\phi$, 
+- $\eta_{ijk}$ is the linear predictor, 
+- $\eta_0$ is the overall mean mean of the linear predictor, 
+- $V_i$ is the effect of the $i$th vaccine treatment, 
+- $T_j$ is the effect of the $j$th timepoint, 
+- $VT_{ij}$ is the interaction between the $i$th vaccine treatment and the $j$th timepoint, and
+- $u_{ijk}$ is the random effect for the fish weight of the $k$th fish under the $i$th vaccine treatment at the $j$th timepoint, **that is accounting for the fact that repeated measures are not independent**. 
+
+```{r}
+fish <- fish |> 
+  mutate(across(c(vaccine, day), ~as.factor(.))) |> 
+  drop_na()
+
+m1_Normal <- glmmTMB(wt ~ day*vaccine, data = fish)
+
+m1_Gamma <- glmmTMB(wt ~ day*vaccine, family = Gamma(link = "log"), data = fish)
+```
+
+```{r}
+fish$residual_N <- resid(m1_Normal, type = "response")
+fish$yhat_N <- predict(m1_Normal, type = "response")
+
+fish$residual_G <- resid(m1_Gamma, type = "response")
+fish$yhat_G <- predict(m1_Gamma, type = "response")
+```
+
+
+```{r}
+simulate_N <- simulate(m1_Normal)
+simulate_N$day <- fish$day
+
+simulate_G <- simulate(m1_Gamma)
+simulate_G$day <- fish$day
+
+fish |> 
+  ggplot(aes(day, wt))+
+  geom_point(aes(day, sim_1), shape = 21, data = simulate_N, size = 7)+
+  geom_point(shape =21, fill ="gold", size = 3)+
+  theme_pubr()+
+  labs(title = "Observed weights in time (gold) and simulated weights based on the fitted Normal model (open)")
+
+fish |> 
+  ggplot(aes(day, wt))+
+  geom_point(aes(day, sim_1), shape = 21, data = simulate_G, size = 7)+
+  geom_point(shape =21, fill ="gold", size = 3)+
+  theme_pubr()+
+  labs(title = "Observed weights in time (gold) and simulated weights based on the fitted Gamma model (open)")
+```
+
+
+## Reading 
+
+- Stats majors: Chapter 5 in Stroup et al. (2024) 
+- Non-stats majors: 
+  - [LMMs and GLMMs chapter by Ben Bolker](https://ms.mcmaster.ca/~bolker/R/misc/foxchapter/14-Fox-Chap13.pdf) 
+  - [The value of generalized linear mixed models for data analysis in the plant sciences](https://www.frontiersin.org/journals/horticulture/articles/10.3389/fhort.2024.1423462/full)
+  - [Generalized Linear Mixed Models in Dairy Cattle Breeding](https://www.sciencedirect.com/science/article/pii/S0022030298757078)
+
+

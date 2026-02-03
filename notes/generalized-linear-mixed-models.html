@@ -242,7 +242,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5" data-path="generalized-linear-mixed-models.html"><a href="generalized-linear-mixed-models.html"><i class="fa fa-check"></i><b>5</b> Generalized linear mixed models</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="generalized-linear-mixed-models.html"><a href="generalized-linear-mixed-models.html#review-building-a-statistical-model"><i class="fa fa-check"></i><b>5.1</b> Review – building a statistical model</a></li>
+<li class="chapter" data-level="5.1" data-path="generalized-linear-mixed-models.html"><a href="generalized-linear-mixed-models.html#glmms"><i class="fa fa-check"></i><b>5.1</b> GLMMs</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="generalized-linear-mixed-models.html"><a href="generalized-linear-mixed-models.html#review-building-a-statistical-model"><i class="fa fa-check"></i><b>5.1.1</b> Review – building a statistical model</a></li>
+<li class="chapter" data-level="5.1.2" data-path="generalized-linear-mixed-models.html"><a href="generalized-linear-mixed-models.html#generalities-of-glmms"><i class="fa fa-check"></i><b>5.1.2</b> Generalities of GLMMs</a></li>
+<li class="chapter" data-level="5.1.3" data-path="generalized-linear-mixed-models.html"><a href="generalized-linear-mixed-models.html#implications-for-model-fitting"><i class="fa fa-check"></i><b>5.1.3</b> Implications for model fitting</a></li>
+<li class="chapter" data-level="5.1.4" data-path="generalized-linear-mixed-models.html"><a href="generalized-linear-mixed-models.html#model-diagnostics"><i class="fa fa-check"></i><b>5.1.4</b> Model diagnostics</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="generalized-linear-mixed-models.html"><a href="generalized-linear-mixed-models.html#applied-example-picking-distributions"><i class="fa fa-check"></i><b>5.2</b> Applied example – picking distributions</a></li>
+<li class="chapter" data-level="5.3" data-path="generalized-linear-mixed-models.html"><a href="generalized-linear-mixed-models.html#reading"><i class="fa fa-check"></i><b>5.3</b> Reading</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="semester-project-1.html"><a href="semester-project-1.html"><i class="fa fa-check"></i><b>6</b> Semester Project</a>
 <ul>
@@ -276,9 +284,169 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="generalized-linear-mixed-models" class="section level1 hasAnchor" number="5">
 <h1><span class="header-section-number">Day 5</span> Generalized linear mixed models<a href="generalized-linear-mixed-models.html#generalized-linear-mixed-models" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="review-building-a-statistical-model" class="section level2 hasAnchor" number="5.1">
-<h2><span class="header-section-number">5.1</span> Review – building a statistical model<a href="generalized-linear-mixed-models.html#review-building-a-statistical-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>1 –</p>
+<div id="glmms" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> GLMMs<a href="generalized-linear-mixed-models.html#glmms" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Learning objectives:</p>
+<ul>
+<li>What are GLMMs</li>
+<li>What is a distributional assumption</li>
+<li>Working with GLMMs</li>
+</ul>
+<div id="review-building-a-statistical-model" class="section level3 hasAnchor" number="5.1.1">
+<h3><span class="header-section-number">5.1.1</span> Review – building a statistical model<a href="generalized-linear-mixed-models.html#review-building-a-statistical-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>1 – Select a probability distribution for the data <span class="math inline">\(\mathbf{y}|\mathbf{u}\)</span>.
+2 – Select a link function <span class="math inline">\(g(\cdot)\)</span>, <span class="math inline">\(\boldsymbol\eta = g(\mathbf{y}|\mathbf{u})\)</span>.
+3 – Define the (linear) predictor <span class="math inline">\(\boldsymbol\eta = \mathbf{X}\boldsymbol{\beta} + \mathbf{Z}\mathbf{u}\)</span>.</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="generalized-linear-mixed-models.html#cb51-1" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">&quot;figures/distributions.png&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-68"></span>
+<img src="figures/distributions.png" alt="Probability distributions." width="340" />
+<p class="caption">
+Figure 5.1: Probability distributions.
+</p>
+</div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="generalized-linear-mixed-models.html#cb52-1" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">&quot;figures/stroup_distributions.jpg&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-69"></span>
+<img src="figures/stroup_distributions.jpg" alt="Properties of probability distributions." width="515" />
+<p class="caption">
+Figure 5.2: Properties of probability distributions.
+</p>
+</div>
+</div>
+<div id="generalities-of-glmms" class="section level3 hasAnchor" number="5.1.2">
+<h3><span class="header-section-number">5.1.2</span> Generalities of GLMMs<a href="generalized-linear-mixed-models.html#generalities-of-glmms" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The structure of GLMMs is very similar to the notation we were using for LMMs.
+We can generally describe them as:</p>
+<p><span class="math display">\[y|\mathbf{u} \sim P(\mu, \; \phi),\]</span>
+where:</p>
+<ul>
+<li><span class="math inline">\(y\)</span> is the data,</li>
+<li><span class="math inline">\(\mathbf{u}\)</span> are the random effects,</li>
+<li><span class="math inline">\(\mu\)</span> is the mean,</li>
+<li><span class="math inline">\(\phi\)</span> is the dispersion.<br />
+</li>
+<li>The linear predictor for <span class="math inline">\(\mu\)</span> can be described as <span class="math inline">\(g(\boldsymbol{\mu}) = \boldsymbol{\eta} = \mathbf{X} \boldsymbol{\beta} + Zu}\)</span>,
+where <span class="math inline">\(g(\mu) = \eta\)</span> is the link function applied to the expected value.</li>
+</ul>
+</div>
+<div id="implications-for-model-fitting" class="section level3 hasAnchor" number="5.1.3">
+<h3><span class="header-section-number">5.1.3</span> Implications for model fitting<a href="generalized-linear-mixed-models.html#implications-for-model-fitting" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Least Squares Estimator is no longer Maximum Likelihood Estimator</li>
+<li>Variance is no longer <span class="math inline">\(\hat\sigma^2 = \frac{SSE}{df_e}\)</span></li>
+<li>The whole concept of degrees of freedom is more diffuse</li>
+<li>ANOVA shells are still useful to analyze designs are number of independent, true, replicates</li>
+<li>The <span class="math inline">\(Var(\mathbf{y}|\mathbf{u})\)</span> may be specified, but not specify the full likelihood (check out the properties above)</li>
+<li>Quasi-likelihood for modeling overdispersion or repeated measures in GLMMs:
+<ul>
+<li><span class="math inline">\(E(\mathbf{y} \vert \mathbf{b}) = \boldsymbol{\mu}\vert \mathbf{b}\)</span></li>
+<li><span class="math inline">\(Var(\mathbf{y} \vert \mathbf{b}) = \mathbf{V}_{\mu}^{1/2}\mathbf{A}\mathbf{V}_{\mu}^{1/2}\)</span></li>
+</ul></li>
+</ul>
+</div>
+<div id="model-diagnostics" class="section level3 hasAnchor" number="5.1.4">
+<h3><span class="header-section-number">5.1.4</span> Model diagnostics<a href="generalized-linear-mixed-models.html#model-diagnostics" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Number of Orobanche seeds tested/germinated for two genotypes and two treatments.</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="generalized-linear-mixed-models.html#cb53-1" tabindex="-1"></a><span class="fu">library</span>(glmmTMB)</span>
+<span id="cb53-2"><a href="generalized-linear-mixed-models.html#cb53-2" tabindex="-1"></a>dat <span class="ot">&lt;-</span> agridat<span class="sc">::</span>crowder.seeds</span>
+<span id="cb53-3"><a href="generalized-linear-mixed-models.html#cb53-3" tabindex="-1"></a></span>
+<span id="cb53-4"><a href="generalized-linear-mixed-models.html#cb53-4" tabindex="-1"></a>m_binom <span class="ot">&lt;-</span> <span class="fu">glmmTMB</span>(<span class="fu">cbind</span>(germ, n<span class="sc">-</span>germ) <span class="sc">~</span> gen<span class="sc">*</span>extract <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>plate),</span>
+<span id="cb53-5"><a href="generalized-linear-mixed-models.html#cb53-5" tabindex="-1"></a>                   <span class="at">REML =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb53-6"><a href="generalized-linear-mixed-models.html#cb53-6" tabindex="-1"></a>                   <span class="at">family =</span> binomial, <span class="at">data =</span> dat)</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="generalized-linear-mixed-models.html#cb54-1" tabindex="-1"></a><span class="co"># If we followed conventional model checking, we couldn&#39;t find out about anything</span></span>
+<span id="cb54-2"><a href="generalized-linear-mixed-models.html#cb54-2" tabindex="-1"></a>dat<span class="sc">$</span>phat <span class="ot">&lt;-</span> <span class="fu">predict</span>(m_binom, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span>
+<span id="cb54-3"><a href="generalized-linear-mixed-models.html#cb54-3" tabindex="-1"></a>dat<span class="sc">$</span>resid <span class="ot">&lt;-</span> dat<span class="sc">$</span>germ <span class="sc">-</span> (dat<span class="sc">$</span>phat <span class="sc">*</span> dat<span class="sc">$</span>n)</span>
+<span id="cb54-4"><a href="generalized-linear-mixed-models.html#cb54-4" tabindex="-1"></a></span>
+<span id="cb54-5"><a href="generalized-linear-mixed-models.html#cb54-5" tabindex="-1"></a><span class="fu">plot</span>(dat<span class="sc">$</span>phat, dat<span class="sc">$</span>resid)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-71-1.png" width="672" /></p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="generalized-linear-mixed-models.html#cb55-1" tabindex="-1"></a>DHARMa<span class="sc">::</span><span class="fu">simulateResiduals</span>(m_binom, <span class="at">plot =</span> T)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-72-1.png" width="672" /></p>
+<pre><code>## Object of Class DHARMa with simulated residuals based on 250 simulations with refit = FALSE . See ?DHARMa::simulateResiduals for help. 
+##  
+## Scaled residual values: 0.1374871 0.5518681 0.1637147 0.9230439 0.7149169 0.8244776 0.3351514 0.277819 0.879538 0.08237197 0.6173228 0.5894222 0.7512811 0.2211422 0.108248 0.6607457 0.05951533 0.5632577 0.4263507 0.897899 ...</code></pre>
+</div>
+</div>
+<div id="applied-example-picking-distributions" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Applied example – picking distributions<a href="generalized-linear-mixed-models.html#applied-example-picking-distributions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A clinical field trial comparing the performance of different vaccines on the growth and survival of Atlantic salmon under standard production conditions.</p>
+<ul>
+<li>Treatment structure: two-way factorial (4 vaccines x 5 times)</li>
+<li>Design structure: completely randomized design.</li>
+<li>Experimental unit: fish</li>
+<li>Response: weight.</li>
+</ul>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="generalized-linear-mixed-models.html#cb57-1" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;https://raw.githubusercontent.com/stat870/fall2025/refs/heads/main/data/fish_vaccines.csv&quot;</span></span>
+<span id="cb57-2"><a href="generalized-linear-mixed-models.html#cb57-2" tabindex="-1"></a>fish <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(url) </span>
+<span id="cb57-3"><a href="generalized-linear-mixed-models.html#cb57-3" tabindex="-1"></a></span>
+<span id="cb57-4"><a href="generalized-linear-mixed-models.html#cb57-4" tabindex="-1"></a><span class="co"># plot the data</span></span>
+<span id="cb57-5"><a href="generalized-linear-mixed-models.html#cb57-5" tabindex="-1"></a>fish <span class="sc">%&gt;%</span> </span>
+<span id="cb57-6"><a href="generalized-linear-mixed-models.html#cb57-6" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(day, wt))<span class="sc">+</span></span>
+<span id="cb57-7"><a href="generalized-linear-mixed-models.html#cb57-7" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">fill =</span> <span class="fu">factor</span>(vaccine), </span>
+<span id="cb57-8"><a href="generalized-linear-mixed-models.html#cb57-8" tabindex="-1"></a>                 <span class="at">group =</span> <span class="fu">factor</span>(vaccine)),</span>
+<span id="cb57-9"><a href="generalized-linear-mixed-models.html#cb57-9" tabindex="-1"></a>             <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="dv">60</span>),</span>
+<span id="cb57-10"><a href="generalized-linear-mixed-models.html#cb57-10" tabindex="-1"></a>             <span class="at">shape=</span><span class="dv">21</span>, <span class="at">size =</span><span class="fl">3.5</span>, <span class="at">alpha =</span>.<span class="dv">7</span>)<span class="sc">+</span></span>
+<span id="cb57-11"><a href="generalized-linear-mixed-models.html#cb57-11" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="fu">expression</span>(Weight<span class="sc">~</span>(g<span class="sc">~</span>fish<span class="sc">^</span>{<span class="sc">-</span><span class="dv">1</span>})), <span class="at">x =</span> <span class="st">&quot;Time (days)&quot;</span>)<span class="sc">+</span></span>
+<span id="cb57-12"><a href="generalized-linear-mixed-models.html#cb57-12" tabindex="-1"></a>  <span class="fu">theme_classic</span>()<span class="sc">+</span></span>
+<span id="cb57-13"><a href="generalized-linear-mixed-models.html#cb57-13" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill=</span><span class="st">&quot;Vaccine treatment&quot;</span>)<span class="sc">+</span></span>
+<span id="cb57-14"><a href="generalized-linear-mixed-models.html#cb57-14" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)<span class="sc">+</span></span>
+<span id="cb57-15"><a href="generalized-linear-mixed-models.html#cb57-15" tabindex="-1"></a>  scico<span class="sc">::</span><span class="fu">scale_fill_scico_d</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-73-1.png" width="672" /></p>
+<p>Considering that the variance increases with the mean, a fair model for fish weight could be:</p>
+<p><span class="math display">\[y_{ijk}|u_{ijk} \sim P(\mu_{ijk}, \phi),\\
+\log(\mu_{ijk}) = \eta_{ijk} = \eta_0 + V_i + T_j + VT_{ij} + u_{ijk},\]</span>
+where:</p>
+<ul>
+<li><span class="math inline">\(y_{ijk}\)</span> is the fish weight of the <span class="math inline">\(k\)</span>th fish under the <span class="math inline">\(i\)</span>th vaccine treatment at the <span class="math inline">\(j\)</span>th timepoint, and (conditional on <span class="math inline">\(u_{ijk}\)</span>) arises from a Gamma distribution with mean <span class="math inline">\(\mu_{ijk}\)</span> and dispersion <span class="math inline">\(\phi\)</span>,</li>
+<li><span class="math inline">\(\eta_{ijk}\)</span> is the linear predictor,</li>
+<li><span class="math inline">\(\eta_0\)</span> is the overall mean mean of the linear predictor,</li>
+<li><span class="math inline">\(V_i\)</span> is the effect of the <span class="math inline">\(i\)</span>th vaccine treatment,</li>
+<li><span class="math inline">\(T_j\)</span> is the effect of the <span class="math inline">\(j\)</span>th timepoint,</li>
+<li><span class="math inline">\(VT_{ij}\)</span> is the interaction between the <span class="math inline">\(i\)</span>th vaccine treatment and the <span class="math inline">\(j\)</span>th timepoint, and</li>
+<li><span class="math inline">\(u_{ijk}\)</span> is the random effect for the fish weight of the <span class="math inline">\(k\)</span>th fish under the <span class="math inline">\(i\)</span>th vaccine treatment at the <span class="math inline">\(j\)</span>th timepoint, <strong>that is accounting for the fact that repeated measures are not independent</strong>.</li>
+</ul>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="generalized-linear-mixed-models.html#cb58-1" tabindex="-1"></a>fish <span class="ot">&lt;-</span> fish <span class="sc">|&gt;</span> </span>
+<span id="cb58-2"><a href="generalized-linear-mixed-models.html#cb58-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">c</span>(vaccine, day), <span class="sc">~</span><span class="fu">as.factor</span>(.))) <span class="sc">|&gt;</span> </span>
+<span id="cb58-3"><a href="generalized-linear-mixed-models.html#cb58-3" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span>
+<span id="cb58-4"><a href="generalized-linear-mixed-models.html#cb58-4" tabindex="-1"></a></span>
+<span id="cb58-5"><a href="generalized-linear-mixed-models.html#cb58-5" tabindex="-1"></a>m1_Normal <span class="ot">&lt;-</span> <span class="fu">glmmTMB</span>(wt <span class="sc">~</span> day<span class="sc">*</span>vaccine, <span class="at">data =</span> fish)</span>
+<span id="cb58-6"><a href="generalized-linear-mixed-models.html#cb58-6" tabindex="-1"></a></span>
+<span id="cb58-7"><a href="generalized-linear-mixed-models.html#cb58-7" tabindex="-1"></a>m1_Gamma <span class="ot">&lt;-</span> <span class="fu">glmmTMB</span>(wt <span class="sc">~</span> day<span class="sc">*</span>vaccine, <span class="at">family =</span> <span class="fu">Gamma</span>(<span class="at">link =</span> <span class="st">&quot;log&quot;</span>), <span class="at">data =</span> fish)</span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="generalized-linear-mixed-models.html#cb59-1" tabindex="-1"></a>fish<span class="sc">$</span>residual_N <span class="ot">&lt;-</span> <span class="fu">resid</span>(m1_Normal, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span>
+<span id="cb59-2"><a href="generalized-linear-mixed-models.html#cb59-2" tabindex="-1"></a>fish<span class="sc">$</span>yhat_N <span class="ot">&lt;-</span> <span class="fu">predict</span>(m1_Normal, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span>
+<span id="cb59-3"><a href="generalized-linear-mixed-models.html#cb59-3" tabindex="-1"></a></span>
+<span id="cb59-4"><a href="generalized-linear-mixed-models.html#cb59-4" tabindex="-1"></a>fish<span class="sc">$</span>residual_G <span class="ot">&lt;-</span> <span class="fu">resid</span>(m1_Gamma, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span>
+<span id="cb59-5"><a href="generalized-linear-mixed-models.html#cb59-5" tabindex="-1"></a>fish<span class="sc">$</span>yhat_G <span class="ot">&lt;-</span> <span class="fu">predict</span>(m1_Gamma, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="generalized-linear-mixed-models.html#cb60-1" tabindex="-1"></a>simulate_N <span class="ot">&lt;-</span> <span class="fu">simulate</span>(m1_Normal)</span>
+<span id="cb60-2"><a href="generalized-linear-mixed-models.html#cb60-2" tabindex="-1"></a>simulate_N<span class="sc">$</span>day <span class="ot">&lt;-</span> fish<span class="sc">$</span>day</span>
+<span id="cb60-3"><a href="generalized-linear-mixed-models.html#cb60-3" tabindex="-1"></a></span>
+<span id="cb60-4"><a href="generalized-linear-mixed-models.html#cb60-4" tabindex="-1"></a>simulate_G <span class="ot">&lt;-</span> <span class="fu">simulate</span>(m1_Gamma)</span>
+<span id="cb60-5"><a href="generalized-linear-mixed-models.html#cb60-5" tabindex="-1"></a>simulate_G<span class="sc">$</span>day <span class="ot">&lt;-</span> fish<span class="sc">$</span>day</span>
+<span id="cb60-6"><a href="generalized-linear-mixed-models.html#cb60-6" tabindex="-1"></a></span>
+<span id="cb60-7"><a href="generalized-linear-mixed-models.html#cb60-7" tabindex="-1"></a>fish <span class="sc">|&gt;</span> </span>
+<span id="cb60-8"><a href="generalized-linear-mixed-models.html#cb60-8" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(day, wt))<span class="sc">+</span></span>
+<span id="cb60-9"><a href="generalized-linear-mixed-models.html#cb60-9" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(day, sim_1), <span class="at">shape =</span> <span class="dv">21</span>, <span class="at">data =</span> simulate_N, <span class="at">size =</span> <span class="dv">7</span>)<span class="sc">+</span></span>
+<span id="cb60-10"><a href="generalized-linear-mixed-models.html#cb60-10" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span><span class="dv">21</span>, <span class="at">fill =</span><span class="st">&quot;gold&quot;</span>, <span class="at">size =</span> <span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb60-11"><a href="generalized-linear-mixed-models.html#cb60-11" tabindex="-1"></a>  <span class="fu">theme_pubr</span>()<span class="sc">+</span></span>
+<span id="cb60-12"><a href="generalized-linear-mixed-models.html#cb60-12" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Observed weights in time (gold) and simulated weights based on the fitted Normal model (open)&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-76-1.png" width="672" /></p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="generalized-linear-mixed-models.html#cb61-1" tabindex="-1"></a>fish <span class="sc">|&gt;</span> </span>
+<span id="cb61-2"><a href="generalized-linear-mixed-models.html#cb61-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(day, wt))<span class="sc">+</span></span>
+<span id="cb61-3"><a href="generalized-linear-mixed-models.html#cb61-3" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(day, sim_1), <span class="at">shape =</span> <span class="dv">21</span>, <span class="at">data =</span> simulate_G, <span class="at">size =</span> <span class="dv">7</span>)<span class="sc">+</span></span>
+<span id="cb61-4"><a href="generalized-linear-mixed-models.html#cb61-4" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span><span class="dv">21</span>, <span class="at">fill =</span><span class="st">&quot;gold&quot;</span>, <span class="at">size =</span> <span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb61-5"><a href="generalized-linear-mixed-models.html#cb61-5" tabindex="-1"></a>  <span class="fu">theme_pubr</span>()<span class="sc">+</span></span>
+<span id="cb61-6"><a href="generalized-linear-mixed-models.html#cb61-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Observed weights in time (gold) and simulated weights based on the fitted Gamma model (open)&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-76-2.png" width="672" /></p>
+</div>
+<div id="reading" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Reading<a href="generalized-linear-mixed-models.html#reading" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Stats majors: Chapter 5 in Stroup et al. (2024)</li>
+<li>Non-stats majors:
+<ul>
+<li><a href="https://ms.mcmaster.ca/~bolker/R/misc/foxchapter/14-Fox-Chap13.pdf">LMMs and GLMMs chapter by Ben Bolker</a></li>
+<li><a href="https://www.frontiersin.org/journals/horticulture/articles/10.3389/fhort.2024.1423462/full">The value of generalized linear mixed models for data analysis in the plant sciences</a></li>
+<li><a href="https://www.sciencedirect.com/science/article/pii/S0022030298757078">Generalized Linear Mixed Models in Dairy Cattle Breeding</a></li>
+</ul></li>
+</ul>
 
 </div>
 </div>

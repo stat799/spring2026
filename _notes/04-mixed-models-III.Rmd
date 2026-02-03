@@ -113,13 +113,12 @@ library(ggpubr)
 
 dat <- read.csv("../data/N_fert.csv")
 
-m1 <- lm(Yield_SY ~ Total_N , data= dat)
+m1 <- lm(Yield_SY ~ Total_N, data= dat)
 dat$residuals <- resid(m1)
 dat$yhat <- predict(m1)
 
 theme_set(theme_pubr())
 ```
-
 
 ```{r}
 y_sim <- simulate(m1, nsim =30, seed = 42) |>
@@ -198,7 +197,7 @@ where $p$ is the number of parameters estimated in the model, $n$ is the number 
 
 - One of the oldest methods to analyze and interpret the data. 
 
-```{r fig.height=10, fig.align='center', fig.cap="Sir R.A> Fisher, the father of the ANOVA."}
+```{r fig.height=10, fig.align='center', fig.cap="Sir R.A. Fisher, the father of the ANOVA."}
 knitr::include_graphics("figures/Ronald_Fisher.jpg")
 ```
 

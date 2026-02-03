@@ -1,0 +1,29 @@
+---
+title: "Untitled"
+format: html
+editor: visual
+---
+
+
+```{r message=FALSE, warning=FALSE}
+library(lme4)
+library(tidyverse)
+library(latex2exp)
+library(ggpubr)
+
+dat <- read.csv("../data/N_fert.csv")
+
+m1 <- lm(Yield_SY ~ Total_N + I(Total_N^2), data= dat)
+dat$residuals <- resid(m1)
+dat$yhat <- predict(m1)
+
+theme_set(theme_pubr())
+```
+
+```{r}
+plot(dat$yhat, abs(dat$residuals))
+
+hist(dat$residuals)
+
+DHARMa::simulateResiduals(m1, plot = T)
+```

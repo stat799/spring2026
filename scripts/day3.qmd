@@ -1,0 +1,48 @@
+---
+title: "Untitled"
+format: html
+editor: visual
+---
+
+```{r}
+library(lme4)
+library(tidyverse)
+library(emmeans)
+library(latex2exp)
+
+df <- read.csv("data/cochrancox_kfert.csv")
+df$rep <- as.factor(df$rep)
+```
+
+```{r}
+m1 <- lm(yield ~ K2O_lbac + rep, data = df)
+```
+
+```{r}
+df$resid.m1 <- resid(m1)
+df$yhat.m1 <- predict(m1)
+```
+
+```{r}
+df |> 
+  ggplot(aes(yhat.m1,resid.m1))+
+  geom_hline(yintercept=0)+
+  geom_point()
+```
+
+```{r}
+
+```
+
+
+```{r}
+m_fixed <- lm(yield ~ K2O_lbac + rep, data = df)
+m_random <- lmer(yield ~ K2O_lbac + (1|rep), data = df)
+```
+
+
+```{r}
+(mg_means_fixed <- emmeans(m_fixed, ~K2O_lbac, contr = list(c(1, 0, 0, 0, -1))))
+(mg_means_random <- emmeans(m_random, ~K2O_lbac, contr = list(c(1, 0, 0, 0, -1))))
+```
+

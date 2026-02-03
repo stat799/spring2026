@@ -1,7 +1,9 @@
-tab:unnamed-chunk-3
-fig:unnamed-chunk-30
-tab:unnamed-chunk-31
-tab:unnamed-chunk-32
+tab:unnamed-chunk-33
+fig:unnamed-chunk-60
+tab:unnamed-chunk-61
+tab:unnamed-chunk-62
+fig:unnamed-chunk-68
+fig:unnamed-chunk-69
 welcome-to-stat-799
 about-this-course
 logistics
@@ -69,7 +71,13 @@ a-different-take-on-anova-using-multilevel-modeling
 an-applied-example
 coming-up-tomorrow-2
 generalized-linear-mixed-models
+glmms
 review-building-a-statistical-model
+generalities-of-glmms
+implications-for-model-fitting
+model-diagnostics
+applied-example-picking-distributions
+reading
 semester-project-1
 learning-objectives
 partial-deadlines

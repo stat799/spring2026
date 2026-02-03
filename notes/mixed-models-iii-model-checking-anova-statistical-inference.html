@@ -242,7 +242,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5" data-path="generalized-linear-mixed-models.html"><a href="generalized-linear-mixed-models.html"><i class="fa fa-check"></i><b>5</b> Generalized linear mixed models</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="generalized-linear-mixed-models.html"><a href="generalized-linear-mixed-models.html#review-building-a-statistical-model"><i class="fa fa-check"></i><b>5.1</b> Review – building a statistical model</a></li>
+<li class="chapter" data-level="5.1" data-path="generalized-linear-mixed-models.html"><a href="generalized-linear-mixed-models.html#glmms"><i class="fa fa-check"></i><b>5.1</b> GLMMs</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="generalized-linear-mixed-models.html"><a href="generalized-linear-mixed-models.html#review-building-a-statistical-model"><i class="fa fa-check"></i><b>5.1.1</b> Review – building a statistical model</a></li>
+<li class="chapter" data-level="5.1.2" data-path="generalized-linear-mixed-models.html"><a href="generalized-linear-mixed-models.html#generalities-of-glmms"><i class="fa fa-check"></i><b>5.1.2</b> Generalities of GLMMs</a></li>
+<li class="chapter" data-level="5.1.3" data-path="generalized-linear-mixed-models.html"><a href="generalized-linear-mixed-models.html#implications-for-model-fitting"><i class="fa fa-check"></i><b>5.1.3</b> Implications for model fitting</a></li>
+<li class="chapter" data-level="5.1.4" data-path="generalized-linear-mixed-models.html"><a href="generalized-linear-mixed-models.html#model-diagnostics"><i class="fa fa-check"></i><b>5.1.4</b> Model diagnostics</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="generalized-linear-mixed-models.html"><a href="generalized-linear-mixed-models.html#applied-example-picking-distributions"><i class="fa fa-check"></i><b>5.2</b> Applied example – picking distributions</a></li>
+<li class="chapter" data-level="5.3" data-path="generalized-linear-mixed-models.html"><a href="generalized-linear-mixed-models.html#reading"><i class="fa fa-check"></i><b>5.3</b> Reading</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="semester-project-1.html"><a href="semester-project-1.html"><i class="fa fa-check"></i><b>6</b> Semester Project</a>
 <ul>
@@ -420,7 +428,7 @@ Restricted maximum likelihood (shrinkage)
 <span id="cb39-5"><a href="mixed-models-iii-model-checking-anova-statistical-inference.html#cb39-5" tabindex="-1"></a></span>
 <span id="cb39-6"><a href="mixed-models-iii-model-checking-anova-statistical-inference.html#cb39-6" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;../data/N_fert.csv&quot;</span>)</span>
 <span id="cb39-7"><a href="mixed-models-iii-model-checking-anova-statistical-inference.html#cb39-7" tabindex="-1"></a></span>
-<span id="cb39-8"><a href="mixed-models-iii-model-checking-anova-statistical-inference.html#cb39-8" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Yield_SY <span class="sc">~</span> Total_N , <span class="at">data=</span> dat)</span>
+<span id="cb39-8"><a href="mixed-models-iii-model-checking-anova-statistical-inference.html#cb39-8" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Yield_SY <span class="sc">~</span> Total_N, <span class="at">data=</span> dat)</span>
 <span id="cb39-9"><a href="mixed-models-iii-model-checking-anova-statistical-inference.html#cb39-9" tabindex="-1"></a>dat<span class="sc">$</span>residuals <span class="ot">&lt;-</span> <span class="fu">resid</span>(m1)</span>
 <span id="cb39-10"><a href="mixed-models-iii-model-checking-anova-statistical-inference.html#cb39-10" tabindex="-1"></a>dat<span class="sc">$</span>yhat <span class="ot">&lt;-</span> <span class="fu">predict</span>(m1)</span>
 <span id="cb39-11"><a href="mixed-models-iii-model-checking-anova-statistical-inference.html#cb39-11" tabindex="-1"></a></span>
@@ -437,13 +445,13 @@ Restricted maximum likelihood (shrinkage)
 <span id="cb40-10"><a href="mixed-models-iii-model-checking-anova-statistical-inference.html#cb40-10" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>name)</span></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-59-1.png" width="672" /></p>
 <div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="mixed-models-iii-model-checking-anova-statistical-inference.html#cb42-1" tabindex="-1"></a>y_sim <span class="sc">|&gt;</span> </span>
 <span id="cb42-2"><a href="mixed-models-iii-model-checking-anova-statistical-inference.html#cb42-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(Total_N, value))<span class="sc">+</span></span>
 <span id="cb42-3"><a href="mixed-models-iii-model-checking-anova-statistical-inference.html#cb42-3" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
 <span id="cb42-4"><a href="mixed-models-iii-model-checking-anova-statistical-inference.html#cb42-4" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(Total_N, Yield_SY), <span class="at">shape =</span> <span class="dv">21</span>, <span class="at">fill =</span> <span class="st">&quot;gold&quot;</span>, <span class="at">alpha =</span> .<span class="dv">3</span>)<span class="sc">+</span></span>
 <span id="cb42-5"><a href="mixed-models-iii-model-checking-anova-statistical-inference.html#cb42-5" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>name)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-29-2.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-59-2.png" width="672" /></p>
 <p>Discuss the plot above: how are the simulated data compared to the observed data?</p>
 </div>
 <div id="some-useful-metrics-to-compare-models" class="section level2 hasAnchor" number="4.5">
@@ -502,10 +510,10 @@ Restricted maximum likelihood (shrinkage)
 <li>One of the oldest methods to analyze and interpret the data.</li>
 </ul>
 <div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="mixed-models-iii-model-checking-anova-statistical-inference.html#cb43-1" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">&quot;figures/Ronald_Fisher.jpg&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-30"></span>
-<img src="figures/Ronald_Fisher.jpg" alt="Sir R.A&gt; Fisher, the father of the ANOVA." width="100" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-60"></span>
+<img src="figures/Ronald_Fisher.jpg" alt="Sir R.A. Fisher, the father of the ANOVA." width="100" />
 <p class="caption">
-Figure 4.1: Sir R.A&gt; Fisher, the father of the ANOVA.
+Figure 4.1: Sir R.A. Fisher, the father of the ANOVA.
 </p>
 </div>
 <ul>
@@ -536,13 +544,13 @@ Figure 4.1: Sir R.A&gt; Fisher, the father of the ANOVA.
 </ul>
 <table class="kable_wrapper">
 <caption>
-<span id="tab:unnamed-chunk-31">Table 4.1: </span>Constructing the ANOVA skeleton
+<span id="tab:unnamed-chunk-61">Table 4.1: </span>Constructing the ANOVA skeleton
 </caption>
 <tbody>
 <tr>
 <td>
 <table>
-<caption><span id="tab:unnamed-chunk-31">Table 4.1: </span>Experiment or Topographical</caption>
+<caption><span id="tab:unnamed-chunk-61">Table 4.1: </span>Experiment or Topographical</caption>
 <thead>
 <tr class="header">
 <th align="left">Source</th>
@@ -583,7 +591,7 @@ Figure 4.1: Sir R.A&gt; Fisher, the father of the ANOVA.
 </td>
 <td>
 <table>
-<caption><span id="tab:unnamed-chunk-31">Table 4.1: </span>Treatment</caption>
+<caption><span id="tab:unnamed-chunk-61">Table 4.1: </span>Treatment</caption>
 <thead>
 <tr class="header">
 <th align="left">Source</th>
@@ -624,7 +632,7 @@ Figure 4.1: Sir R.A&gt; Fisher, the father of the ANOVA.
 </td>
 <td>
 <table>
-<caption><span id="tab:unnamed-chunk-31">Table 4.1: </span>Combined Table</caption>
+<caption><span id="tab:unnamed-chunk-61">Table 4.1: </span>Combined Table</caption>
 <thead>
 <tr class="header">
 <th align="left">Source</th>
@@ -816,7 +824,7 @@ Error(split plot)
 </body>
 <div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="mixed-models-iii-model-checking-anova-statistical-inference.html#cb44-1" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(t_comb, <span class="at">caption =</span> <span class="st">&quot;Combined Table&quot;</span>)</span></code></pre></div>
 <table>
-<caption><span id="tab:unnamed-chunk-32">Table 4.2: </span>Combined Table</caption>
+<caption><span id="tab:unnamed-chunk-62">Table 4.2: </span>Combined Table</caption>
 <thead>
 <tr class="header">
 <th align="left">Source</th>
@@ -928,7 +936,7 @@ Now, other than saying that all treatments have an impact on the response, the A
 <span id="cb47-15"><a href="mixed-models-iii-model-checking-anova-statistical-inference.html#cb47-15" tabindex="-1"></a></span>
 <span id="cb47-16"><a href="mixed-models-iii-model-checking-anova-statistical-inference.html#cb47-16" tabindex="-1"></a><span class="co"># check model diagnostics</span></span>
 <span id="cb47-17"><a href="mixed-models-iii-model-checking-anova-statistical-inference.html#cb47-17" tabindex="-1"></a>bayesplot<span class="sc">::</span><span class="fu">mcmc_trace</span>(m_new)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-64-1.png" width="672" /></p>
 <p>The code below gets the posteriors for the random effects and computes the <span class="math inline">\(s^2_m\)</span>.</p>
 <div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="mixed-models-iii-model-checking-anova-statistical-inference.html#cb48-1" tabindex="-1"></a><span class="co"># get s2 for Day</span></span>
 <span id="cb48-2"><a href="mixed-models-iii-model-checking-anova-statistical-inference.html#cb48-2" tabindex="-1"></a>re_Day <span class="ot">&lt;-</span> <span class="fu">as_draws_df</span>(m_new) <span class="sc">|&gt;</span> </span>
@@ -988,7 +996,7 @@ Now, other than saying that all treatments have an impact on the response, the A
 <span id="cb49-15"><a href="mixed-models-iii-model-checking-anova-statistical-inference.html#cb49-15" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Source of Variation&quot;</span></span>
 <span id="cb49-16"><a href="mixed-models-iii-model-checking-anova-statistical-inference.html#cb49-16" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb49-17"><a href="mixed-models-iii-model-checking-anova-statistical-inference.html#cb49-17" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-66-1.png" width="672" /></p>
 <div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="mixed-models-iii-model-checking-anova-statistical-inference.html#cb50-1" tabindex="-1"></a>m_new_results <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(m_new)</span>
 <span id="cb50-2"><a href="mixed-models-iii-model-checking-anova-statistical-inference.html#cb50-2" tabindex="-1"></a><span class="fu">colnames</span>(m_new_results) <span class="ot">&lt;-</span></span>
 <span id="cb50-3"><a href="mixed-models-iii-model-checking-anova-statistical-inference.html#cb50-3" tabindex="-1"></a>  <span class="fu">str_replace</span>(<span class="fu">colnames</span>(m_new_results), <span class="st">&quot;__Intercept&quot;</span>, <span class="st">&quot;&quot;</span>)</span>
@@ -1005,7 +1013,7 @@ Now, other than saying that all treatments have an impact on the response, the A
 <span id="cb50-14"><a href="mixed-models-iii-model-checking-anova-statistical-inference.html#cb50-14" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Hierarchical ANOVA Display -- superpopulation&quot;</span>,</span>
 <span id="cb50-15"><a href="mixed-models-iii-model-checking-anova-statistical-inference.html#cb50-15" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Estimated SD of effects&quot;</span>, </span>
 <span id="cb50-16"><a href="mixed-models-iii-model-checking-anova-statistical-inference.html#cb50-16" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Source of variability&quot;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-67-1.png" width="672" /></p>
 <ul>
 <li>Discuss interpretation of a classic ANOVA versus this approach (simultaneous vs. not)</li>
 <li>Opportunities &amp; limitations</li>

@@ -124,6 +124,8 @@ fish <- fish |>
 m1_Normal <- glmmTMB(wt ~ day*vaccine, data = fish)
 
 m1_Gamma <- glmmTMB(wt ~ day*vaccine, family = Gamma(link = "log"), data = fish)
+
+m1_log <- lm(log(wt) ~ day*vaccine, data = fish)
 ```
 
 ```{r}
@@ -142,6 +144,9 @@ simulate_N$day <- fish$day
 simulate_G <- simulate(m1_Gamma)
 simulate_G$day <- fish$day
 
+simulate_log <- simulate(m1_log)
+simulate_log$day <- fish$day
+
 fish |> 
   ggplot(aes(day, wt))+
   geom_point(aes(day, sim_1), shape = 21, data = simulate_N, size = 7)+
@@ -155,6 +160,14 @@ fish |>
   geom_point(shape =21, fill ="gold", size = 3)+
   theme_pubr()+
   labs(title = "Observed weights in time (gold) and simulated weights based on the fitted Gamma model (open)")
+
+fish |> 
+  ggplot(aes(day, wt))+
+  geom_point(aes(day, exp(sim_1)), shape = 21, data = simulate_log, size = 7)+
+  geom_point(shape =21, fill ="gold", size = 3)+
+  theme_pubr()+
+  labs(title = "Observed weights in time (gold) and simulated weights based on the fitted Gamma model (open)")
+library(ggpubr)
 ```
 
 

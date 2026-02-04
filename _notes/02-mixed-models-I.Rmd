@@ -156,6 +156,7 @@ This is a visualization of what's coming with mixed models:
 Example 1: 
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(lme4)
 m_cs <- lmer(diameter ~ time + (1|appleid), 
              data = agridat::byers.apple |> filter(appleid %in% c(1,4,32)))
 Z <-  getME(m_cs, "Z") 

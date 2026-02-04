@@ -1,0 +1,112 @@
+---
+title: "Software implementation"
+format: html
+editor: visual
+---
+
+### Applied example I - LMM
+
+The data below come from a split-plot experiment in an RCBD, where a baker wanted to determine the effect that the amount of fat in a recipe of cookie dough would have on the texture of the cookie. She also wanted to determine if the temperature (°F) at which the cookies were baked would have an influence on the texture of the surface. The texture of the cookie is measured by determining the amount of force (g) required to penetrate the cookie surface.
+
+The process she used was to make a batch of cookie dough for each of the four recipes every day, and baked one cookie from each recipe in the oven together. She carried this process out each of four days when she baked cookies at three different temperatures.
+
+
+Trt structure: 3 x 4 factorial trt str
+Design str: split-plot (temperature =wp, recipe = sp) in a rcbd (day =blocks)
+
+$\mathbf{X}\boldsymbol{\beta}$: T, F, TF 
+
+
+$$y_{ijk}\vert \boldsymbol{b} \sim N(\mu_{ijk}, \sigma^2), \\ \mu_{ijk} = \mu_k + T_i + F_j + TF_{ij} + day_k + oven_{i(k)}, \\ day_k \sim N(0, \sigma^2_d), \\ oven_{i(k)} \sim N(0, \sigma^2_o) $$
+
+```{r}
+library(lme4)
+url <- "https://raw.githubusercontent.com/stat799/spring2026/refs/heads/main/data/cookies.csv"
+d1 <- read.csv(url)
+d1$Temperature <- as.factor(d1$Temperature)
+d1$fat_perc <- as.factor(d1$fat_perc)
+d1$Day <- as.factor(d1$Day)
+```
+
+### Applied example II -- convergence issue I 
+
+Designed experiment studying the effect of 4 treatments on gut microorganisms. 
+Colony forming units were studied before and after 4 interventions. 
+Patient was the EU, and all patients were handled the same. 
+
+- two-way factorial trt structure (4 treatments x 2 moments) 
+- crd 
+
+$$y_{ijk} = \mu_0 + T_i +M_j +(TM)_{ij} + u_{k}+ \varepsilon_{ijk}$$
+
+
+```{r}
+url <- "https://raw.githubusercontent.com/stat799/spring2026/refs/heads/main/data/gut_microorganisms.csv"
+d2 <- read.csv(url)
+d2$Time <- as.factor(d2$Time)
+d2$Trt <- as.factor(d2$Trt)
+d2$patient_id <- as.factor(d2$patient_id)
+
+d2 %>% 
+  ggplot(aes(Time, logCFU))+
+  facet_wrap(~Trt)+
+  geom_point(aes(color = factor(patient_id)))
+
+```
+
+```{r}
+m2.f <- lm(logCFU ~ Trt*Time + patient_id, data = d2)
+sigma(m2.f)
+```
+
+```{r}
+m2 <- lmer(logCFU ~ Trt*Time + (1|patient_id), data = d2)
+
+isSingular(m2)
+
+VarCorr(m2)
+```
+
+### Applied example III -- RCBD with negative variance component
+
+
+RCBD yield trial 
+
+$$y_{ij}=\mu_0 +T_i+b_j + \varepsilon_{ij}, b_j\sim N(0, \sigma^2_b)$$
+
+```{r}
+url <- "https://raw.githubusercontent.com/stat870/fall2025/refs/heads/main/data/rcbd_negvar.csv"
+d7 <- read.csv(url)
+d7$block <- as.factor(d7$block)
+n_distinct(d7$trt)
+
+m7 <- lmer(yield~ trt + (1|block), data =d7)
+VarCorr(m7)
+
+d7$res <- resid(m7)
+```
+
+```{r}
+emmeans( lm(yield~ trt + block, data =d7), ~ block)
+```
+
+```{r}
+d7 %>% 
+  ggplot(aes(col, row))+
+  geom_tile(aes(fill = block))
+```
+
+
+### Applied example IV -- GLMM
+
+A study of gastro-intestinal parasites in dairy cows based on a longitudinal study. 
+The outcome of interest is fecal egg count/5 gram of feces (fec) (see second figure for summary statistics for fec).
+Independent variables include lact (lactation; multiparous (1)/primiparous (0)), man_heif (manure spread on heifer pasture; yes(1)/no(0)), and man_lact (manure spread on cow pasture; yes(1)/no(0)).
+
+
+```{r}
+url <- "https://raw.githubusercontent.com/stat799/spring2026/refs/heads/main/data/fecal_egg_counts.csv"
+d4 <- read.csv(url)
+
+```
+

@@ -1,9 +1,9 @@
-tab:unnamed-chunk-33
-fig:unnamed-chunk-60
-tab:unnamed-chunk-61
-tab:unnamed-chunk-62
-fig:unnamed-chunk-68
-fig:unnamed-chunk-69
+tab:unnamed-chunk-3
+fig:unnamed-chunk-30
+tab:unnamed-chunk-31
+tab:unnamed-chunk-32
+fig:unnamed-chunk-38
+fig:unnamed-chunk-39
 welcome-to-stat-799
 about-this-course
 logistics
@@ -78,6 +78,11 @@ implications-for-model-fitting
 model-diagnostics
 applied-example-picking-distributions
 reading
+software-implementation-troubleshooting
+software-implementation
+troubleshooting
+in-class-example
+coming-up-tomorrow-3
 semester-project-1
 learning-objectives
 partial-deadlines

@@ -1,0 +1,22 @@
+# Software implementation & troubleshooting 
+
+## Software implementation
+
+- Writing statistical models 
+- [Fitting linear mixed models using `lme4`](https://cran.r-project.org/web/packages/lme4/vignettes/lmer.pdf) 
+
+## Troubleshooting 
+
+- [lme4 convergence warnings: troubleshooting](https://rstudio-pubs-static.s3.amazonaws.com/33653_57fc7b8e5d484c909b615d8633c01d51.html) 
+- `lme4`'s own [troubleshooting](https://search.r-project.org/CRAN/refmans/lme4/html/troubleshooting.html) 
+- [GLMM FAQ by Ben Bolker](https://bbolker.github.io/mixedmodels-misc/glmmFAQ.html)
+- WTF -- [What They Forgot to Teach You About R](https://rstats.wtf/)
+
+## In-class example 
+
+[get R code](../scripts/day6.qmd)
+
+## Coming up tomorrow:
+
+- Non-linear mixed models 
+

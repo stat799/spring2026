@@ -146,7 +146,7 @@ Discuss the plot above: how are the simulated data compared to the observed data
 
 ### Root mean squared error
 
-- Root mean squared error $RMSE = \sqrt{\frac{1}{n} \cdot \sum_{i=1}^n(\hat{y}_i-y_i)^2}$ 
+- Root mean squared error $RMSE = \sqrt{\frac{1}{n} \cdot \sum_{i=1}^n(y_i-\hat{y}_i)^2}$ 
 - In-sample versus out-of-sample RMSE 
 
 ### The coefficient of determination R^2^

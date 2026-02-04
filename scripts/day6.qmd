@@ -4,7 +4,14 @@ format: html
 editor: visual
 ---
 
-### Applied example I - LMM
+## Libraries 
+
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+```
+
+
+## Applied example I - LMM
 
 The data below come from a split-plot experiment in an RCBD, where a baker wanted to determine the effect that the amount of fat in a recipe of cookie dough would have on the texture of the cookie. She also wanted to determine if the temperature (°F) at which the cookies were baked would have an influence on the texture of the surface. The texture of the cookie is measured by determining the amount of force (g) required to penetrate the cookie surface.
 
@@ -28,7 +35,7 @@ d1$fat_perc <- as.factor(d1$fat_perc)
 d1$Day <- as.factor(d1$Day)
 ```
 
-### Applied example II -- convergence issue I 
+## Applied example II -- zero VC 
 
 Designed experiment studying the effect of 4 treatments on gut microorganisms. 
 Colony forming units were studied before and after 4 interventions. 
@@ -47,28 +54,15 @@ d2$Time <- as.factor(d2$Time)
 d2$Trt <- as.factor(d2$Trt)
 d2$patient_id <- as.factor(d2$patient_id)
 
-d2 %>% 
+d2 |>  
   ggplot(aes(Time, logCFU))+
   facet_wrap(~Trt)+
   geom_point(aes(color = factor(patient_id)))
 
 ```
 
-```{r}
-m2.f <- lm(logCFU ~ Trt*Time + patient_id, data = d2)
-sigma(m2.f)
-```
 
-```{r}
-m2 <- lmer(logCFU ~ Trt*Time + (1|patient_id), data = d2)
-
-isSingular(m2)
-
-VarCorr(m2)
-```
-
-### Applied example III -- RCBD with negative variance component
-
+## Applied example III -- RCBD with negative variance component
 
 RCBD yield trial 
 
@@ -78,35 +72,27 @@ $$y_{ij}=\mu_0 +T_i+b_j + \varepsilon_{ij}, b_j\sim N(0, \sigma^2_b)$$
 url <- "https://raw.githubusercontent.com/stat870/fall2025/refs/heads/main/data/rcbd_negvar.csv"
 d7 <- read.csv(url)
 d7$block <- as.factor(d7$block)
-n_distinct(d7$trt)
-
-m7 <- lmer(yield~ trt + (1|block), data =d7)
-VarCorr(m7)
-
-d7$res <- resid(m7)
-```
-
-```{r}
-emmeans( lm(yield~ trt + block, data =d7), ~ block)
-```
-
-```{r}
-d7 %>% 
-  ggplot(aes(col, row))+
-  geom_tile(aes(fill = block))
 ```
 
 
-### Applied example IV -- GLMM
+## Applied example IV -- GLMM
 
-A study of gastro-intestinal parasites in dairy cows based on a longitudinal study. 
+A study of gastro-intestinal parasites in dairy cows
 The outcome of interest is fecal egg count/5 gram of feces (fec) (see second figure for summary statistics for fec).
-Independent variables include lact (lactation; multiparous (1)/primiparous (0)), man_heif (manure spread on heifer pasture; yes(1)/no(0)), and man_lact (manure spread on cow pasture; yes(1)/no(0)).
+Independent variables include lact (lactation; multiparous (1)/primiparous (0)), manure (manure spread on pasture; yes(1)/no(0)).
 
+A good model to describe the data could be
+
+$$y_{ijk} \sim Pois(\lambda_{ijk}), \\ \log(\lambda_{ijk}) = \eta_0 + T_i + Lact_j + Season_k + Man_l + h_m, \\ h_m \sim N(0, \sigma^2_h).$$
 
 ```{r}
 url <- "https://raw.githubusercontent.com/stat799/spring2026/refs/heads/main/data/fecal_egg_counts.csv"
-d4 <- read.csv(url)
-
+d4 <- read.csv(url) |> 
+  mutate(across(c(province, herd, cow, tx, lact, season, past_lact, manure), 
+                ~as.factor(.)))
+d4 |> 
+  ggplot(aes(fec))+
+  geom_histogram(bins = 15, color = "black", fill = NA)
 ```
+
 

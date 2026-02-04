@@ -7,11 +7,11 @@ output:
     number_sections: true
 ---
 
-Read the exercises below, answer them, and knit the .Rmd file into an HTML of PDF file. Rename it to "YourLastName_hw1.Rmd" and submit it on CANVAS by Tue, February 10th. 
+Read the exercises below, answer them, and knit the .Rmd file into an HTML of PDF file. Rename it, including your last name (e.g., "Smith_hw1.Rmd") and submit it on CANVAS by Tue, February 10th. 
 
 # In your own words, describe why you need statistical models in your research project. 
 
-# Using mathematical notation, describe the simplest statistical model you could think of. 
+# Using mathematical notation, describe the most common statistical model you could think of to describe continuous data. 
 
 
 ## What are the assumptions behind this model?  

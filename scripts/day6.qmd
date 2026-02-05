@@ -16,7 +16,7 @@ The data below come from a split-plot experiment in an RCBD, where a baker wante
 
 The process she used was to make a batch of cookie dough for each of the four recipes every day, and baked one cookie from each recipe in the oven together. She carried this process out each of four days when she baked cookies at three different temperatures.
 
-Trt structure: 3 x 4 factorial 
+Trt structure: 3 x 4 factorial
 
 Design str: split-plot (temperature =wp, recipe = sp) in a rcbd (day =blocks)
 
@@ -49,8 +49,7 @@ emmeans(m, ~fat_perc, contr = list(c(1, -1, 0, 0)))
 
 ## Applied example II -- zero VC
 
-Designed experiment studying the effect of 4 treatments on gut microorganisms. 
-Colony forming units were studied before and after 4 interventions. Patient was the EU, and all patients were handled the same.
+Designed experiment studying the effect of 4 treatments on gut microorganisms. Colony forming units were studied before and after 4 interventions. Patient was the EU, and all patients were handled the same.
 
 -   two-way factorial trt structure (4 treatments x 2 moments)
 -   crd
@@ -70,6 +69,7 @@ d2 |>
   geom_point(aes(color = factor(patient_id)))
 
 ```
+
 $$y_{ijk} = \mu_0 + T_i +M_j +(TM)_{ij} + u_{k}+ \varepsilon_{ijk}$$
 
 ```{r}
@@ -93,7 +93,6 @@ DHARMa::simulateResiduals(m2.1, plot = T)
 sigma(m2)
 sigma(m2.1)
 ```
-
 
 ## Applied example III -- RCBD with negative variance component
 

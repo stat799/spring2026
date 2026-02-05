@@ -30,7 +30,7 @@
   
   
 <link rel="prev" href="generalized-linear-mixed-models.html"/>
-<link rel="next" href="semester-project-1.html"/>
+<link rel="next" href="non-linear-mixed-models.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -259,15 +259,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.3" data-path="software-implementation-troubleshooting.html"><a href="software-implementation-troubleshooting.html#in-class-example"><i class="fa fa-check"></i><b>6.3</b> In-class example</a></li>
 <li class="chapter" data-level="6.4" data-path="software-implementation-troubleshooting.html"><a href="software-implementation-troubleshooting.html#coming-up-tomorrow-3"><i class="fa fa-check"></i><b>6.4</b> Coming up tomorrow:</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="semester-project-1.html"><a href="semester-project-1.html"><i class="fa fa-check"></i><b>7</b> Semester Project</a>
+<li class="chapter" data-level="7" data-path="non-linear-mixed-models.html"><a href="non-linear-mixed-models.html"><i class="fa fa-check"></i><b>7</b> Non-linear mixed models</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="semester-project-1.html"><a href="semester-project-1.html#learning-objectives"><i class="fa fa-check"></i><b>7.1</b> Learning objectives</a></li>
-<li class="chapter" data-level="7.2" data-path="semester-project-1.html"><a href="semester-project-1.html#partial-deadlines"><i class="fa fa-check"></i><b>7.2</b> Partial deadlines</a>
+<li class="chapter" data-level="7.1" data-path="non-linear-mixed-models.html"><a href="non-linear-mixed-models.html#the-general-linear-model"><i class="fa fa-check"></i><b>7.1</b> The general linear model</a></li>
+<li class="chapter" data-level="7.2" data-path="non-linear-mixed-models.html"><a href="non-linear-mixed-models.html#revisiting-linearity"><i class="fa fa-check"></i><b>7.2</b> Revisiting linearity</a></li>
+<li class="chapter" data-level="7.3" data-path="non-linear-mixed-models.html"><a href="non-linear-mixed-models.html#some-benefits-of-non-linear-models"><i class="fa fa-check"></i><b>7.3</b> Some benefits of non-linear models</a></li>
+<li class="chapter" data-level="7.4" data-path="non-linear-mixed-models.html"><a href="non-linear-mixed-models.html#applied-example"><i class="fa fa-check"></i><b>7.4</b> Applied example</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="semester-project-1.html"><a href="semester-project-1.html"><i class="fa fa-check"></i><b>8</b> Semester Project</a>
 <ul>
-<li class="chapter" data-level="7.2.1" data-path="semester-project-1.html"><a href="semester-project-1.html#project-proposal---due-sunday-february-1st-at-noon-ct"><i class="fa fa-check"></i><b>7.2.1</b> Project proposal - Due Sunday February 1st at noon CT</a></li>
-<li class="chapter" data-level="7.2.2" data-path="semester-project-1.html"><a href="semester-project-1.html#written-report---due-wednesday-april-20-at-2pm-ct-for-peer-review"><i class="fa fa-check"></i><b>7.2.2</b> Written report - Due Wednesday April 20 at 2pm CT for peer review</a></li>
-<li class="chapter" data-level="7.2.3" data-path="semester-project-1.html"><a href="semester-project-1.html#oral-presentation---somewhere-between-may-1---may-9"><i class="fa fa-check"></i><b>7.2.3</b> Oral presentation - Somewhere between May 1 - May 9</a></li>
-<li class="chapter" data-level="7.2.4" data-path="semester-project-1.html"><a href="semester-project-1.html#written-report-and-reproducible-tutorial---due-may-15"><i class="fa fa-check"></i><b>7.2.4</b> Written report and reproducible tutorial - Due May 15</a></li>
+<li class="chapter" data-level="8.1" data-path="semester-project-1.html"><a href="semester-project-1.html#learning-objectives"><i class="fa fa-check"></i><b>8.1</b> Learning objectives</a></li>
+<li class="chapter" data-level="8.2" data-path="semester-project-1.html"><a href="semester-project-1.html#partial-deadlines"><i class="fa fa-check"></i><b>8.2</b> Partial deadlines</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="semester-project-1.html"><a href="semester-project-1.html#project-proposal---due-sunday-february-1st-at-noon-ct"><i class="fa fa-check"></i><b>8.2.1</b> Project proposal - Due Sunday February 1st at noon CT</a></li>
+<li class="chapter" data-level="8.2.2" data-path="semester-project-1.html"><a href="semester-project-1.html#written-report---due-wednesday-april-20-at-2pm-ct-for-peer-review"><i class="fa fa-check"></i><b>8.2.2</b> Written report - Due Wednesday April 20 at 2pm CT for peer review</a></li>
+<li class="chapter" data-level="8.2.3" data-path="semester-project-1.html"><a href="semester-project-1.html#oral-presentation---somewhere-between-may-1---may-9"><i class="fa fa-check"></i><b>8.2.3</b> Oral presentation - Somewhere between May 1 - May 9</a></li>
+<li class="chapter" data-level="8.2.4" data-path="semester-project-1.html"><a href="semester-project-1.html#written-report-and-reproducible-tutorial---due-may-15"><i class="fa fa-check"></i><b>8.2.4</b> Written report and reproducible tutorial - Due May 15</a></li>
 </ul></li>
 </ul></li>
 <li class="divider"></li>
@@ -291,6 +298,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="software-implementation-troubleshooting" class="section level1 hasAnchor" number="6">
 <h1><span class="header-section-number">Day 6</span> Software implementation &amp; troubleshooting<a href="software-implementation-troubleshooting.html#software-implementation-troubleshooting" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><em>February 4th, 2026</em></p>
 <div id="software-implementation" class="section level2 hasAnchor" number="6.1">
 <h2><span class="header-section-number">6.1</span> Software implementation<a href="software-implementation-troubleshooting.html#software-implementation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
@@ -325,7 +333,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="generalized-linear-mixed-models.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="semester-project-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="non-linear-mixed-models.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

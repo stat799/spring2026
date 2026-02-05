@@ -4,12 +4,11 @@ format: html
 editor: visual
 ---
 
-## Libraries 
+## Libraries
 
 ```{r message=FALSE, warning=FALSE}
 library(tidyverse)
 ```
-
 
 ## Applied example I - LMM
 
@@ -17,12 +16,11 @@ The data below come from a split-plot experiment in an RCBD, where a baker wante
 
 The process she used was to make a batch of cookie dough for each of the four recipes every day, and baked one cookie from each recipe in the oven together. She carried this process out each of four days when she baked cookies at three different temperatures.
 
+Trt structure: 3 x 4 factorial 
 
-Trt structure: 3 x 4 factorial trt str
 Design str: split-plot (temperature =wp, recipe = sp) in a rcbd (day =blocks)
 
-$\mathbf{X}\boldsymbol{\beta}$: T, F, TF 
-
+$\mathbf{X}\boldsymbol{\beta}$: T, F, TF
 
 $$y_{ijk}\vert \boldsymbol{b} \sim N(\mu_{ijk}, \sigma^2), \\ \mu_{ijk} = \mu_k + T_i + F_j + TF_{ij} + day_k + oven_{i(k)}, \\ day_k \sim N(0, \sigma^2_d), \\ oven_{i(k)} \sim N(0, \sigma^2_o) $$
 
@@ -33,19 +31,31 @@ d1 <- read.csv(url)
 d1$Temperature <- as.factor(d1$Temperature)
 d1$fat_perc <- as.factor(d1$fat_perc)
 d1$Day <- as.factor(d1$Day)
+
+colnames(d1)
+
+m <- lmer(force ~ fat_perc+ Temperature + fat_perc:Temperature +
+            (1|Day) + (1|Day:Temperature),
+          data = d1)
+getME(m, "X")
+getME(m, "Z")
+getME(m, "b")
+
+library(emmeans)
+emmeans(m, ~fat_perc:Temperature)
+emmeans(m, ~Temperature, contr = list(c(1, -1, 0)))
+emmeans(m, ~fat_perc, contr = list(c(1, -1, 0, 0)))
 ```
 
-## Applied example II -- zero VC 
+## Applied example II -- zero VC
 
 Designed experiment studying the effect of 4 treatments on gut microorganisms. 
-Colony forming units were studied before and after 4 interventions. 
-Patient was the EU, and all patients were handled the same. 
+Colony forming units were studied before and after 4 interventions. Patient was the EU, and all patients were handled the same.
 
-- two-way factorial trt structure (4 treatments x 2 moments) 
-- crd 
+-   two-way factorial trt structure (4 treatments x 2 moments)
+-   crd
 
 $$y_{ijk} = \mu_0 + T_i +M_j +(TM)_{ij} + u_{k}+ \varepsilon_{ijk}$$
-
 
 ```{r}
 url <- "https://raw.githubusercontent.com/stat799/spring2026/refs/heads/main/data/gut_microorganisms.csv"
@@ -60,11 +70,34 @@ d2 |>
   geom_point(aes(color = factor(patient_id)))
 
 ```
+$$y_{ijk} = \mu_0 + T_i +M_j +(TM)_{ij} + u_{k}+ \varepsilon_{ijk}$$
+
+```{r}
+colnames(d2)
+
+m2 <- lmer(logCFU ~ Trt*Time + (1|patient_id), data = d2)
+
+isSingular(m2)
+
+m2
+```
+
+```{r}
+DHARMa::simulateResiduals(m2, plot = T)
+```
+
+```{r}
+m2.1 <- lm(logCFU ~ Trt*Time, data = d2)
+DHARMa::simulateResiduals(m2.1, plot = T)
+
+sigma(m2)
+sigma(m2.1)
+```
 
 
 ## Applied example III -- RCBD with negative variance component
 
-RCBD yield trial 
+RCBD yield trial
 
 $$y_{ij}=\mu_0 +T_i+b_j + \varepsilon_{ij}, b_j\sim N(0, \sigma^2_b)$$
 
@@ -72,14 +105,17 @@ $$y_{ij}=\mu_0 +T_i+b_j + \varepsilon_{ij}, b_j\sim N(0, \sigma^2_b)$$
 url <- "https://raw.githubusercontent.com/stat870/fall2025/refs/heads/main/data/rcbd_negvar.csv"
 d7 <- read.csv(url)
 d7$block <- as.factor(d7$block)
-```
 
+m3.1 <- lmer(yield ~ trt + (1|block), data = d7)
+m3.2 <- lm(yield ~ trt + block, data = d7)
+
+sigma(m3.1)
+sigma(m3.2)
+```
 
 ## Applied example IV -- GLMM
 
-A study of gastro-intestinal parasites in dairy cows
-The outcome of interest is fecal egg count/5 gram of feces (fec) (see second figure for summary statistics for fec).
-Independent variables include lact (lactation; multiparous (1)/primiparous (0)), manure (manure spread on pasture; yes(1)/no(0)).
+A study of gastro-intestinal parasites in dairy cows The outcome of interest is fecal egg count/5 gram of feces (fec) (see second figure for summary statistics for fec). Independent variables include lact (lactation; multiparous (1)/primiparous (0)), manure (manure spread on pasture; yes(1)/no(0)).
 
 A good model to describe the data could be
 
@@ -94,5 +130,3 @@ d4 |>
   ggplot(aes(fec))+
   geom_histogram(bins = 15, color = "black", fill = NA)
 ```
-
-

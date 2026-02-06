@@ -12,13 +12,13 @@ Feb 3
 
 Feb 4 
 : Troubleshooting  
-  : [](#)
+  : [html](https://stat799.github.io/spring2026/notes/software-implementation-troubleshooting.html)
 
 Feb 5 
 : Non-linear mixed models 
-  : [](#)
+  : [html](https://stat799.github.io/spring2026/notes/non-linear-mixed-models.html)
 
 Feb 6 
 : Statistical inference 
-  : [](#)
+  : [html](https://stat799.github.io/spring2026/notes/statistical-inference.html)
 

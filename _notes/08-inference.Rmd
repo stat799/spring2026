@@ -1,0 +1,169 @@
+# Statistical inference 
+
+*February 6th, 2026*
+
+## What is statistical inference? 
+
+- "Use math to understand the world" 
+- From raw data to assumptions to understanding (?) 
+- Define target population 
+
+```{r echo=FALSE, fig.align='center', fig.cap="Mind map in a research project.", fig.height=20}
+knitr::include_graphics("../figures/mindmap2.jpg")
+```
+
+
+## The components that go into interpreting results (in the context of LMMs) 
+
+### Estimation 
+
+- Uncertainty in estimation -- where is it coming from?
+- Contrasts 
+- Multiple comparisons 
+
+Let's revisit the Nitrogen example, where we describe yield $y_{ij}$ ($i$th observation in $j$th location) as 
+
+$$y_{ij} \sim N(\mu_{ij}, \sigma^2), \\ \mu_{ij} = \beta_{0j} + \beta_1 x_{ij} + \beta_2 x_{ij}^2. $$
+
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+library(lme4)
+library(ggpubr)
+library(mosaic)
+```
+
+```{r}
+url <- "https://raw.githubusercontent.com/stat799/spring2026/refs/heads/main/data/N_fert.csv"
+data_N <- read.csv(url) |> mutate(sy = as.factor(sy))
+
+data_N |> 
+  ggplot(aes(Total_N, Yield_SY))+
+  geom_point(size=2.5)+
+  labs(x = expression(N[fert]~(kg~ha^{-1})), 
+       y = expression(Yield~(kg~ha^{-1})))+
+  theme_pubr()
+```
+
+
+```{r message=FALSE, warning=FALSE}
+m1 <- lm(Yield_SY ~ Total_N + I(Total_N^2) + sy, data_N)
+DHARMa::simulateResiduals(m1, plot = T)
+```
+
+There's multiple aspects to consider when we want to interpret the data. 
+
+**What was the main objective of the study?**
+
+**Option A: Study the effect of N on yield**
+
+- Consider the mean $f(x) = \mu_{ij} = \beta_{0j} + \beta_1 x_{ij} + \beta_2 x_{ij}^2$. 
+- The slope is then $f'(x) = \beta_1 + 2 \beta_2 x_{ij}$ 
+- The slope depends on the level of $N_{fert}$ we are considering! 
+- Likewise, consider $se(\hat{\beta}_1 + 2 \hat{\beta}_2 x_{ij})$. 
+- How can we estimate the variance of a combination of parameters? 
+- The **delta method** sets the asymptotic variance of a function $g(\cdot)$ of the parameters ($g(\hat\beta)$): 
+  $Var(g(\hat\beta)) \approx \nabla g(\hat\beta)^T Cov(\hat\beta) \nabla g(\hat\beta),$
+  where $\nabla g(\hat\beta)$ is the gradient (vector of first derivatives) of function $g(\cdot)$ with respect to the parameters. 
+- In this case $se(\hat{\beta}_1 + 2 \hat{\beta}_2 x_{ij}) = \sqrt(\widehat{Var}(\hat\beta_1)+ 4 x_{ij}^2\widehat{Var}(\hat\beta_2) + 4x_{ij}\widehat{Cov}(\hat\beta_2))$
+
+```{r}
+(covariance <- vcov(m1))
+msm::deltamethod(g = ~ x2 + (2*x3*0), mean = coef(m1), cov = covariance)
+msm::deltamethod(g = ~ x2 + (2*x3*100), mean = coef(m1), cov = covariance)
+msm::deltamethod(g = ~ x2 + (2*x3*200), mean = coef(m1), cov = covariance)
+```
+
+We can also do this with the emmeans package: 
+
+```{r}
+emtrends(m1, ~ Total_N, "Total_N", at = list(Total_N = c(0, 100, 200)))
+```
+
+**Option B: Study the effect of N on yield**
+
+- If we set $f'(x) =0$ and solve for $x$, we can get the optimum rate. 
+- $ONR = -\frac{\beta_1}{2\beta_2}$ 
+- Consider the uncertainty behind $-\frac{\beta_1}{2\beta_2}$.
+
+```{r}
+(onr_hat <- -coef(m1)[2]/(2*coef(m1)[3]))
+```
+
+Same thing, we can get SE using the delta method: 
+
+```{r}
+(onr_se_hat <- msm::deltamethod(g = ~ -x2/(2*x3), mean = coef(m1), cov = covariance))
+```
+
+
+### Prediction 
+
+- Uncertainty in predictions
+  - Conditional distribution
+  - Marginal distribution 
+
+Recall
+
+$$y_{ij} \sim N(\mu_{ij}, \sigma^2), \\ \mu_{ij} = \beta_{0j} + \beta_1 x_{ij} + \beta_2 x_{ij}^2. $$
+
+- Where is the uncertainty coming from? 
+- How can the uncertainty change depending on how $\beta_{0j}$ is specified? 
+
+
+## On the use of R^2^ for statistical inference 
+
+**Why do so many people use the coefficient of variation R^2^?** 
+
+- Metrics like RMSE are hard to compare across models (different units) 
+- R^2^, however, is dimensionless and much easier to interpret 
+- "The proportion of variability that is explained by the model" 
+
+R^2^ can be computed as
+
+$$R^2 = \frac{SSM}{SST} = \frac{SS_{MODEL}}{SS_{INT-SLOPE}} = 1 - \frac{SSE}{SST},$$
+
+where $R^2$ is the coefficient of variation, $SSM$ is the sum of squares of the model, $SST$ is the total sum of squares (i.e., the residual sum of squares of an intercept-and-slope model). 
+In essence, $R^2$ is the ratio between the $SSE$ of whatever model and the $SSE$ of an intercept-and-slope model.
+
+
+**Uncertainty in R^2^**
+
+```{r message=FALSE, warning=FALSE}
+summary(m1)$r.squared
+```
+
+### Bootstrapped R^2^ 
+
+```{r}
+boot_r2 <- do(1000) * {
+  m_boot <- lm(Yield_SY ~ Total_N + I(Total_N^2), 
+               data = resample(data_N, size = nrow(data_N), replace = TRUE))
+  
+  summary(m_boot)$r.squared
+}
+
+hist(boot_r2$result)
+```
+
+### Out-of-sample R^2^ 
+
+```{r}
+R2_oos <- numeric()
+
+for (i in unique(data_N$sy)) {
+  # leave-one-sy-out 
+  d_is <- data_N |> filter(sy != i)
+  d_oos <- data_N |> filter(sy == i)
+  
+  m <- lm(Yield_SY ~ Total_N + I(Total_N^2), data = d_is)
+  
+  SST_oos <- sum((resid(lm(Yield_SY ~ 1, data =d_oos)))^2)
+  SSE_oos <- sum((d_oos$Yield_SY - predict(m, newdata = d_oos))^2) 
+  
+  R2_oos[i] <- 1 - SSE_oos/SST_oos
+  
+}
+
+R2_oos
+```
+

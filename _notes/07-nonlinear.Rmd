@@ -138,3 +138,9 @@ as.data.frame(y_pred) |>
 
 ```
 
+## Numeric and categorical predictors 
+
+- What is the difference in terms of inference? 
+- Is there one general "best practice"? 
+
+

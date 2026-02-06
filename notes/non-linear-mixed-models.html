@@ -280,6 +280,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.3.1" data-path="statistical-inference.html"><a href="statistical-inference.html#bootstrapped-r2"><i class="fa fa-check"></i><b>8.3.1</b> Bootstrapped R<sup>2</sup></a></li>
 <li class="chapter" data-level="8.3.2" data-path="statistical-inference.html"><a href="statistical-inference.html#out-of-sample-r2"><i class="fa fa-check"></i><b>8.3.2</b> Out-of-sample R<sup>2</sup></a></li>
 </ul></li>
+<li class="chapter" data-level="8.4" data-path="statistical-inference.html"><a href="statistical-inference.html#next-week"><i class="fa fa-check"></i><b>8.4</b> Next week</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="semester-project-1.html"><a href="semester-project-1.html"><i class="fa fa-check"></i><b>9</b> Semester Project</a>
 <ul>
@@ -400,7 +401,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb65-9"><a href="non-linear-mixed-models.html#cb65-9" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="fu">expression</span>(N[fert]<span class="sc">~</span>(kg<span class="sc">~</span>ha<span class="sc">^</span>{<span class="sc">-</span><span class="dv">1</span>})), </span>
 <span id="cb65-10"><a href="non-linear-mixed-models.html#cb65-10" tabindex="-1"></a>       <span class="at">y =</span> <span class="fu">expression</span>(Yield<span class="sc">~</span>(kg<span class="sc">~</span>ha<span class="sc">^</span>{<span class="sc">-</span><span class="dv">1</span>})), </span>
 <span id="cb65-11"><a href="non-linear-mixed-models.html#cb65-11" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">&quot;Site-Year&quot;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-69-1.png" alt="" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-51-1.png" alt="" width="672" /></p>
 <div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="non-linear-mixed-models.html#cb66-1" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> </span>
 <span id="cb66-2"><a href="non-linear-mixed-models.html#cb66-2" tabindex="-1"></a>  <span class="fu">nls</span>(Yield_SY <span class="sc">~</span> Ymax <span class="sc">-</span> s <span class="sc">*</span> <span class="fu">pmax</span>(Ncrit <span class="sc">-</span> Total_N, <span class="dv">0</span>),</span>
 <span id="cb66-3"><a href="non-linear-mixed-models.html#cb66-3" tabindex="-1"></a>    <span class="at">start =</span> <span class="fu">list</span>(<span class="at">Ncrit =</span> <span class="dv">150</span>, <span class="at">Ymax =</span> <span class="dv">14000</span>, <span class="at">s =</span><span class="dv">100</span>),</span>
@@ -435,7 +436,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb67-13"><a href="non-linear-mixed-models.html#cb67-13" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
 <span id="cb67-14"><a href="non-linear-mixed-models.html#cb67-14" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="fu">expression</span>(N[fert]<span class="sc">~</span>(kg<span class="sc">~</span>ha<span class="sc">^</span>{<span class="sc">-</span><span class="dv">1</span>})), </span>
 <span id="cb67-15"><a href="non-linear-mixed-models.html#cb67-15" tabindex="-1"></a>       <span class="at">y =</span> <span class="fu">expression</span>(Yield<span class="sc">~</span>(kg<span class="sc">~</span>ha<span class="sc">^</span>{<span class="sc">-</span><span class="dv">1</span>})))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-71-1.png" alt="" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-53-1.png" alt="" width="672" /></p>
 </div>
 <div id="numeric-and-categorical-predictors" class="section level2 hasAnchor" number="7.5">
 <h2><span class="header-section-number">7.5</span> Numeric and categorical predictors<a href="non-linear-mixed-models.html#numeric-and-categorical-predictors" class="anchor-section" aria-label="Anchor link to header"></a></h2>

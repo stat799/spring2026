@@ -280,6 +280,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.3.1" data-path="statistical-inference.html"><a href="statistical-inference.html#bootstrapped-r2"><i class="fa fa-check"></i><b>8.3.1</b> Bootstrapped R<sup>2</sup></a></li>
 <li class="chapter" data-level="8.3.2" data-path="statistical-inference.html"><a href="statistical-inference.html#out-of-sample-r2"><i class="fa fa-check"></i><b>8.3.2</b> Out-of-sample R<sup>2</sup></a></li>
 </ul></li>
+<li class="chapter" data-level="8.4" data-path="statistical-inference.html"><a href="statistical-inference.html#next-week"><i class="fa fa-check"></i><b>8.4</b> Next week</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="semester-project-1.html"><a href="semester-project-1.html"><i class="fa fa-check"></i><b>9</b> Semester Project</a>
 <ul>
@@ -321,7 +322,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>From raw data to assumptions to understanding (?)</li>
 <li>Define target population</li>
 </ul>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-72"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-54"></span>
 <img src="../figures/mindmap2.jpg" alt="Mind map in a research project." width="960" />
 <p class="caption">
 Figure 8.1: Mind map in a research project.
@@ -352,10 +353,10 @@ Figure 8.1: Mind map in a research project.
 <span id="cb69-7"><a href="statistical-inference.html#cb69-7" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="fu">expression</span>(N[fert]<span class="sc">~</span>(kg<span class="sc">~</span>ha<span class="sc">^</span>{<span class="sc">-</span><span class="dv">1</span>})), </span>
 <span id="cb69-8"><a href="statistical-inference.html#cb69-8" tabindex="-1"></a>       <span class="at">y =</span> <span class="fu">expression</span>(Yield<span class="sc">~</span>(kg<span class="sc">~</span>ha<span class="sc">^</span>{<span class="sc">-</span><span class="dv">1</span>})))<span class="sc">+</span></span>
 <span id="cb69-9"><a href="statistical-inference.html#cb69-9" tabindex="-1"></a>  <span class="fu">theme_pubr</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-74-1.png" alt="" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-56-1.png" alt="" width="672" /></p>
 <div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="statistical-inference.html#cb70-1" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Yield_SY <span class="sc">~</span> Total_N <span class="sc">+</span> <span class="fu">I</span>(Total_N<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> sy, data_N)</span>
 <span id="cb70-2"><a href="statistical-inference.html#cb70-2" tabindex="-1"></a>DHARMa<span class="sc">::</span><span class="fu">simulateResiduals</span>(m1, <span class="at">plot =</span> T)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-75-1.png" alt="" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-57-1.png" alt="" width="672" /></p>
 <pre><code>## Object of Class DHARMa with simulated residuals based on 250 simulations with refit = FALSE . See ?DHARMa::simulateResiduals for help. 
 ##  
 ## Scaled residual values: 0.168 0.54 0.004 0.904 0.764 0.428 0.02 0.18 0.596 0.868 0.744 0.744 0.352 0.748 0.116 0.676 0.08 0.256 0.46 0.768 ...</code></pre>
@@ -422,8 +423,9 @@ where <span class="math inline">\(\nabla g(\hat\beta)\)</span> is the gradient (
 <p>Recall</p>
 <p><span class="math display">\[y_{ij} \sim N(\mu_{ij}, \sigma^2), \\ \mu_{ij} = \beta_{0j} + \beta_1 x_{ij} + \beta_2 x_{ij}^2. \]</span></p>
 <ul>
-<li>Where is the uncertainty coming from?</li>
-<li>How can the uncertainty change depending on how <span class="math inline">\(\beta_{0j}\)</span> is specified?</li>
+<li><p>Where is the uncertainty coming from?</p></li>
+<li><p>How can the uncertainty change depending on how <span class="math inline">\(\beta_{0j}\)</span> is specified?</p></li>
+<li><p>Model evaluation criteria for prediction-oriented models</p></li>
 </ul>
 </div>
 </div>
@@ -452,7 +454,7 @@ In essence, <span class="math inline">\(R^2\)</span> is the ratio between the <s
 <span id="cb88-6"><a href="statistical-inference.html#cb88-6" tabindex="-1"></a>}</span>
 <span id="cb88-7"><a href="statistical-inference.html#cb88-7" tabindex="-1"></a></span>
 <span id="cb88-8"><a href="statistical-inference.html#cb88-8" tabindex="-1"></a><span class="fu">hist</span>(boot_r2<span class="sc">$</span>result)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-81-1.png" alt="" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-63-1.png" alt="" width="672" /></p>
 </div>
 <div id="out-of-sample-r2" class="section level3 hasAnchor" number="8.3.2">
 <h3><span class="header-section-number">8.3.2</span> Out-of-sample R<sup>2</sup><a href="statistical-inference.html#out-of-sample-r2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -475,8 +477,23 @@ In essence, <span class="math inline">\(R^2\)</span> is the ratio between the <s
 <span id="cb89-17"><a href="statistical-inference.html#cb89-17" tabindex="-1"></a>R2_oos</span></code></pre></div>
 <pre><code>##         1         4         2         3         5 
 ## 0.7341245 0.8376546 0.3494678 0.3219911 0.9103108</code></pre>
-
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="statistical-inference.html#cb91-1" tabindex="-1"></a><span class="fu">mean</span>(R2_oos)</span></code></pre></div>
+<pre><code>## [1] 0.6307098</code></pre>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="statistical-inference.html#cb93-1" tabindex="-1"></a><span class="fu">sd</span>(R2_oos)</span></code></pre></div>
+<pre><code>## [1] 0.2766323</code></pre>
+<ul>
+<li>Compare the R<sup>2</sup></li>
+</ul>
 </div>
+</div>
+<div id="next-week" class="section level2 hasAnchor" number="8.4">
+<h2><span class="header-section-number">8.4</span> Next week<a href="statistical-inference.html#next-week" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Monday 2.30 pm</li>
+<li>HW1 due WEDNESDAY</li>
+<li>Thursday 2.30pm</li>
+</ul>
+
 </div>
 </div>
             </section>

@@ -109,6 +109,7 @@ $$y_{ij} \sim N(\mu_{ij}, \sigma^2), \\ \mu_{ij} = \beta_{0j} + \beta_1 x_{ij} +
 - Where is the uncertainty coming from? 
 - How can the uncertainty change depending on how $\beta_{0j}$ is specified? 
 
+- Model evaluation criteria for prediction-oriented models
 
 ## On the use of R^2^ for statistical inference 
 
@@ -165,5 +166,16 @@ for (i in unique(data_N$sy)) {
 }
 
 R2_oos
+mean(R2_oos)
+sd(R2_oos)
 ```
 
+- Compare the R^2^ 
+
+
+
+## Next week 
+
+- Monday 2.30 pm 
+- HW1 due WEDNESDAY 
+- Thursday 2.30pm 

@@ -10,7 +10,7 @@
   - Last paragraph states the knowledge gap, and clearly mentions objectives. 
   - Using wording like "the objectives were ..." 
 
-![Structure of a scientific paper (Figure 1 in Turbek et al., 2016)](https://esajournals.onlinelibrary.wiley.com/cms/asset/9d528183-2358-4087-aa27-ca1cfac26f2e/bes21258-fig-0001-m.jpg){width=250px}
+![Structure of a scientific paper (Figure 1 in Turbek et al., 2016)](https://esajournals.onlinelibrary.wiley.com/cms/asset/9d528183-2358-4087-aa27-ca1cfac26f2e/bes21258-fig-0001-m.jpg){width=400px}
 
 
 - **M&M** 
@@ -26,19 +26,19 @@
   - Connect the topic sentences in the discussion 
   
 - [Writing Center (KSU)](https://www.k-state.edu/english/student-success/writingcenter/) 
-- [Scientific papers](https://www.nature.com/scitable/topicpage/scientific-papers-13815490/)
+- [Writing scientific papers](https://www.nature.com/scitable/topicpage/scientific-papers-13815490/)
 
 ### Paragraphs 
 
 - One idea per paragraph 
 - One (bigger) idea per paper 
-- Structure of a paragraph [[link](https://writingcenter.fas.harvard.edu/anatomy-body-paragraph)]
+- Structure of a paragraph [[link to resource](https://writingcenter.fas.harvard.edu/anatomy-body-paragraph)]
   - Topic sentence - presents the idea/claim of the paragraph 
   - Evidence 
   - Analysis 
   - Conclusion 
 
-![Structure of a paragraph](https://writingcenter.fas.harvard.edu/sites/g/files/omnuum451/files/2024-02/Anatomy%20of%20a%20Body%20Paragraph--accessible-3-Recovered_0.png){width=250px}
+![Structure of a paragraph](https://writingcenter.fas.harvard.edu/sites/g/files/omnuum451/files/2024-02/Anatomy%20of%20a%20Body%20Paragraph--accessible-3-Recovered_0.png){width=400px}
 
 
 ## Communicating statistical analyses 
@@ -46,7 +46,7 @@
 - Discipline-specific criteria
 - Statistical notation versus rhetoric  
 
-Some examples from this class
+Some examples from this class. 
 
 ## Communicating results and uncertainty
 
@@ -57,7 +57,7 @@ Communicating point estimates is relatively easy. So far, we can consider the po
 Confidence intervals are one of the most frequently mis-interpreted quantities. 
 
 - **A safe approach**: "The mean is between `CIlow` and `CIhigh` [units], with 95% confidence."
-- Statistical tests, P values, confidence intervals, and power: a guide to misinterpretation [[link](https://link.springer.com/article/10.1007/s10654-016-0149-3)]
+- Statistical tests, P values, confidence intervals, and power: a guide to misinterpretation [[link to paper](https://link.springer.com/article/10.1007/s10654-016-0149-3)]
 
 ```{r message=FALSE, warning=FALSE}
 library(tidyverse)
@@ -108,8 +108,8 @@ Hypothesis test evaluate the probability of observing the current data under a n
 **Things to consider:**
 
 - The question reflected in some $H_0$ is not always the real research question. 
-- The Difference Between “Significant” and “Not Significant” is not Itself Statistically Significant [[link](https://sites.stat.columbia.edu/gelman/research/published/signif4.pdf)]
-- ASA's statement on p-values [[link](https://www.tandfonline.com/doi/full/10.1080/00031305.2016.1154108#d1e167)]
+- The Difference Between “Significant” and “Not Significant” is not Itself Statistically Significant [[link to paper](https://sites.stat.columbia.edu/gelman/research/published/signif4.pdf)]
+- ASA's statement on p-values [[link to paper](https://www.tandfonline.com/doi/full/10.1080/00031305.2016.1154108#d1e167)]
 
 
 **Different types of hypothesis tests**
@@ -152,7 +152,7 @@ At that level, the uncertainty is only coming from observing new data, $\sigma^2
 VarCorr(m_multilevel)
 ```
 
-- Discuss marginal inference versus conditional inference 
+- Discuss marginal inference versus conditional inference. 
 
 
 ## Reading 
@@ -161,20 +161,20 @@ VarCorr(m_multilevel)
 
 **Writing** 
 
-- Draft no. 4 (John McPhee) [[link](https://www.amazon.com/Draft-No-4-Writing-Process/dp/0374142742)] 
-- Learning how to learn (Oakley et al.) [[link](https://www.amazon.com/Learning-How-Learn-Spending-Studying/dp/0143132547)]
+- Draft no. 4 (John McPhee) [[link to book](https://www.amazon.com/Draft-No-4-Writing-Process/dp/0374142742)] 
+- Learning how to learn (Oakley et al.) [[link to book](https://www.amazon.com/Learning-How-Learn-Spending-Studying/dp/0143132547)]
 
 
-**Data viz** 
+**Data visualization** 
 
-- How to get better at embracing unknowns (J Hullman) [[link](https://www.scientificamerican.com/article/how-to-get-better-at-embracing-unknowns/)] 
+- How to get better at embracing unknowns (J Hullman) [[link to article](https://www.scientificamerican.com/article/how-to-get-better-at-embracing-unknowns/)] 
   - *"The least effective way to present uncertainty is to not show it at all."* 
-- Visualizing Uncertainty About the Future (Spiegelhalter et al.) [[link](https://doi.org/10.1126/science.1191181)] 
+- Visualizing Uncertainty About the Future (Spiegelhalter et al.) [[link to article](https://doi.org/10.1126/science.1191181)] 
 
 
 **Other**
 
-- Cross-validation strategies for data with temporal, spatial, hierarchical, or phylogenetic structure [[link](https://nsojournals.onlinelibrary.wiley.com/doi/10.1111/ecog.02881)]
+- Cross-validation strategies for data with temporal, spatial, hierarchical, or phylogenetic structure [[link to article](https://nsojournals.onlinelibrary.wiley.com/doi/10.1111/ecog.02881)]
 
 
 

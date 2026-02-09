@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Day 9 Communicating results | STAT 799 - Topics in Statistics: Applied linear mixed models in agriculture and life sciences</title>
+  <meta name="description" content="Day 9 Communicating results | STAT 799 - Topics in Statistics: Applied linear mixed models in agriculture and life sciences" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Day 9 Communicating results | STAT 799 - Topics in Statistics: Applied linear mixed models in agriculture and life sciences" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Day 9 Communicating results | STAT 799 - Topics in Statistics: Applied linear mixed models in agriculture and life sciences" />
+  
+  
+  
+
+<meta name="author" content="Josefina Lacasa" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="statistical-inference.html"/>
+<link rel="next" href="semester-project-1.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">STAT 799</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome to STAT 799!</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#about-this-course"><i class="fa fa-check"></i><b>1.1</b> About this course:</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#logistics"><i class="fa fa-check"></i><b>1.1.1</b> Logistics</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#learning-goals"><i class="fa fa-check"></i><b>1.2</b> Learning goals</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#on-notation"><i class="fa fa-check"></i><b>1.3</b> On notation</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#semester-project"><i class="fa fa-check"></i><b>1.4</b> Semester project</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#roadmap-of-this-course"><i class="fa fa-check"></i><b>1.5</b> Roadmap of this course</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#getting-started-with-statistical-modeling"><i class="fa fa-check"></i><b>1.6</b> Getting started with statistical modeling</a>
+<ul>
+<li class="chapter" data-level="1.6.1" data-path="index.html"><a href="index.html#writing-a-statistical-model"><i class="fa fa-check"></i><b>1.6.1</b> Writing a statistical model</a></li>
+<li class="chapter" data-level="1.6.2" data-path="index.html"><a href="index.html#what-are-linear-models"><i class="fa fa-check"></i><b>1.6.2</b> What are linear models?</a></li>
+<li class="chapter" data-level="1.6.3" data-path="index.html"><a href="index.html#vectorized-notation"><i class="fa fa-check"></i><b>1.6.3</b> Vectorized notation</a></li>
+<li class="chapter" data-level="1.6.4" data-path="index.html"><a href="index.html#vectorized-notation---cont."><i class="fa fa-check"></i><b>1.6.4</b> Vectorized notation - cont.</a></li>
+<li class="chapter" data-level="1.6.5" data-path="index.html"><a href="index.html#continuous-and-categorical-predictors"><i class="fa fa-check"></i><b>1.6.5</b> Continuous and categorical predictors</a></li>
+<li class="chapter" data-level="1.6.6" data-path="index.html"><a href="index.html#three-step-approach-to-writing-a-statistical-model"><i class="fa fa-check"></i><b>1.6.6</b> Three-step approach to writing a statistical model</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#review"><i class="fa fa-check"></i><b>1.7</b> Review</a>
+<ul>
+<li class="chapter" data-level="1.7.1" data-path="index.html"><a href="index.html#probability-distributions"><i class="fa fa-check"></i><b>1.7.1</b> Probability distributions</a></li>
+<li class="chapter" data-level="1.7.2" data-path="index.html"><a href="index.html#mean-variance"><i class="fa fa-check"></i><b>1.7.2</b> Mean, Variance</a></li>
+<li class="chapter" data-level="1.7.3" data-path="index.html"><a href="index.html#covariance"><i class="fa fa-check"></i><b>1.7.3</b> Covariance</a></li>
+</ul></li>
+<li class="chapter" data-level="1.8" data-path="index.html"><a href="index.html#the-most-common-statistical-model"><i class="fa fa-check"></i><b>1.8</b> The most common statistical model</a>
+<ul>
+<li class="chapter" data-level="1.8.1" data-path="index.html"><a href="index.html#properties-of-the-general-linear-model"><i class="fa fa-check"></i><b>1.8.1</b> Properties of the general linear model</a></li>
+</ul></li>
+<li class="chapter" data-level="1.9" data-path="index.html"><a href="index.html#uncertainty"><i class="fa fa-check"></i><b>1.9</b> Uncertainty</a>
+<ul>
+<li class="chapter" data-level="1.9.1" data-path="index.html"><a href="index.html#types-of-uncertainty"><i class="fa fa-check"></i><b>1.9.1</b> Types of uncertainty</a></li>
+<li class="chapter" data-level="1.9.2" data-path="index.html"><a href="index.html#types-of-uncertainty-in-the-general-linear-model"><i class="fa fa-check"></i><b>1.9.2</b> Types of uncertainty in the general linear model</a></li>
+<li class="chapter" data-level="1.9.3" data-path="index.html"><a href="index.html#uncertainty---applied-example"><i class="fa fa-check"></i><b>1.9.3</b> Uncertainty - applied example</a></li>
+</ul></li>
+<li class="chapter" data-level="1.10" data-path="index.html"><a href="index.html#coming-up-tomorrow"><i class="fa fa-check"></i><b>1.10</b> Coming up tomorrow:</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="mixed-models-i.html"><a href="mixed-models-i.html"><i class="fa fa-check"></i><b>2</b> Mixed models I</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="mixed-models-i.html"><a href="mixed-models-i.html#recall-the-most-common-statistical-model"><i class="fa fa-check"></i><b>2.1</b> Recall the most common statistical model</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="mixed-models-i.html"><a href="mixed-models-i.html#types-of-predictors"><i class="fa fa-check"></i><b>2.1.1</b> Types of predictors</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="mixed-models-i.html"><a href="mixed-models-i.html#variations-to-that-very-common-statistical-model"><i class="fa fa-check"></i><b>2.2</b> Variations to that very common statistical model</a></li>
+<li class="chapter" data-level="2.3" data-path="mixed-models-i.html"><a href="mixed-models-i.html#relaxing-the-assumption-of-independence"><i class="fa fa-check"></i><b>2.3</b> Relaxing the assumption of independence</a></li>
+<li class="chapter" data-level="2.4" data-path="mixed-models-i.html"><a href="mixed-models-i.html#fixed-effects-and-random-effects"><i class="fa fa-check"></i><b>2.4</b> Fixed effects and random effects</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="mixed-models-i.html"><a href="mixed-models-i.html#going-from-fixed-effects-to-fixedrandom-effects"><i class="fa fa-check"></i><b>2.4.1</b> Going from fixed effects to fixed+random effects</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="mixed-models-i.html"><a href="mixed-models-i.html#generalities-on-mixed-models"><i class="fa fa-check"></i><b>2.5</b> Generalities on mixed models</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="mixed-models-i.html"><a href="mixed-models-i.html#random-effects"><i class="fa fa-check"></i><b>2.5.1</b> Random effects</a></li>
+<li class="chapter" data-level="2.5.2" data-path="mixed-models-i.html"><a href="mixed-models-i.html#estimation-of-parameters"><i class="fa fa-check"></i><b>2.5.2</b> Estimation of parameters</a></li>
+<li class="chapter" data-level="2.5.3" data-path="mixed-models-i.html"><a href="mixed-models-i.html#fixed-effects-versus-random-effects"><i class="fa fa-check"></i><b>2.5.3</b> Fixed effects versus random effects</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="mixed-models-i.html"><a href="mixed-models-i.html#applied-examples"><i class="fa fa-check"></i><b>2.6</b> Applied examples</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="mixed-models-i.html"><a href="mixed-models-i.html#example-a-independence-holds"><i class="fa fa-check"></i><b>2.6.1</b> Example A – independence holds</a></li>
+<li class="chapter" data-level="2.6.2" data-path="mixed-models-i.html"><a href="mixed-models-i.html#example-b-simple-groups-of-similar-observations"><i class="fa fa-check"></i><b>2.6.2</b> Example B – simple groups of similar observations</a></li>
+<li class="chapter" data-level="2.6.3" data-path="mixed-models-i.html"><a href="mixed-models-i.html#example-c-different-groups-of-similar-observations"><i class="fa fa-check"></i><b>2.6.3</b> Example C – different groups of similar observations</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="mixed-models-i.html"><a href="mixed-models-i.html#coming-up-tomorrow-1"><i class="fa fa-check"></i><b>2.7</b> Coming up tomorrow:</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="mixed-models-ii.html"><a href="mixed-models-ii.html"><i class="fa fa-check"></i><b>3</b> Mixed models II</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="mixed-models-ii.html"><a href="mixed-models-ii.html#generalities-of-linear-mixed-models"><i class="fa fa-check"></i><b>3.1</b> Generalities of linear mixed models</a></li>
+<li class="chapter" data-level="3.2" data-path="mixed-models-ii.html"><a href="mixed-models-ii.html#inference-from-linear-mixed-models"><i class="fa fa-check"></i><b>3.2</b> Inference from linear mixed models</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="mixed-models-ii.html"><a href="mixed-models-ii.html#balanced-designs-blocks-as-fixed-or-as-random"><i class="fa fa-check"></i><b>3.2.1</b> Balanced designs – blocks as fixed or as random?</a></li>
+<li class="chapter" data-level="3.2.2" data-path="mixed-models-ii.html"><a href="mixed-models-ii.html#unbalanced-designs"><i class="fa fa-check"></i><b>3.2.2</b> Unbalanced designs</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="mixed-models-ii.html"><a href="mixed-models-ii.html#coming-up-monday"><i class="fa fa-check"></i><b>3.3</b> Coming up Monday:</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="mixed-models-iii-model-checking-anova-statistical-inference.html"><a href="mixed-models-iii-model-checking-anova-statistical-inference.html"><i class="fa fa-check"></i><b>4</b> Mixed models III – model checking, ANOVA, statistical inference</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="mixed-models-iii-model-checking-anova-statistical-inference.html"><a href="mixed-models-iii-model-checking-anova-statistical-inference.html#review-1"><i class="fa fa-check"></i><b>4.1</b> Review</a></li>
+<li class="chapter" data-level="4.2" data-path="mixed-models-iii-model-checking-anova-statistical-inference.html"><a href="mixed-models-iii-model-checking-anova-statistical-inference.html#model-checking-and-comparison"><i class="fa fa-check"></i><b>4.2</b> Model checking and comparison</a></li>
+<li class="chapter" data-level="4.3" data-path="mixed-models-iii-model-checking-anova-statistical-inference.html"><a href="mixed-models-iii-model-checking-anova-statistical-inference.html#model-checking"><i class="fa fa-check"></i><b>4.3</b> Model checking</a></li>
+<li class="chapter" data-level="4.4" data-path="mixed-models-iii-model-checking-anova-statistical-inference.html"><a href="mixed-models-iii-model-checking-anova-statistical-inference.html#simulation-based-model-checking"><i class="fa fa-check"></i><b>4.4</b> Simulation-based model-checking</a></li>
+<li class="chapter" data-level="4.5" data-path="mixed-models-iii-model-checking-anova-statistical-inference.html"><a href="mixed-models-iii-model-checking-anova-statistical-inference.html#some-useful-metrics-to-compare-models"><i class="fa fa-check"></i><b>4.5</b> Some useful metrics to compare models</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="mixed-models-iii-model-checking-anova-statistical-inference.html"><a href="mixed-models-iii-model-checking-anova-statistical-inference.html#root-mean-squared-error"><i class="fa fa-check"></i><b>4.5.1</b> Root mean squared error</a></li>
+<li class="chapter" data-level="4.5.2" data-path="mixed-models-iii-model-checking-anova-statistical-inference.html"><a href="mixed-models-iii-model-checking-anova-statistical-inference.html#the-coefficient-of-determination-r2"><i class="fa fa-check"></i><b>4.5.2</b> The coefficient of determination R<sup>2</sup></a></li>
+<li class="chapter" data-level="4.5.3" data-path="mixed-models-iii-model-checking-anova-statistical-inference.html"><a href="mixed-models-iii-model-checking-anova-statistical-inference.html#adjusted-r2"><i class="fa fa-check"></i><b>4.5.3</b> Adjusted R<sup>2</sup></a></li>
+<li class="chapter" data-level="4.5.4" data-path="mixed-models-iii-model-checking-anova-statistical-inference.html"><a href="mixed-models-iii-model-checking-anova-statistical-inference.html#some-issues-with-r2"><i class="fa fa-check"></i><b>4.5.4</b> Some issues with R<sup>2</sup></a></li>
+<li class="chapter" data-level="4.5.5" data-path="mixed-models-iii-model-checking-anova-statistical-inference.html"><a href="mixed-models-iii-model-checking-anova-statistical-inference.html#akaike-information-criterion-aic"><i class="fa fa-check"></i><b>4.5.5</b> Akaike Information Criterion (AIC)</a></li>
+<li class="chapter" data-level="4.5.6" data-path="mixed-models-iii-model-checking-anova-statistical-inference.html"><a href="mixed-models-iii-model-checking-anova-statistical-inference.html#bayesian-information-criterion-bic"><i class="fa fa-check"></i><b>4.5.6</b> Bayesian Information Criterion (BIC)</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="mixed-models-iii-model-checking-anova-statistical-inference.html"><a href="mixed-models-iii-model-checking-anova-statistical-inference.html#analysis-of-variance-anova"><i class="fa fa-check"></i><b>4.6</b> Analysis of variance – ANOVA</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="mixed-models-iii-model-checking-anova-statistical-inference.html"><a href="mixed-models-iii-model-checking-anova-statistical-inference.html#this-is-how-you-build-an-anova-table"><i class="fa fa-check"></i><b>4.6.1</b> This is how you build an ANOVA table</a></li>
+<li class="chapter" data-level="4.6.2" data-path="mixed-models-iii-model-checking-anova-statistical-inference.html"><a href="mixed-models-iii-model-checking-anova-statistical-inference.html#the-elements-of-the-anova"><i class="fa fa-check"></i><b>4.6.2</b> The elements of the ANOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="mixed-models-iii-model-checking-anova-statistical-inference.html"><a href="mixed-models-iii-model-checking-anova-statistical-inference.html#critiques-of-anova-over-the-years"><i class="fa fa-check"></i><b>4.7</b> Critiques of ANOVA over the years</a></li>
+<li class="chapter" data-level="4.8" data-path="mixed-models-iii-model-checking-anova-statistical-inference.html"><a href="mixed-models-iii-model-checking-anova-statistical-inference.html#a-different-take-on-anova-using-multilevel-modeling"><i class="fa fa-check"></i><b>4.8</b> A different take on ANOVA using multilevel modeling</a>
+<ul>
+<li class="chapter" data-level="4.8.1" data-path="mixed-models-iii-model-checking-anova-statistical-inference.html"><a href="mixed-models-iii-model-checking-anova-statistical-inference.html#an-applied-example"><i class="fa fa-check"></i><b>4.8.1</b> An applied example</a></li>
+</ul></li>
+<li class="chapter" data-level="4.9" data-path="mixed-models-iii-model-checking-anova-statistical-inference.html"><a href="mixed-models-iii-model-checking-anova-statistical-inference.html#coming-up-tomorrow-2"><i class="fa fa-check"></i><b>4.9</b> Coming up tomorrow:</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="generalized-linear-mixed-models.html"><a href="generalized-linear-mixed-models.html"><i class="fa fa-check"></i><b>5</b> Generalized linear mixed models</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="generalized-linear-mixed-models.html"><a href="generalized-linear-mixed-models.html#glmms"><i class="fa fa-check"></i><b>5.1</b> GLMMs</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="generalized-linear-mixed-models.html"><a href="generalized-linear-mixed-models.html#review-building-a-statistical-model"><i class="fa fa-check"></i><b>5.1.1</b> Review – building a statistical model</a></li>
+<li class="chapter" data-level="5.1.2" data-path="generalized-linear-mixed-models.html"><a href="generalized-linear-mixed-models.html#generalities-of-glmms"><i class="fa fa-check"></i><b>5.1.2</b> Generalities of GLMMs</a></li>
+<li class="chapter" data-level="5.1.3" data-path="generalized-linear-mixed-models.html"><a href="generalized-linear-mixed-models.html#implications-for-model-fitting"><i class="fa fa-check"></i><b>5.1.3</b> Implications for model fitting</a></li>
+<li class="chapter" data-level="5.1.4" data-path="generalized-linear-mixed-models.html"><a href="generalized-linear-mixed-models.html#model-diagnostics"><i class="fa fa-check"></i><b>5.1.4</b> Model diagnostics</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="generalized-linear-mixed-models.html"><a href="generalized-linear-mixed-models.html#applied-example-picking-distributions"><i class="fa fa-check"></i><b>5.2</b> Applied example – picking distributions</a></li>
+<li class="chapter" data-level="5.3" data-path="generalized-linear-mixed-models.html"><a href="generalized-linear-mixed-models.html#reading"><i class="fa fa-check"></i><b>5.3</b> Reading</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="software-implementation-troubleshooting.html"><a href="software-implementation-troubleshooting.html"><i class="fa fa-check"></i><b>6</b> Software implementation &amp; troubleshooting</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="software-implementation-troubleshooting.html"><a href="software-implementation-troubleshooting.html#software-implementation"><i class="fa fa-check"></i><b>6.1</b> Software implementation</a></li>
+<li class="chapter" data-level="6.2" data-path="software-implementation-troubleshooting.html"><a href="software-implementation-troubleshooting.html#troubleshooting"><i class="fa fa-check"></i><b>6.2</b> Troubleshooting</a></li>
+<li class="chapter" data-level="6.3" data-path="software-implementation-troubleshooting.html"><a href="software-implementation-troubleshooting.html#in-class-example"><i class="fa fa-check"></i><b>6.3</b> In-class example</a></li>
+<li class="chapter" data-level="6.4" data-path="software-implementation-troubleshooting.html"><a href="software-implementation-troubleshooting.html#coming-up-tomorrow-3"><i class="fa fa-check"></i><b>6.4</b> Coming up tomorrow:</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="non-linear-mixed-models.html"><a href="non-linear-mixed-models.html"><i class="fa fa-check"></i><b>7</b> Non-linear mixed models</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="non-linear-mixed-models.html"><a href="non-linear-mixed-models.html#the-general-linear-model"><i class="fa fa-check"></i><b>7.1</b> The general linear model</a></li>
+<li class="chapter" data-level="7.2" data-path="non-linear-mixed-models.html"><a href="non-linear-mixed-models.html#revisiting-linearity"><i class="fa fa-check"></i><b>7.2</b> Revisiting linearity</a></li>
+<li class="chapter" data-level="7.3" data-path="non-linear-mixed-models.html"><a href="non-linear-mixed-models.html#some-benefits-of-non-linear-models"><i class="fa fa-check"></i><b>7.3</b> Some benefits of non-linear models</a></li>
+<li class="chapter" data-level="7.4" data-path="non-linear-mixed-models.html"><a href="non-linear-mixed-models.html#applied-example"><i class="fa fa-check"></i><b>7.4</b> Applied example</a></li>
+<li class="chapter" data-level="7.5" data-path="non-linear-mixed-models.html"><a href="non-linear-mixed-models.html#numeric-and-categorical-predictors"><i class="fa fa-check"></i><b>7.5</b> Numeric and categorical predictors</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="statistical-inference.html"><a href="statistical-inference.html"><i class="fa fa-check"></i><b>8</b> Statistical inference</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="statistical-inference.html"><a href="statistical-inference.html#what-is-statistical-inference"><i class="fa fa-check"></i><b>8.1</b> What is statistical inference?</a></li>
+<li class="chapter" data-level="8.2" data-path="statistical-inference.html"><a href="statistical-inference.html#the-components-that-go-into-interpreting-results-in-the-context-of-lmms"><i class="fa fa-check"></i><b>8.2</b> The components that go into interpreting results (in the context of LMMs)</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="statistical-inference.html"><a href="statistical-inference.html#estimation"><i class="fa fa-check"></i><b>8.2.1</b> Estimation</a></li>
+<li class="chapter" data-level="8.2.2" data-path="statistical-inference.html"><a href="statistical-inference.html#prediction"><i class="fa fa-check"></i><b>8.2.2</b> Prediction</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="statistical-inference.html"><a href="statistical-inference.html#on-the-use-of-r2-for-statistical-inference"><i class="fa fa-check"></i><b>8.3</b> On the use of R<sup>2</sup> for statistical inference</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="statistical-inference.html"><a href="statistical-inference.html#bootstrapped-r2"><i class="fa fa-check"></i><b>8.3.1</b> Bootstrapped R<sup>2</sup></a></li>
+<li class="chapter" data-level="8.3.2" data-path="statistical-inference.html"><a href="statistical-inference.html#out-of-sample-r2"><i class="fa fa-check"></i><b>8.3.2</b> Out-of-sample R<sup>2</sup></a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="statistical-inference.html"><a href="statistical-inference.html#next-week"><i class="fa fa-check"></i><b>8.4</b> Next week</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="communicating-results.html"><a href="communicating-results.html"><i class="fa fa-check"></i><b>9</b> Communicating results</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="communicating-results.html"><a href="communicating-results.html#scientific-writing"><i class="fa fa-check"></i><b>9.1</b> Scientific writing</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="communicating-results.html"><a href="communicating-results.html#paragraphs"><i class="fa fa-check"></i><b>9.1.1</b> Paragraphs</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="communicating-results.html"><a href="communicating-results.html#communicating-statistical-analyses"><i class="fa fa-check"></i><b>9.2</b> Communicating statistical analyses</a></li>
+<li class="chapter" data-level="9.3" data-path="communicating-results.html"><a href="communicating-results.html#communicating-results-and-uncertainty"><i class="fa fa-check"></i><b>9.3</b> Communicating results and uncertainty</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="communicating-results.html"><a href="communicating-results.html#example"><i class="fa fa-check"></i><b>9.3.1</b> Example</a></li>
+<li class="chapter" data-level="9.3.2" data-path="communicating-results.html"><a href="communicating-results.html#hypothesis-tests-and-p-values"><i class="fa fa-check"></i><b>9.3.2</b> Hypothesis tests and p-values</a></li>
+<li class="chapter" data-level="9.3.3" data-path="communicating-results.html"><a href="communicating-results.html#other-results-in-mixed-effects-models"><i class="fa fa-check"></i><b>9.3.3</b> Other results in mixed-effects models</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="communicating-results.html"><a href="communicating-results.html#reading-1"><i class="fa fa-check"></i><b>9.4</b> Reading</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="semester-project-1.html"><a href="semester-project-1.html"><i class="fa fa-check"></i><b>10</b> Semester Project</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="semester-project-1.html"><a href="semester-project-1.html#learning-objectives"><i class="fa fa-check"></i><b>10.1</b> Learning objectives</a></li>
+<li class="chapter" data-level="10.2" data-path="semester-project-1.html"><a href="semester-project-1.html#partial-deadlines"><i class="fa fa-check"></i><b>10.2</b> Partial deadlines</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="semester-project-1.html"><a href="semester-project-1.html#project-proposal---due-sunday-february-1st-at-noon-ct"><i class="fa fa-check"></i><b>10.2.1</b> Project proposal - Due Sunday February 1st at noon CT</a></li>
+<li class="chapter" data-level="10.2.2" data-path="semester-project-1.html"><a href="semester-project-1.html#written-report---due-wednesday-april-20-at-2pm-ct-for-peer-review"><i class="fa fa-check"></i><b>10.2.2</b> Written report - Due Wednesday April 20 at 2pm CT for peer review</a></li>
+<li class="chapter" data-level="10.2.3" data-path="semester-project-1.html"><a href="semester-project-1.html#oral-presentation---somewhere-between-may-1---may-9"><i class="fa fa-check"></i><b>10.2.3</b> Oral presentation - Somewhere between May 1 - May 9</a></li>
+<li class="chapter" data-level="10.2.4" data-path="semester-project-1.html"><a href="semester-project-1.html#written-report-and-reproducible-tutorial---due-may-15"><i class="fa fa-check"></i><b>10.2.4</b> Written report and reproducible tutorial - Due May 15</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">STAT 799 - Topics in Statistics: Applied linear mixed models in agriculture and life sciences</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="communicating-results" class="section level1 hasAnchor" number="9">
+<h1><span class="header-section-number">Day 9</span> Communicating results<a href="communicating-results.html#communicating-results" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><em>February 9th, 2026</em></p>
+<div id="scientific-writing" class="section level2 hasAnchor" number="9.1">
+<h2><span class="header-section-number">9.1</span> Scientific writing<a href="communicating-results.html#scientific-writing" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><strong>Introduction</strong>
+<ul>
+<li>More general –&gt; more specific</li>
+<li>Last paragraph states the knowledge gap, and clearly mentions objectives.</li>
+<li>Using wording like “the objectives were …”</li>
+</ul></li>
+</ul>
+<div class="float">
+<img src="https://esajournals.onlinelibrary.wiley.com/cms/asset/9d528183-2358-4087-aa27-ca1cfac26f2e/bes21258-fig-0001-m.jpg" width="250" alt="Structure of a scientific paper (Figure 1 in Turbek et al., 2016)" />
+<div class="figcaption">Structure of a scientific paper (Figure 1 in Turbek et al., 2016)</div>
+</div>
+<ul>
+<li><strong>M&amp;M</strong>
+<ul>
+<li>Reproducibility</li>
+<li>Reproducibility of the experiment</li>
+<li>Reproducibility of the statistical model</li>
+<li><a href="https://rstats.wtf/reproducible-environments.html">Reproducible environments</a></li>
+</ul></li>
+<li><strong>Results</strong>
+<ul>
+<li>Highlight important results</li>
+</ul></li>
+<li><strong>Discussion</strong>
+<ul>
+<li>Put results in context</li>
+</ul></li>
+<li><strong>Conclusion</strong>
+<ul>
+<li>Connect the topic sentences in the discussion</li>
+</ul></li>
+<li><a href="https://www.k-state.edu/english/student-success/writingcenter/">Writing Center (KSU)</a></li>
+<li><a href="https://www.nature.com/scitable/topicpage/scientific-papers-13815490/">Scientific papers</a></li>
+</ul>
+<div id="paragraphs" class="section level3 hasAnchor" number="9.1.1">
+<h3><span class="header-section-number">9.1.1</span> Paragraphs<a href="communicating-results.html#paragraphs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>One idea per paragraph</li>
+<li>One (bigger) idea per paper</li>
+<li>Structure of a paragraph [<a href="https://writingcenter.fas.harvard.edu/anatomy-body-paragraph">link</a>]
+<ul>
+<li>Topic sentence - presents the idea/claim of the paragraph</li>
+<li>Evidence</li>
+<li>Analysis</li>
+<li>Conclusion</li>
+</ul></li>
+</ul>
+<div class="float">
+<img src="https://writingcenter.fas.harvard.edu/sites/g/files/omnuum451/files/2024-02/Anatomy%20of%20a%20Body%20Paragraph--accessible-3-Recovered_0.png" width="250" alt="Structure of a paragraph" />
+<div class="figcaption">Structure of a paragraph</div>
+</div>
+</div>
+</div>
+<div id="communicating-statistical-analyses" class="section level2 hasAnchor" number="9.2">
+<h2><span class="header-section-number">9.2</span> Communicating statistical analyses<a href="communicating-results.html#communicating-statistical-analyses" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Discipline-specific criteria</li>
+<li>Statistical notation versus rhetoric</li>
+</ul>
+<p>Some examples from this class</p>
+</div>
+<div id="communicating-results-and-uncertainty" class="section level2 hasAnchor" number="9.3">
+<h2><span class="header-section-number">9.3</span> Communicating results and uncertainty<a href="communicating-results.html#communicating-results-and-uncertainty" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Communicating point estimates is relatively easy. So far, we can consider the point estimate the value with maximum likelihood to have generated the data. If we had to bet on a particular number, that would probably be the point estimate. Now, if we had to bet on a <em>range</em> of values, the width of that range would depend on the information in the data.</p>
+<p><strong>Confidence intervals</strong></p>
+<p>Confidence intervals are one of the most frequently mis-interpreted quantities.</p>
+<ul>
+<li><strong>A safe approach</strong>: “The mean is between <code>CIlow</code> and <code>CIhigh</code> [units], with 95% confidence.”</li>
+<li>Statistical tests, P values, confidence intervals, and power: a guide to misinterpretation [<a href="https://link.springer.com/article/10.1007/s10654-016-0149-3">link</a>]</li>
+</ul>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="communicating-results.html#cb97-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb97-2"><a href="communicating-results.html#cb97-2" tabindex="-1"></a><span class="fu">library</span>(lme4)</span>
+<span id="cb97-3"><a href="communicating-results.html#cb97-3" tabindex="-1"></a><span class="fu">library</span>(emmeans)</span></code></pre></div>
+<div id="example" class="section level3 hasAnchor" number="9.3.1">
+<h3><span class="header-section-number">9.3.1</span> Example<a href="communicating-results.html#example" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The data below come from a split-plot designed experiment in complete blocks, with fungicide in the whole plot and genotype in the split plot. The model is</p>
+<p><span class="math display">\[y_{ijk} | b_k, u_{j(k)} \sim N(\mu_{ijk}, \sigma^2_\varepsilon), \\ \mu_{ijk} = \mu + G_i + F_j + GF_{ij} + b_k + u_{j(k)}, \\ b_k \sim N(0, \sigma^2_b) , \ u_{j(k)} \sim N(0, \sigma^2_u),\]</span></p>
+<p>where <span class="math inline">\(y_{ijk}\)</span> is the data that we assume is normally distributed, <span class="math inline">\(\mu_{ijk}\)</span> is the mean and <span class="math inline">\(\sigma^2_\varepsilon\)</span> is the variance.
+The linear predictor of <span class="math inline">\(\mu_{ijk}\)</span> is the sum of an overall mean <span class="math inline">\(\mu\)</span>, the effect of the <span class="math inline">\(i\)</span>th genotype <span class="math inline">\(G_i\)</span>, the effect of the <span class="math inline">\(j\)</span>th fungicide <span class="math inline">\(F_j\)</span>,
+the interaction between the <span class="math inline">\(i\)</span>th genotype and <span class="math inline">\(j\)</span>th fungicide <span class="math inline">\(GF_{ij}\)</span>, the random effect of the <span class="math inline">\(k\)</span>th block <span class="math inline">\(b_k\)</span>, and the random whole-plot effect of the <span class="math inline">\(j\)</span>th fungicide in the <span class="math inline">\(k\)</span>th block <span class="math inline">\(u_{j(k)}\)</span>. Both random effects are assumed independent to each other and to the residual.</p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="communicating-results.html#cb98-1" tabindex="-1"></a>dat_multilevel <span class="ot">&lt;-</span> agridat<span class="sc">::</span>durban.splitplot</span>
+<span id="cb98-2"><a href="communicating-results.html#cb98-2" tabindex="-1"></a></span>
+<span id="cb98-3"><a href="communicating-results.html#cb98-3" tabindex="-1"></a>m_multilevel <span class="ot">&lt;-</span> <span class="fu">lmer</span>(yield <span class="sc">~</span> gen<span class="sc">*</span>fung <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>block<span class="sc">/</span>fung), <span class="at">data =</span> dat_multilevel)</span>
+<span id="cb98-4"><a href="communicating-results.html#cb98-4" tabindex="-1"></a></span>
+<span id="cb98-5"><a href="communicating-results.html#cb98-5" tabindex="-1"></a>fung_mgmeans <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(m_multilevel, <span class="sc">~</span>fung)</span></code></pre></div>
+<pre><code>## NOTE: Results may be misleading due to involvement in interactions</code></pre>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="communicating-results.html#cb100-1" tabindex="-1"></a><span class="fu">as.data.frame</span>(fung_mgmeans) <span class="sc">|&gt;</span> </span>
+<span id="cb100-2"><a href="communicating-results.html#cb100-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(emmean, fung))<span class="sc">+</span></span>
+<span id="cb100-3"><a href="communicating-results.html#cb100-3" tabindex="-1"></a>  <span class="fu">geom_errorbarh</span>(<span class="fu">aes</span>(<span class="at">xmin =</span> lower.CL, <span class="at">xmax =</span> upper.CL), <span class="at">width =</span> <span class="dv">0</span>)<span class="sc">+</span></span>
+<span id="cb100-4"><a href="communicating-results.html#cb100-4" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">4</span>)<span class="sc">+</span></span>
+<span id="cb100-5"><a href="communicating-results.html#cb100-5" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb100-6"><a href="communicating-results.html#cb100-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Fungicide&quot;</span>, <span class="at">x =</span> <span class="fu">expression</span>(Yield<span class="sc">~</span>(Mg<span class="sc">~</span>ha<span class="sc">^</span>{<span class="sc">-</span><span class="dv">1</span>})))<span class="sc">+</span></span>
+<span id="cb100-7"><a href="communicating-results.html#cb100-7" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">aspect.ratio =</span> .<span class="dv">2</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-63-1.png" alt="" width="672" /></p>
+</div>
+<div id="hypothesis-tests-and-p-values" class="section level3 hasAnchor" number="9.3.2">
+<h3><span class="header-section-number">9.3.2</span> Hypothesis tests and p-values<a href="communicating-results.html#hypothesis-tests-and-p-values" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Hypothesis test evaluate the probability of observing the current data under a null hypothesis. When that probability is very low, we consider that is it very unlikely that the data were generated by that hypothesis, and we move on to an alternative hypothesis.</p>
+<p><strong>What we need:</strong></p>
+<ul>
+<li>A null hypothesis <span class="math inline">\(H_0\)</span> representing the current paradigm or beliefs</li>
+<li>An alternative hypothesis <span class="math inline">\(H_a\)</span></li>
+</ul>
+<p><strong>What we get:</strong></p>
+<ul>
+<li>An answer rejecting (or not) the null hypothesis.</li>
+</ul>
+<p><strong>Things to consider:</strong></p>
+<ul>
+<li>The question reflected in some <span class="math inline">\(H_0\)</span> is not always the real research question.</li>
+<li>The Difference Between “Significant” and “Not Significant” is not Itself Statistically Significant [<a href="https://sites.stat.columbia.edu/gelman/research/published/signif4.pdf">link</a>]</li>
+<li>ASA’s statement on p-values [<a href="https://www.tandfonline.com/doi/full/10.1080/00031305.2016.1154108#d1e167">link</a>]</li>
+</ul>
+<p><strong>Different types of hypothesis tests</strong></p>
+<ul>
+<li>t-tests</li>
+<li>ANOVA – F test ~ multivariate t-test</li>
+<li>Post-hoc mean comparisons</li>
+</ul>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="communicating-results.html#cb101-1" tabindex="-1"></a><span class="co"># simple marginal means + contrast (t test)</span></span>
+<span id="cb101-2"><a href="communicating-results.html#cb101-2" tabindex="-1"></a><span class="fu">emmeans</span>(m_multilevel, <span class="sc">~</span>fung, <span class="at">contr =</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="sc">-</span><span class="dv">1</span>)))</span></code></pre></div>
+<pre><code>## $emmeans
+##  fung emmean    SE   df lower.CL upper.CL
+##  F1     5.51 0.105 4.18     5.23     5.80
+##  F2     4.97 0.105 4.18     4.68     5.25
+## 
+## Results are averaged over the levels of: gen 
+## Degrees-of-freedom method: kenward-roger 
+## Confidence level used: 0.95 
+## 
+## $contrasts
+##  contrast estimate     SE df t.ratio p.value
+##  c(1, -1)    0.548 0.0863  3   6.346  0.0079
+## 
+## Results are averaged over the levels of: gen 
+## Degrees-of-freedom method: kenward-roger</code></pre>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="communicating-results.html#cb103-1" tabindex="-1"></a><span class="co"># ANOVA</span></span>
+<span id="cb103-2"><a href="communicating-results.html#cb103-2" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">Anova</span>(m_multilevel, <span class="at">type =</span> <span class="dv">2</span>, <span class="at">test.statistic =</span> <span class="st">&quot;F&quot;</span>)</span></code></pre></div>
+<pre><code>## Analysis of Deviance Table (Type II Wald F tests with Kenward-Roger df)
+## 
+## Response: yield
+##                F Df Df.res    Pr(&gt;F)    
+## gen       7.2008 69    414 &lt; 2.2e-16 ***
+## fung     40.2718  1      3  0.007915 ** 
+## gen:fung  0.9331 69    414  0.629010    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="communicating-results.html#cb105-1" tabindex="-1"></a><span class="co"># multiple comparison</span></span>
+<span id="cb105-2"><a href="communicating-results.html#cb105-2" tabindex="-1"></a><span class="fu">library</span>(multcomp)</span>
+<span id="cb105-3"><a href="communicating-results.html#cb105-3" tabindex="-1"></a>means_gen <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(m_multilevel, <span class="sc">~</span>gen)</span>
+<span id="cb105-4"><a href="communicating-results.html#cb105-4" tabindex="-1"></a>(mean_comparisons_gen <span class="ot">&lt;-</span> </span>
+<span id="cb105-5"><a href="communicating-results.html#cb105-5" tabindex="-1"></a>  <span class="fu">cld</span>(means_gen,</span>
+<span id="cb105-6"><a href="communicating-results.html#cb105-6" tabindex="-1"></a>      <span class="at">level =</span> <span class="fl">0.05</span>,</span>
+<span id="cb105-7"><a href="communicating-results.html#cb105-7" tabindex="-1"></a>      <span class="at">adjust =</span> <span class="st">&quot;sidak&quot;</span>,</span>
+<span id="cb105-8"><a href="communicating-results.html#cb105-8" tabindex="-1"></a>      <span class="at">Letters =</span> letters))</span></code></pre></div>
+<pre><code>##  gen emmean    SE   df lower.CL upper.CL .group      
+##  G04   4.14 0.137 12.8     3.84     4.45  a          
+##  G14   4.63 0.137 12.8     4.32     4.94  ab         
+##  G20   4.80 0.137 12.8     4.49     5.11   bc        
+##  G10   4.81 0.137 12.8     4.50     5.12   bcd       
+##  G28   4.84 0.137 12.8     4.53     5.15   bcde      
+##  G24   4.86 0.137 12.8     4.55     5.16   bcdef     
+##  G01   4.91 0.137 12.8     4.60     5.22   bcdefg    
+##  G05   4.94 0.137 12.8     4.63     5.25   bcdefgh   
+##  G49   4.95 0.137 12.8     4.64     5.26   bcdefgh   
+##  G34   5.01 0.137 12.8     4.70     5.32   bcdefghi  
+##  G25   5.02 0.137 12.8     4.71     5.33   bcdefghi  
+##  G30   5.04 0.137 12.8     4.73     5.35   bcdefghi  
+##  G21   5.05 0.137 12.8     4.74     5.36   bcdefghi  
+##  G02   5.06 0.137 12.8     4.75     5.37   bcdefghi  
+##  G15   5.07 0.137 12.8     4.76     5.38   bcdefghi  
+##  G41   5.09 0.137 12.8     4.78     5.40   bcdefghi  
+##  G08   5.09 0.137 12.8     4.78     5.40   bcdefghi  
+##  G07   5.10 0.137 12.8     4.79     5.41   bcdefghi  
+##  G45   5.11 0.137 12.8     4.80     5.42   bcdefghi  
+##  G06   5.13 0.137 12.8     4.82     5.44   bcdefghi  
+##  G55   5.14 0.137 12.8     4.83     5.45   bcdefghij 
+##  G32   5.16 0.137 12.8     4.85     5.47   bcdefghij 
+##  G11   5.16 0.137 12.8     4.86     5.47   bcdefghij 
+##  G39   5.18 0.137 12.8     4.87     5.49   bcdefghij 
+##  G61   5.20 0.137 12.8     4.89     5.51   bcdefghij 
+##  G53   5.21 0.137 12.8     4.90     5.52   bcdefghij 
+##  G37   5.21 0.137 12.8     4.90     5.52   bcdefghij 
+##  G26   5.21 0.137 12.8     4.90     5.52   bcdefghij 
+##  G43   5.21 0.137 12.8     4.91     5.52   bcdefghij 
+##  G35   5.22 0.137 12.8     4.91     5.53   bcdefghij 
+##  G66   5.22 0.137 12.8     4.91     5.53   bcdefghij 
+##  G16   5.23 0.137 12.8     4.92     5.54   bcdefghij 
+##  G68   5.25 0.137 12.8     4.94     5.56    cdefghij 
+##  G46   5.25 0.137 12.8     4.94     5.56    cdefghij 
+##  G29   5.26 0.137 12.8     4.95     5.57    cdefghij 
+##  G47   5.27 0.137 12.8     4.96     5.58    cdefghij 
+##  G44   5.29 0.137 12.8     4.98     5.60    cdefghij 
+##  G23   5.29 0.137 12.8     4.98     5.60    cdefghij 
+##  G56   5.29 0.137 12.8     4.99     5.60    cdefghij 
+##  G58   5.31 0.137 12.8     5.00     5.62    cdefghij 
+##  G57   5.32 0.137 12.8     5.01     5.62    cdefghij 
+##  G63   5.32 0.137 12.8     5.01     5.63    cdefghij 
+##  G62   5.32 0.137 12.8     5.01     5.63    cdefghij 
+##  G54   5.33 0.137 12.8     5.02     5.64    cdefghij 
+##  G51   5.36 0.137 12.8     5.05     5.67    cdefghij 
+##  G67   5.37 0.137 12.8     5.06     5.68    cdefghij 
+##  G42   5.37 0.137 12.8     5.06     5.68    cdefghij 
+##  G59   5.37 0.137 12.8     5.06     5.68    cdefghij 
+##  G22   5.37 0.137 12.8     5.06     5.68    cdefghij 
+##  G65   5.38 0.137 12.8     5.07     5.69    cdefghij 
+##  G69   5.38 0.137 12.8     5.07     5.69    cdefghij 
+##  G38   5.38 0.137 12.8     5.07     5.69    cdefghij 
+##  G12   5.39 0.137 12.8     5.08     5.70    cdefghij 
+##  G31   5.41 0.137 12.8     5.10     5.72     defghij 
+##  G50   5.42 0.137 12.8     5.11     5.73      efghij 
+##  G17   5.42 0.137 12.8     5.12     5.73      efghij 
+##  G52   5.43 0.137 12.8     5.12     5.74      efghij 
+##  G64   5.44 0.137 12.8     5.13     5.75      efghij 
+##  G13   5.45 0.137 12.8     5.14     5.76       fghij 
+##  G70   5.45 0.137 12.8     5.14     5.76       fghij 
+##  G09   5.46 0.137 12.8     5.15     5.77       fghij 
+##  G60   5.48 0.137 12.8     5.17     5.79        ghijk
+##  G27   5.49 0.137 12.8     5.18     5.80        ghijk
+##  G18   5.50 0.137 12.8     5.19     5.81        ghijk
+##  G36   5.50 0.137 12.8     5.20     5.81        ghijk
+##  G48   5.51 0.137 12.8     5.20     5.82        ghijk
+##  G40   5.53 0.137 12.8     5.22     5.84         hijk
+##  G33   5.61 0.137 12.8     5.30     5.92          ijk
+##  G19   5.73 0.137 12.8     5.42     6.04           jk
+##  G03   6.08 0.137 12.8     5.77     6.38            k
+## 
+## Results are averaged over the levels of: fung 
+## Degrees-of-freedom method: kenward-roger 
+## Confidence level used: 0.05 
+## Conf-level adjustment: sidak method for 70 estimates 
+## P value adjustment: sidak method for 2415 tests 
+## significance level used: alpha = 0.05 
+## NOTE: If two or more means share the same grouping symbol,
+##       then we cannot show them to be different.
+##       But we also did not show them to be the same.</code></pre>
+</div>
+<div id="other-results-in-mixed-effects-models" class="section level3 hasAnchor" number="9.3.3">
+<h3><span class="header-section-number">9.3.3</span> Other results in mixed-effects models<a href="communicating-results.html#other-results-in-mixed-effects-models" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Variance components</strong></p>
+<p>Recall that</p>
+<p><span class="math display">\[y_{ijk} | b_k, u_{j(k)} \sim N(\mu_{ijk}, \sigma^2_\varepsilon), \\ \mu_{ijk} = \mu + G_i + F_j + GF_{ij} + b_k + u_{j(k)}, \\ b_k \sim N(0, \sigma^2_b) , \ u_{j(k)} \sim N(0, \sigma^2_u) \]</span></p>
+<p>represents the conditional distribution of <span class="math inline">\(y\)</span>.</p>
+<p>At that level, the uncertainty is only coming from observing new data, <span class="math inline">\(\sigma^2_\varepsilon\)</span>. We could, however, obtain <span class="math inline">\(y\)</span>s for all blocks and whole plots <em>in general</em>, where the uncertainty will represent (i) observing new data, (ii) observing new blocks, and (iii) observing new whole plots.</p>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="communicating-results.html#cb107-1" tabindex="-1"></a><span class="fu">VarCorr</span>(m_multilevel)</span></code></pre></div>
+<pre><code>##  Groups     Name        Std.Dev.
+##  fung:block (Intercept) 0.11737 
+##  block      (Intercept) 0.16972 
+##  Residual               0.28119</code></pre>
+<ul>
+<li>Discuss marginal inference versus conditional inference</li>
+</ul>
+</div>
+</div>
+<div id="reading-1" class="section level2 hasAnchor" number="9.4">
+<h2><span class="header-section-number">9.4</span> Reading<a href="communicating-results.html#reading-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Writing</strong></p>
+<ul>
+<li>Draft no. 4 (John McPhee) [<a href="https://www.amazon.com/Draft-No-4-Writing-Process/dp/0374142742">link</a>]</li>
+<li>Learning how to learn (Oakley et al.) [<a href="https://www.amazon.com/Learning-How-Learn-Spending-Studying/dp/0143132547">link</a>]</li>
+</ul>
+<p><strong>Data viz</strong></p>
+<ul>
+<li>How to get better at embracing unknowns (J Hullman) [<a href="https://www.scientificamerican.com/article/how-to-get-better-at-embracing-unknowns/">link</a>]
+<ul>
+<li><em>“The least effective way to present uncertainty is to not show it at all.”</em></li>
+</ul></li>
+<li>Visualizing Uncertainty About the Future (Spiegelhalter et al.) [<a href="https://doi.org/10.1126/science.1191181">link</a>]</li>
+</ul>
+<p><strong>Other</strong></p>
+<ul>
+<li>Cross-validation strategies for data with temporal, spatial, hierarchical, or phylogenetic structure [<a href="https://nsojournals.onlinelibrary.wiley.com/doi/10.1111/ecog.02881">link</a>]</li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="statistical-inference.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="semester-project-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/stat720/book2025/edit/main/09-writing.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": "https://github.com/stat720/book2025/blob/main/09-writing.Rmd",
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

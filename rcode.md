@@ -14,3 +14,4 @@ Keep in mid that all the code to generate this website and the class notes can b
 - Day 3 [[get R code](../scripts/day3.qmd)] 
 - Day 4 [[get R code](../scripts/day4.qmd)] 
 - Day 6 [[get R code](../scripts/day6.qmd)] 
+- Day 10 [[get R code](../scripts/day10.Rmd)] 

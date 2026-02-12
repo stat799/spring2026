@@ -1,0 +1,63 @@
+---
+title: "Untitled"
+format: html
+editor: visual
+---
+
+```{r message=FALSE, warning=FALSE}
+library(lme4)
+library(tidyverse)
+
+```
+
+Data on grey leaf spot severity in 9 environments for 36 genotypes.
+
+```{r}
+dat <- agridat::ars.earlywhitecorn96
+summary(dat)
+unique(dat$loc)
+
+unique(dat$gen)
+dat |> 
+  group_by(loc, gen) |> 
+  summarise(n())
+```
+
+```{r}
+m <- lmer(yield ~ loc + (1|gen), data = dat)
+
+DHARMa::simulateResiduals(m, plot = T)
+
+plot(predict(m), resid(m))
+```
+
+```{r}
+m2 <- glmer(yield ~ loc + (1|gen), family = Gamma(link = "log"), data = dat)
+
+DHARMa::simulateResiduals(m2, plot = T)
+
+plot(predict(m), resid(m))
+
+```
+
+```{r}
+set.seed(42)
+sim_gamma <- simulate(m2)
+
+dat |> 
+  mutate(sim = sim_gamma$sim_1) |> 
+  ggplot(aes(loc, yield))+
+  geom_point(aes(y = sim))+
+  geom_point(color = "gold")
+```
+
+$$y_{ij} \vert u_j \sim N(\mu_{ij}, \sigma^2_j)$$
+
+```{r}
+m2 <- glmer(yield ~ loc + (1|gen), family = Gamma(link = "log"), data = dat)
+
+DHARMa::simulateResiduals(m2, plot = T)
+
+plot(predict(m), resid(m))
+
+```

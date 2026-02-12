@@ -22,10 +22,50 @@ m <- lmer(yield ~ loc + (1|gen), data = dat)
 
 DHARMa::simulateResiduals(m, plot = T) 
 
-plot(predict(m), resid(m))
+plot(predict(m), resid(m, type = "pearson"))
+
+data.frame(yhat = predict(m),
+           epsilonhat = resid(m, type = "pearson"), 
+           loc = dat$loc) |> 
+  ggplot(aes(yhat, epsilonhat))+
+  geom_point()+
+  labs(y = latex2exp::TeX("$$\\hat{\\epsilon}$$"), 
+       x = latex2exp::TeX("$$\\hat{y}$$"))+
+  theme_pubclean()+
+  theme(aspect.ratio = .3)
 ```
 
+```{r}
+m2 <- glmer(yield ~ loc + (1|gen), family = Gamma(link = "log"), data = dat)
+DHARMa::simulateResiduals(m2, plot = T)
 
+data.frame(yhat = predict(m2),
+           epsilonhat = resid(m2, type = "pearson"), 
+           loc = dat$loc) |> 
+  ggplot(aes(yhat, epsilonhat))+
+  geom_point()+
+  labs(y = latex2exp::TeX("$$\\hat{\\epsilon}$$"), 
+       x = latex2exp::TeX("$$\\hat{y}$$"))+
+  theme_pubclean()+
+  theme(aspect.ratio = .3)
+```
 
+```{r}
+library(mgcv)
+m3 <- gam(list(yield ~ loc + s(gen, bs = "re"),
+               ~ loc), 
+          family = gaulss(), data = dat)
+plot(m3)
+
+data.frame(yhat = predict(m3)[,1],
+           epsilonhat = resid(m3, type = "pearson"), 
+           loc = dat$loc) |> 
+  ggplot(aes(yhat, epsilonhat))+
+  geom_point()+
+  labs(y = latex2exp::TeX("$$\\hat{\\epsilon}$$"), 
+       x = latex2exp::TeX("$$\\hat{y}$$"))+
+  theme_pubclean()+
+  theme(aspect.ratio = .3)
+```
 
 

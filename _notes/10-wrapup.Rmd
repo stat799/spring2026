@@ -1,0 +1,227 @@
+# Wrap-up
+
+*February 12, 2026* 
+
+## Announcements 
+
+- Schedule your weekly/by-weekly meeting! 
+- Please fill out [this form](https://docs.google.com/forms/d/e/1FAIpQLSfozX4ZoEAf-ystrpxLptL3sk-aVo_WwXNY3NxWoGfVEDfkXA/viewform?usp=publish-editor) by Monday midnight. 
+- What's coming next: 
+  - Meet by appointment 
+  - Potentially schedule group meetings for common topics 
+
+## From normal, iid data, to generalized mixed models 
+
+We started from the most common statistical model 
+
+$$\mathbf{y} \sim N(\boldsymbol\mu, \boldsymbol\Sigma),$$
+
+where:
+
+- $\mathbf{y} \equiv [y_1, y_2, \dots, y_n]'$ contains the response data, 
+- $\boldsymbol{\mu} \equiv [\mu_1, \mu_2, \dots, \mu_n]'$ contains the expected values of said data, 
+- $\boldsymbol\Sigma$ is the variance-covariance matrix. 
+
+The most typical model typically has:
+
+- $\boldsymbol\mu = \mathbf{X}\boldsymbol{\beta}$ and 
+- $\boldsymbol\Sigma = \sigma^2\mathbf{I}$. 
+
+We can write the default model in most software written above as: 
+
+$$\mathbf{y} \sim N(\boldsymbol{\mu}, \Sigma),\\
+\begin{bmatrix}y_1 \\ y_2 \\ y_3 \\ y_4 \\ \vdots \\ y_n \end{bmatrix} \sim N
+\left( \begin{bmatrix}\mu_1 \\ \mu_2 \\ \mu_3 \\ \mu_4 \\ \vdots \\ \mu_n \end{bmatrix}, 
+\sigma^2 
+\begin{bmatrix} 1 & 0 & 0 & 0 & \dots & 0 \\ 
+0 & 1 & 0 & 0 & \dots & 0 \\
+0 & 0 & 1 & 0 & \dots & 0 \\
+0 & 0 & 0 & 1 & \dots & 0 \\
+\vdots & \vdots & \vdots & \vdots & \ddots & \vdots\\  
+0 & 0 & 0 & 0 & \dots & 1 \end{bmatrix}
+\right),$$
+
+which is the same as 
+
+$$\begin{bmatrix}y_1 \\ y_2 \\ y_3 \\ y_4 \\ \vdots \\ y_n \end{bmatrix} \sim N
+\left( \begin{bmatrix}\mu_1 \\ \mu_2 \\ \mu_3 \\ \mu_4 \\ \vdots \\ \mu_n \end{bmatrix}, 
+\begin{bmatrix} \sigma^2 & 0 & 0 & 0 & \dots & 0 \\ 
+0 & \sigma^2 & 0 & 0 & \dots & 0 \\
+0 & 0 & \sigma^2 & 0 & \dots & 0 \\
+0 & 0 & 0 & \sigma^2 & \dots & 0 \\
+\vdots & \vdots & \vdots & \vdots & \ddots & \vdots\\  
+0 & 0 & 0 & 0 & \dots & \sigma^2 \end{bmatrix}
+\right).$$
+
+
+In summary, the assumptions of the most common statistical model are: 
+
+- Linearity (or whatever the deterministic equation is) 
+- Normality 
+- Independence 
+- Constant variance 
+
+In what follows, we will discuss the different approaches we took for relaxing those assumptions. 
+
+### ~~Independence~~ Mixed models!  
+
+- Include random effects! 
+- How can we distinguish random vs. fixed effects? 
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fixed vs Random Effects Table</title>
+    <style>
+        table.unique-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table.unique-table th, table.unique-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        table.unique-table th {
+            background-color: #f4f4f4;
+            font-weight: bold;
+        }
+        table.unique-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+
+<body>
+
+<table class="unique-table">
+    <tr>
+        <th> </th>
+        <th>Fixed effects</th>
+        <th>Random effects</th>
+    </tr>
+    <tr>
+        <th>Where</th>
+        <td>Expected value (of the marginal dist)</td>
+        <td>Variance-covariance matrix (of the marginal dist)</td>
+    </tr>
+    <tr>
+        <th>Inference</th>
+        <td>Constant for all groups in the population of study</td>
+        <td>Differ from group to group</td>
+    </tr>
+    <tr>
+        <th>Usually used to model</th>
+        <td>Carefully selected treatments or genotypes</td>
+        <td>The study design (aka structure in the data, or what is similar to what)</td>
+    </tr>
+    <tr>
+        <th>Assumptions</th>
+        <td>$$\hat{\boldsymbol{\beta}} \sim N \left( \boldsymbol{\beta}, (\mathbf{X}^T \mathbf{V}^{-1} \mathbf{X})^{-1} \right) $$</td>
+        <td>$$u_j \sim N(0, \sigma^2_u)$$</td>
+    </tr>
+    <tr>
+        <th>Method of estimation</th>
+        <td>Maximum likelihood, least squares</td>
+        <td>Restricted maximum likelihood (shrinkage)</td>
+    </tr>
+</table>
+</body>
+
+
+**What we get from these assumptions**
+
+- Information is shared across groups (see analysis of IBDs in [day 3](https://stat799.github.io/spring2026/notes/mixed-models-ii.html)) 
+- Precision + accuracy
+- Shrinkage -- see distribution 
+
+**Consider the conditional distribution** 
+
+$$\mathbf{y} | \boldsymbol{u} \sim N(\mathbf{X}\boldsymbol{\beta} + \mathbf{Z}\boldsymbol{u}, \mathbf{R}),$$
+
+where $\mathbf{y}$ is the observed response, 
+$\mathbf{X}$ is the matrix with the explanatory variables, 
+$\mathbf{Z}$ is the design matrix,
+$\boldsymbol{\beta}$ is the vector containing the fixed-effects parameters, 
+$\mathbf{u} \sim N(\boldsymbol{0}, \mathbf{G})$ is the vector containing the random effects parameters, 
+$\boldsymbol{\varepsilon}$ is the vector containing the residuals, 
+$\mathbf{G}$ is the variance-covariance matrix of the random effects, 
+and $\mathbf{R}$ is the variance-covariance matrix of the residuals. 
+
+
+**Consider the marginal distribution** 
+
+$$\mathbf{y} = \mathbf{X} \boldsymbol{\beta} + \mathbf{Z}\mathbf{u} + \boldsymbol{\varepsilon}, \\ 
+\begin{bmatrix}\mathbf{u} \\ \boldsymbol{\varepsilon} \end{bmatrix} \sim \left(
+\begin{bmatrix}\boldsymbol{0} \\ \boldsymbol{0} \end{bmatrix}, 
+\begin{bmatrix}\mathbf{G} & \boldsymbol{0} \\
+\boldsymbol{0} & \mathbf{R} \end{bmatrix} 
+\right),$$
+
+where $\mathbf{y}$ is the observed response, 
+$\mathbf{X}$ is the matrix with the explanatory variables, 
+$\mathbf{Z}$ is the design matrix,
+$\boldsymbol{\beta}$ is the vector containing the fixed-effects parameters, 
+$\mathbf{u}$ is the vector containing the random effects parameters, 
+$\boldsymbol{\varepsilon}$ is the vector containing the residuals, 
+$\mathbf{G}$ is the variance-covariance matrix of the random effects, 
+and $\mathbf{R}$ is the variance-covariance matrix of the residuals. 
+Typically, $\mathbf{G} = \sigma^2_u \mathbf{I}$ and $\mathbf{R} = \sigma^2 \mathbf{I}$.  
+
+- Basically, all the random effects information is now contained in a more fancy variance-covariance matrix. 
+- Uncertainty includes observing new levels of the random effects (new blocks, new locations, etc, etc.)
+
+**Multilevel models are everywhere**
+
+
+
+>I want to convince the reader of something that appears unreasonable: multilevel regression deserves to be the default form of regression. Papers that do not use multilevel models should have to justify not using a multilevel approach. Certainly some data and contexts do not need the multilevel treatment. But most contemporary studies in the social and natural sciences, whether experimental or not, would benefit from it. Perhaps the most important reason is that even well-controlled treatments interact with unmeasured aspects of the individuals, groups, or populations studied. This leads to variation in treatment effects, in which individuals or groups vary in how they respond to the same circumstance. Multilevel models attempt to quantify the extent of this variation, as well as identify which units in the data responded in which ways.
+>
+>Richard McElreath -- [Statistical Rethinking](https://civil.colorado.edu/~balajir/CVEN6833/bayes-resources/RM-StatRethink-Bayes.pdf)
+
+- [An interesting blog post](https://elevanth.org/blog/2017/08/24/multilevel-regression-as-default/)
+- [McElreath's lectures](https://www.youtube.com/watch?v=FdnMWdICdRs&list=PLDcUM9US4XdPz-KxHM4XHt7uUVGWWVSus)
+- [McElreath's blog](https://elevanth.org/blog/)
+
+
+### ~~Linearity~~ Non-linear models 
+
+- Go back to Claudio about his workshop! 
+
+### ~~Normality~~ Generalized linear models  
+
+Part of creating a statistical model is picking the distribution! A few things to keep in mind: 
+
+```{r fig.height=20, fig.align='center', fig.cap="Probability distributions."}
+knitr::include_graphics("figures/distributions.png")
+```
+
+```{r fig.height=20, fig.align='center', fig.cap="Properties of probability distributions."}
+knitr::include_graphics("figures/stroup_distributions.jpg")
+```
+
+
+### ~~Constant variance~~ two approaches 
+
+- See mean-variance relationship above. 
+
+- **Modeling the mean vs. modeling the variance**
+  - We are educated to model the mean, but modeling the variance sometimes might make sense! 
+  - All this should come from the research question. 
+  - Modeling the location and the scale [[see paper](https://academic.oup.com/jrsssc/article-abstract/54/3/507/7113027)]
+  - Example modeling the variance of yield [[see paper](https://link.springer.com/article/10.1186/s13007-025-01355-y)]
+
+## Applied wrap-up
+
+[Get R code.](../scripts/day10.qmd)
+
+## Coming next
+
+- Schedule your weekly/by-weekly meeting! 
+- Please fill out [this form](https://docs.google.com/forms/d/e/1FAIpQLSfozX4ZoEAf-ystrpxLptL3sk-aVo_WwXNY3NxWoGfVEDfkXA/viewform?usp=publish-editor) by Monday midnight. 
+- What's coming next: 
+  - Meet by appointment 
+  - Potentially schedule group meetings for common topics 
+
+

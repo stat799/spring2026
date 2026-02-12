@@ -1,0 +1,31 @@
+---
+title: "Untitled"
+author: "J Lacasa"
+date: "2026-02-12"
+output: html_document
+---
+
+
+```{r message=FALSE, warning=FALSE}
+library(glmmTMB)
+```
+
+Data on grey leaf spot severity in 9 environments for 36 genotypes. 
+
+```{r}
+dat <- agridat::ars.earlywhitecorn96
+summary(dat)
+```
+
+```{r}
+m <- lmer(yield ~ loc + (1|gen), data = dat)
+
+DHARMa::simulateResiduals(m, plot = T) 
+
+plot(predict(m), resid(m))
+```
+
+
+
+
+

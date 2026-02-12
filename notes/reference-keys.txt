@@ -5,6 +5,8 @@ tab:unnamed-chunk-32
 fig:unnamed-chunk-38
 fig:unnamed-chunk-39
 fig:unnamed-chunk-51
+fig:unnamed-chunk-66
+fig:unnamed-chunk-67
 welcome-to-stat-799
 about-this-course
 logistics
@@ -108,6 +110,15 @@ example
 hypothesis-tests-and-p-values
 other-results-in-mixed-effects-models
 reading-1
+wrap-up
+announcements
+from-normal-iid-data-to-generalized-mixed-models
+independence-mixed-models
+linearity-non-linear-models
+normality-generalized-linear-models
+constant-variance-two-approaches
+applied-wrap-up
+coming-next
 semester-project-1
 learning-objectives
 partial-deadlines

@@ -11,5 +11,5 @@ Feb 9
   
 Feb 12 
 : Wrap-up     
-  : [](#)
+  : [html](https://stat799.github.io/spring2026/notes/wrap-up.html) 
 

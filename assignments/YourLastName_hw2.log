@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2026.2.3)  16 FEB 2026 08:43
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2026.2.3)  16 FEB 2026 08:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -482,7 +482,7 @@ LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 17
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 179.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 180.
 [2] (./YourLastName_hw2.aux)
  ***********
 LaTeX2e <2025-11-01>
@@ -498,7 +498,7 @@ Here is how much of TeX's memory you used:
  36 hyphenation exceptions out of 8191
  83i,6n,93p,1013b,478s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/Users/lacasa/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/Users/lacasa/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/Users/lacasa/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb><c:/Users/lacasa/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/Users/lacasa/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/Users/lacasa/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb><c:/Users/lacasa/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/Users/lacasa/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/Users/lacasa/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtk10.pfb><c:/Users/lacasa/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb>
-Output written on YourLastName_hw2.pdf (2 pages, 197278 bytes).
+Output written on YourLastName_hw2.pdf (2 pages, 197769 bytes).
 PDF statistics:
  117 PDF objects out of 1000 (max. 8388607)
  90 compressed objects within 1 object stream
